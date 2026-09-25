@@ -12,9 +12,9 @@ int ft_printf(const char *s, ...)
     {
         if (*s == '%')
         {
+            flags = init_flags();
             flags = parser(&s);
-            if (!flags)
-                return (-1);
+            
             
         }
         else
@@ -26,6 +26,16 @@ int ft_printf(const char *s, ...)
     }
     va_end(args);
     return (flags.print_count);
+}
+
+t_flags init_flags(void)
+{
+    t_flags flags;
+    
+    flags.left_padding = 0;
+    flags.spaces = 0;
+    flags.alt_hexa = 0;
+    ...
 }
 
 t_flags parser(const char **s)
