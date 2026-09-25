@@ -19,3 +19,8 @@ int is_converter(char c)
 {
     
 }
+
+int printer_manager()
+{
+    
+}
