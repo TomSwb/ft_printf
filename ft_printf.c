@@ -41,6 +41,7 @@ t_flags parser(const char **s, int *count)
 {
     t_flags flags;
     
+    (*s)++;
     while (**s != is_converter(**s))
     {
         if (**s == '-')
