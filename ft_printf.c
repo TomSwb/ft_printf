@@ -14,7 +14,7 @@ int ft_printf(const char *s, ...)
         {
             flags = parser(&s);
             if (!flags)
-                return (NULL);
+                return (-1);
             
         }
         else
