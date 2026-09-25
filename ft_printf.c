@@ -13,6 +13,8 @@ int ft_printf(const char *s, ...)
         if (*s == '%')
         {
             flags = parser(&s);
+            if (!flags)
+                return (NULL);
             
         }
         else
