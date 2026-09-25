@@ -17,8 +17,8 @@ typedef struct s_flags
     int zero_padding;
     int positive_sign;
     int alt_hexa;
-    
     int spaces;
+    
     int min_width;
     int precision_len;
     
