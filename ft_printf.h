@@ -11,6 +11,7 @@
 // ft_printf.c
 int ft_printf(const char *, ...);
 int is_converter(char c);
+int printer_manager();
 
 // ft_printf_printing.c
 int putchar(void *value);
