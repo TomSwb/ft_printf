@@ -33,7 +33,7 @@ t_flags parser(const char **s)
     while (**s != is_converter(**s))
     {
         if (**s == '-')
-            flags.left_padding = 1;
+            flags.left_align = 1;
         else if (**s == ' ')
             flags.spaces = 1;
         else if (**s == '0')
