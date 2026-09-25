@@ -1,7 +1,40 @@
+*This project has been created as part of the 42 curriculum by \<tschwab>*
 
+# ft_printf - a function by TomSwb
 
+## Description
 
-## Conversions & Bonus Flags Reference
+#### Goal:
+
+Create my own `printf` function.
+
+#### Brief overview:
+
+##### Basic:
+
+`Files:`
+
+* ft_printf.c
+* ft_printf_utils.c
+
+`Additionally contains:`
+
+* ft_printf.h
+* README
+
+`Program version additionally contains:`
+
+* main.c
+* a.out
+
+##### Bonus:
+
+* ft_printf_flags.c
+* flags uses (possible flags are describe in the detailed section).
+
+## Detailed descriptions:
+
+### Conversions & Bonus Flags Reference
 
 ### Conversions
 
