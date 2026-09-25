@@ -22,6 +22,8 @@ typedef struct s_flags
     int min_width;
     int precision_len;
     
+    int print_count;
+    
 } t_flags
 
 // *** Functions *** //
