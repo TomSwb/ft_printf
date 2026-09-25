@@ -6,6 +6,9 @@
 // va_arg functions / type
 # include <stdarg.h>
 
+// write();
+# include <unistd.h>
+
 // *** Functions *** //
 
 // ft_printf.c
