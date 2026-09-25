@@ -1,6 +1,9 @@
-# ft_printf — Conversions & Bonus Flags Reference
 
-## Conversions
+
+
+## Conversions & Bonus Flags Reference
+
+### Conversions
 
 | Symbol | Meaning | Example |
 |---|---|---|
@@ -14,7 +17,7 @@
 | `X` | Unsigned hexadecimal, uppercase | `%X` with 42 → `2A` |
 | `%` | Literal percent sign | `%%` → `%` |
 
-## Bonus Flags and Formatting
+### Bonus Flags and Formatting
 
 | Symbol | Type | Meaning | Example |
 |---|---|---|---|
@@ -28,7 +31,7 @@
 
 > `_` represents a space in the examples.
 
-## Relevant Formatting by Conversion
+### Relevant Formatting by Conversion
 
 | Conversion | `-` | `0` | `.` | Width | `#` | `+` | Space |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -42,7 +45,7 @@
 | `X` | ✓ | ✓ | ✓ | ✓ | ✓ | — | — |
 | `%` | — | — | — | — | — | — | — |
 
-## Precision
+### Precision
 
 | Conversion | Meaning | Example |
 |---|---|---|
@@ -56,7 +59,7 @@ For strings, precision can reduce the number of characters printed.
 For integers, precision never removes significant digits. Zeroes are added
 when necessary to reach the requested precision.
 
-## Priority, Conflicts and Exceptions
+### Priority, Conflicts and Exceptions
 
 | Situation | Rule | Example |
 |---|---|---|
@@ -78,7 +81,7 @@ when necessary to reach the requested precision.
 | `-` + width | Padding goes on the right | `%-5d`, 42 → `42___` |
 | Width without `-` | Padding goes on the left | `%5d`, 42 → `___42` |
 
-## Main Priority Rules
+### Main Priority Rules
 
 The three main conflicts to remember:
 
