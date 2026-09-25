@@ -17,7 +17,7 @@ void test_c()
     
     c = 'W';
     result_ft = ft_printf("no flags = %c\n", c);
-    ft_printf("%d\n", result_ft);
     result_og = printf("no flags = %c\n", c);
-    printf("%d\n", result_og);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
 }
