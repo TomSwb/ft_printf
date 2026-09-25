@@ -42,7 +42,39 @@ Part of my libft. It can be added to it and used - see instructions in the Libft
 
 .........
 
+## Resources
 
+#### Editor:
+
+* `VSCodium`: Used to avoid Microsoft telemetry and AI-integrated temptations.
+
+#### 42:
+
+* `ft_printf.pdf` version: 14.3
+
+### AI:
+
+#### Before beginning of cursus
+
+⚠️ Disclaimer: I only ask for actual answers/solutions when I realise that I am missing theoretical knowledge.
+
+e.g.: a new syntax or a new concept I had not explored previously.
+
+I always write my code to the best of my abilities first.
+
+My AI agents are set to guide me with questions as per the 42 pedagogical philosophy.
+
+I use VSCodium on purpose to not have AI integration. This means that, except for my copy-pastes into chats for some reviews, AI does not see my code, and AI will never write my code - I do not copy-paste from AI into my code.
+
+`ChatGPT:`
+
+1. Peer-to-peer help as I would get on campus.
+
+2. Understanding of variadic parameters.
+
+3. Original printf converter and flags description to understand what implementation is required (basically a detailed and comprehensif summary of man printf, see detailed description section).
+
+4. Help on making this Readme.
 
 
 ## Detailed descriptions:
