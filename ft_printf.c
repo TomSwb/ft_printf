@@ -6,15 +6,18 @@ int ft_printf(const char *s, ...)
     int count;
     t_flags flags;
     va_list args;
+    size_t i;
     
     va_start(args, s);
+    i = 0;
     while (*s)
     {
         if (*s == '%')
         {
             flags = init_flags();
             flags = parser(&s, &count);
-            printer_manager();
+            printer_manager(args[i]);
+            i++;
         }
         else
         {
