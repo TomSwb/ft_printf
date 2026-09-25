@@ -14,8 +14,7 @@ int ft_printf(const char *s, ...)
         {
             flags = init_flags();
             flags = parser(&s);
-            
-            
+            printer_manager();
         }
         else
         {
@@ -52,6 +51,7 @@ t_flags parser(const char **s)
             flags.zero_padding = 1;
             
         (*s)++
+        flags.print_count++;
     }
 }
 
