@@ -13,18 +13,18 @@ int ft_printf(const char *s, ...)
         if (*s == '%')
         {
             flags = init_flags();
-            flags = parser(&s);
+            flags = parser(&s, &count);
             printer_manager();
         }
         else
         {
             putchar(s);
-            flags.print_count++;
+            count++;
             s++;
         }
     }
     va_end(args);
-    return (flags.print_count);
+    return (count);
 }
 
 t_flags init_flags(void)
@@ -37,7 +37,7 @@ t_flags init_flags(void)
     ...
 }
 
-t_flags parser(const char **s)
+t_flags parser(const char **s, int *count)
 {
     t_flags flags;
     
@@ -51,7 +51,7 @@ t_flags parser(const char **s)
             flags.zero_padding = 1;
             
         (*s)++
-        flags.print_count++;
+        (*count)++;
     }
 }
 
