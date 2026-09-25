@@ -50,7 +50,7 @@ t_flags parser(const char **s, int *count)
         else if (**s == '0')
             flags.zero_padding = 1;
             
-        (*s)++
+        (*s)++;
         (*count)++;
     }
 }
