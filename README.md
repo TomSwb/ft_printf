@@ -38,9 +38,10 @@ Create my own `printf` function.
 #### Libft version: 
 Part of my libft. It can be added to it and used - see instructions in the Libft README (pending...).
 
-#### Program versions:
+#### Test_program:
 
-.........
+* Run the ./a.out to see the result of all the test compared with the original printf.
+* Alter the main.c and recompile to do your own test.
 
 ## Resources
 
@@ -50,7 +51,17 @@ Part of my libft. It can be added to it and used - see instructions in the Libft
 
 #### 42:
 
-* `ft_printf.pdf` version: 14.3
+* `ft_printf.pdf` version: 12.1
+
+#### System:
+
+* Linux man page - printf(3): https://www.man7.org/linux/man-pages/man3/printf.3.html
+
+#### Youtube:
+
+* https://youtu.be/3iX9a_l9W9Y?is=O3_g8FrEvuGjzlap
+* https://youtu.be/oDC208zvsdg?is=zg2j5yylIfRxqsWx
+* https://youtu.be/LB2vPYwJnfw?is=UwSxPH1sGmzKHfnO
 
 ### AI:
 
@@ -75,7 +86,6 @@ I use VSCodium on purpose to not have AI integration. This means that, except fo
 3. Original printf converter and flags description to understand what implementation is required (basically a detailed and comprehensif summary of man printf, see detailed description section).
 
 4. Help on making this Readme.
-
 
 ## Detailed descriptions:
 
