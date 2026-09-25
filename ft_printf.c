@@ -3,6 +3,7 @@
 
 int ft_printf(const char *s, ...)
 {
+    int count;
     va_list args;
     
     va_start(args, s);
@@ -10,6 +11,8 @@ int ft_printf(const char *s, ...)
     {
         s++;
     }
+    va_end(args);
+    return (count);
 }
 
 int is_converter(char c)
