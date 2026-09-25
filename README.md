@@ -33,6 +33,18 @@ Create my own `printf` function.
 * ft_printf_flags.c
 * flags uses (possible flags are describe in the detailed section).
 
+## Instructions
+
+#### Libft version: 
+Part of my libft. It can be added to it and used - see instructions in the Libft README (pending...).
+
+#### Program versions:
+
+.........
+
+
+
+
 ## Detailed descriptions:
 
 ### Conversions & Bonus Flags Reference
