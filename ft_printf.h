@@ -3,7 +3,7 @@
 
 // *** Libraries *** //
 
-// va_arg functions / type
+// va_arg functions & type
 # include <stdarg.h>
 
 // write();
