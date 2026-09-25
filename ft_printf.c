@@ -15,12 +15,17 @@ int ft_printf(const char *s, ...)
     return (count);
 }
 
-int is_converter(char c)
+int parser()
 {
     
 }
 
 int printer_manager()
+{
+    
+}
+
+int is_converter(char c)
 {
     
 }
