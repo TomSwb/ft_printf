@@ -16,7 +16,7 @@ int ft_printf(const char *s, ...)
         {
             flags = init_flags();
             flags = parser(&s, &count);
-            printer_manager(args[i]);
+            printer_manager(flags, args[i]);
             i++;
         }
         else
