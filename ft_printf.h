@@ -9,6 +9,21 @@
 // write();
 # include <unistd.h>
 
+// *** Struct *** //
+
+typedef struct s_flags
+{
+    int left_align;
+    int zero_padding;
+    int positive_sign;
+    int alt_hexa;
+    
+    int spaces;
+    int min_width;
+    int precision_len;
+    
+} t_flags
+
 // *** Functions *** //
 
 // ft_printf.c
