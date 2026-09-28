@@ -15,7 +15,7 @@ int ft_printf(const char *s, ...)
         if (*s == '%')
         {
             flags = init_flags();
-            flags = parser(&s, &count);
+            parser(&s, &count, &flags);
             printer_manager(flags, args[i]);
             i++;
         }
@@ -45,28 +45,26 @@ t_flags init_flags(void)
     return (flags);
 }
 
-t_flags parser(const char **s, int *count)
+void parser(const char **s, int *count, t_flags *flags)
 {
-    t_flags flags;
-    
     (*s)++;
     while (**s != is_converter(**s))
     {
         if (**s == '-')
-            flags.left_align = 1;
+            flags->left_align = 1;
         else if (**s == '0')
-            flags.zero_padding = 1;
+            flags->zero_padding = 1;
         else if (**s == '+')
-            flags.positive_sign = 1;
+            flags->positive_sign = 1;
         else if (**s == '#')
-            flags.alt_hexa = 1;
+            flags->alt_hexa = 1;
         else if (**s == ' ')
-            flags.spaces = 1;
+            flags->spaces = 1;
         else if (isnum(**s))
         {
             while (isnum(**s))
             {
-                flags.min_width = flags.min_width * 10 + (**s - 48);
+                flags->min_width = flags->min_width * 10 + (**s - 48);
                 (*s)++;
                 (*count)++;
             }
@@ -77,7 +75,7 @@ t_flags parser(const char **s, int *count)
             (*count)++;
             while (isnum(**s))
             {
-                flags.precision_len = flags.precision_len * 10 + (**s - 48);
+                flags->precision_len = flags->precision_len * 10 + (**s - 48);
                 (*s)++;
                 (*count)++;
             }
@@ -86,7 +84,6 @@ t_flags parser(const char **s, int *count)
         (*s)++;
         (*count)++;
     }
-    return (flags);
 }
 
 int printer_manager()
