@@ -6,10 +6,8 @@ int ft_printf(const char *s, ...)
     int count;
     t_flags flags;
     va_list args;
-    size_t i;
     
     va_start(args, s);
-    i = 0;
     count = 0;
     while (*s)
     {
@@ -17,8 +15,7 @@ int ft_printf(const char *s, ...)
         {
             flags = init_flags();
             parser(&s, &flags);
-            printer_manager(flags, args[i], &count);
-            i++;
+            printer_manager(flags, &args, &count);
         }
         else
         {
@@ -85,7 +82,7 @@ void parser(const char **s, t_flags *flags)
     (*s)++;
 }
 
-int printer_manager()
+int printer_manager(t_flags flags, va_list *args, int *count)
 {
     
 }
