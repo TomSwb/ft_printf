@@ -16,13 +16,13 @@ int ft_printf(const char *s, ...)
         if (*s == '%')
         {
             flags = init_flags();
-            parser(&s, &count, &flags);
-            printer_manager(flags, args[i]);
+            parser(&s, &flags);
+            printer_manager(flags, args[i], &count);
             i++;
         }
         else
         {
-            putchar(s);
+            putchar(*s);
             count++;
             s++;
         }
@@ -46,7 +46,7 @@ t_flags init_flags(void)
     return (flags);
 }
 
-void parser(const char **s, int *count, t_flags *flags)
+void parser(const char **s, t_flags *flags)
 {
     (*s)++;
     while (!is_converter(**s))
@@ -67,27 +67,22 @@ void parser(const char **s, int *count, t_flags *flags)
             {
                 flags->min_width = flags->min_width * 10 + (**s - 48);
                 (*s)++;
-                (*count)++;
             }
         }
         else if (**s == '.')
         {
             (*s)++;
-            (*count)++;
             while (isnum(**s))
             {
                 flags->precision_len = flags->precision_len * 10 + (**s - 48);
                 (*s)++;
-                (*count)++;
             }
         break ;
         }
         (*s)++;
-        (*count)++;
     }
     flags->type = **s;
     (*s)++;
-    (*count)++;
 }
 
 int printer_manager()
