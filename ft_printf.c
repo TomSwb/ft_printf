@@ -54,14 +54,22 @@ t_flags parser(const char **s, int *count)
     {
         if (**s == '-')
             flags.left_align = 1;
-        else if (**s == ' ')
-            flags.spaces = 1;
         else if (**s == '0')
             flags.zero_padding = 1;
-            
+        else if (**s == '+')
+            flags.positive_sign = 1;
+        else if (**s == '#')
+            flags.alt_hexa = 1;
+        else if (**s == ' ')
+            flags.spaces = 1;
+        else if ()
+            flags.min_width = ... ;
+        else if ()
+            flags.precision_len = ... ;
         (*s)++;
         (*count)++;
     }
+    return (flags);
 }
 
 int printer_manager()
