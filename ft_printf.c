@@ -68,10 +68,21 @@ t_flags parser(const char **s, int *count)
             {
                 flags.min_width = flags.min_width * 10 + (**s - 48);
                 (*s)++;
+                (*count)++;
             }
         }
-        else if ()
-            flags.precision_len = ... ;
+        else if (**s == '.')
+        {
+            (*s)++;
+            (*count)++;
+            while (isnum(**s))
+            {
+                flags.precision_len = flags.precision_len * 10 + (**s - 48);
+                (*s)++;
+                (*count)++;
+            }
+        break ;
+        }
         (*s)++;
         (*count)++;
     }
