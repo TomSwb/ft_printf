@@ -34,10 +34,15 @@ t_flags init_flags(void)
 {
     t_flags flags;
     
-    flags.left_padding = 0;
-    flags.spaces = 0;
+    flags.left_align = 0;
+    flags.zero_padding = 0;
+    flags.positive_sign = 0;
     flags.alt_hexa = 0;
-    ...
+    flags.spaces = 0;
+    flags.min_width = 0;
+    flags.precision_len = 0;
+    flags.type = NULL;
+    return (flags);
 }
 
 t_flags parser(const char **s, int *count)
