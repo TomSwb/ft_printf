@@ -23,23 +23,30 @@ typedef struct s_flags
     int precision_len;
     
     char type;
-} t_flags
+} t_flags;
 
 // *** Functions *** //
 
 // ft_printf.c
 int ft_printf(const char *, ...);
-int parser();
-int printer_manager();
-int is_converter(char c);
+void parser(const char **s, t_flags *flags);
+int printer_manager(t_flags flags, va_list *args, int *count);
+t_flags init_flags(void);
+
 
 // ft_printf_printing.c
-int putchar(void *value);
+int ft_putchar(char value);
 int putnbr(void *value);
 int putstr(void *value);
 int puthexa(void *value);
 
 // fr_printf_utils.c
+int is_num(char c);
+int is_flag(char c);
+int is_converter(char c);
+void min_width_precison_len(t_flags *flags, const char **s);
+
+
 int min_width();
 int positive_sign();
 int space();

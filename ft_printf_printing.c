@@ -1,9 +1,10 @@
 
 #include "ft_printf.h"
 
-int putchar(void *value)
+int ft_putchar(char value)
 {
-    
+	write(1, &value, 1);
+	return (1);    
 }
 
 int putnbr(void *value)

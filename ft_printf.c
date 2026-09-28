@@ -15,7 +15,7 @@ int ft_printf(const char *s, ...)
         {
             if (!*(s + 1))
             {
-                putchar(*s);
+                ft_putchar(*s);
                 count++;
                 break ;
             }
@@ -25,7 +25,7 @@ int ft_printf(const char *s, ...)
         }
         else
         {
-            putchar(*s);
+            ft_putchar(*s);
             count++;
             s++;
         }
@@ -66,23 +66,7 @@ void parser(const char **s, t_flags *flags)
             flags->spaces = 1;
         (*s)++;
     }
-    if (is_num(**s))
-    {
-        while (is_num(**s))
-        {
-            flags->min_width = flags->min_width * 10 + (**s - 48);
-            (*s)++;
-        }
-    }
-    if (**s == '.')
-    {
-        (*s)++;
-        while (is_num(**s))
-        {
-            flags->precision_len = flags->precision_len * 10 + (**s - 48);
-            (*s)++;
-        }
-    }
+    min_width_precison_len(flags, s);
     flags->type = **s;
     (*s)++;
 }
@@ -92,37 +76,3 @@ int printer_manager(t_flags flags, va_list *args, int *count)
     
 }
 
-int is_num(char c)
-{
-    if (c >= '0' && c <= '9')
-        return (1);
-    return (0);
-}
-
-int is_flag(char c)
-{
-    char *s;
-    
-    s = "-0+# ";
-    while (*s)
-    {
-        if (*s == c)
-            return (1);
-        s++;
-    }
-    return (0);
-}
-
-int is_converter(char c)
-{
-    char *s;
-    
-    s = "cspdiuxX%";
-    while (*s)
-    {
-        if (*s == c)
-            return (1);
-        s++;
-    }
-    return (0);
-}
