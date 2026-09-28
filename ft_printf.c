@@ -62,8 +62,14 @@ t_flags parser(const char **s, int *count)
             flags.alt_hexa = 1;
         else if (**s == ' ')
             flags.spaces = 1;
-        else if ()
-            flags.min_width = ... ;
+        else if (isnum(**s))
+        {
+            while (isnum(**s))
+            {
+                flags.min_width = flags.min_width * 10 + (**s - 48);
+                (*s)++;
+            }
+        }
         else if ()
             flags.precision_len = ... ;
         (*s)++;
