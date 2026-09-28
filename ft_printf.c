@@ -10,6 +10,7 @@ int ft_printf(const char *s, ...)
     
     va_start(args, s);
     i = 0;
+    count = 0;
     while (*s)
     {
         if (*s == '%')
@@ -48,7 +49,7 @@ t_flags init_flags(void)
 void parser(const char **s, int *count, t_flags *flags)
 {
     (*s)++;
-    while (**s != is_converter(**s))
+    while (!is_converter(**s))
     {
         if (**s == '-')
             flags->left_align = 1;
@@ -84,6 +85,9 @@ void parser(const char **s, int *count, t_flags *flags)
         (*s)++;
         (*count)++;
     }
+    flags->type = **s;
+    (*s)++;
+    (*count)++;
 }
 
 int printer_manager()
@@ -91,7 +95,7 @@ int printer_manager()
     
 }
 
-char is_converter(char c)
+int is_converter(char c)
 {
     char *s;
     
@@ -99,8 +103,8 @@ char is_converter(char c)
     while (*s)
     {
         if (*s == c)
-            return ((char)s)
+            return (1);
         s++;
     }
-    return (NULL);
+    return (0);
 }
