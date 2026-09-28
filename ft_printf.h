@@ -23,9 +23,6 @@ typedef struct s_flags
     int precision_len;
     
     char type;
-    
-    int print_count;
-    
 } t_flags
 
 // *** Functions *** //
