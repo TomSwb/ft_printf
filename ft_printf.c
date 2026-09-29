@@ -72,6 +72,6 @@ void printer_manager(t_flags flags, va_list *args, int *count)
     else if (flags.converter == 'c')
         *count += ft_putchar(va_arg(*args, int)); 
     else if (flags.converter == 's')
-        *count += ft_putstr(va_arg(*args, char *));
+        *count += ft_putstr(va_arg(*args, char *), flags);
 }
 
