@@ -58,19 +58,19 @@ void	printer_manager_char(t_flags *flags, va_list *args, int *count)
 	else if (flags->converter == 'c')
 	{
 		c = va_arg(*args, int);
-		if (!flags->left_align)
+		if (!flags->left_align && flags->min_width > 0)
 			*count = padding(flags, 1);
 		*count += ft_putchar(c);
-		if (flags->left_align)
+		if (flags->left_align && flags->min_width > 0)
 			*count = padding(flags, 1);
 	}
 	else if (flags->converter == 's')
 	{
 		s = va_arg(*args, char *);
-		if (!flags->left_align)
+		if (!flags->left_align && flags->min_width > 0)
 			*count = padding(flags, ft_strlen(s, flags));
 		*count += ft_putstr(s, flags);
-		if (flags->left_align)
+		if (flags->left_align && flags->min_width > 0)
 			*count = padding(flags, ft_strlen(s, flags));
 	}
 }
