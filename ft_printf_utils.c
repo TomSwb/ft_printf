@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 17:51:33 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/29 20:02:13 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,6 @@ int is_flag(char c)
     return (0);
 }
 
-int is_converter(char c)
-{
-    char *s;
-    
-    s = "cspdiuxX%";
-    while (*s)
-    {
-        if (*s == c)
-            return (1);
-        s++;
-    }
-    return (0);
-}
-
 int ft_strlen(char *s, t_flags *flags)
 {
     int len;
@@ -55,6 +41,6 @@ int ft_strlen(char *s, t_flags *flags)
     while (s[len])
         len++;
     if (flags->precision && len > flags->precision_len)
-        len = flags->precision_len);
+        len = flags->precision_len;
     return (len);
 }

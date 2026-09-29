@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 17:53:36 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/29 20:03:52 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int ft_printf(const char *s, ...)
 
 void printer_manager(t_flags *flags, va_list *args, int *count)
 {
-    if (flags->converter == '%' || flags->converter == 'c' || flags->concerter == 's')
+    if (flags->converter == '%' || flags->converter == 'c' || flags->converter == 's')
         printer_manager_char(flags, args, count);
-    else if (flags->converter == 'd' || flags->converter == 'i' || flags->concerter == 'u')
+    else if (flags->converter == 'd' || flags->converter == 'i' || flags->converter == 'u')
         printer_manager_decimal(flags, args, count);
-    else if (flags->converter == 'p' || flags->converter == 'x' || flags->concerter == 'X')
+    else if (flags->converter == 'p' || flags->converter == 'x' || flags->converter == 'X')
         printer_manager_hexa(flags, args, count);
 }
 
@@ -59,19 +59,19 @@ void printer_manager_char(t_flags *flags, va_list *args, int *count)
     {
         c = va_arg(*args, int);
         if (!flags->left_align)
-            padding(flags, 1);
+            *count = padding(flags, 1);
         *count += ft_putchar(c);
         if (flags->left_align)
-            padding(flags, 1);
+            *count = padding(flags, 1);
     }
     else if (flags->converter == 's')
     {
         s = va_arg(*args, char *);
         if (!flags->left_align)
-            padding(flags, ft_strlen(s, flags))
+            *count = padding(flags, ft_strlen(s, flags));
         *count += ft_putstr(s, flags);
         if (flags->left_align)
-            padding(flags, ft_strlen(s, flags))
+            *count = padding(flags, ft_strlen(s, flags));
     }
 }
 

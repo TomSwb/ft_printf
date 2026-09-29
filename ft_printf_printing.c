@@ -6,11 +6,16 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 17:54:16 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/29 20:04:16 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int padding(t_flags *flags, int len_value)
+{
+    
+}
 
 int ft_putchar(char value)
 {
@@ -45,7 +50,7 @@ int ft_putstr(const char *value, t_flags *flags)
     }
     return (count);
 }
-
+/*
 int putnbr(int value)
 {
     int count;
@@ -76,3 +81,4 @@ int ft_putaddress(void *value)
 {
     
 }
+*/
