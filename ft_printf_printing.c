@@ -14,6 +14,7 @@ int ft_putstr(void *value, t_flags *flags)
     int count;
     
     s = (char *)value;
+    count = 0;
     if (flags->precision_len)
     {
         while (i < flags->precision_len && s[i])
