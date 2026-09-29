@@ -36,7 +36,7 @@ int is_converter(char c)
     return (0);
 }
 
-void min_width_precison_len(t_flags *flags, const char **s)
+void parse_min_width_precison(t_flags *flags, const char **s)
 {
 	if (is_num(**s))
     {
