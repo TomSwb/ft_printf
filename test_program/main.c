@@ -13,6 +13,7 @@
 #include "../ft_printf.h"
 #include <stdio.h>
 
+vois test_%();
 void	test_c();
 void	test_s();
 
@@ -20,13 +21,28 @@ int	main(void)
 {
 	ft_printf("control, string ending with %");
 	ft_printf("\n");
-	//  printf("control, string ending with %");
-	printf("\n");
+	test_%();
 	ft_printf("\n");
 	test_c();
 	ft_printf("\n");
 	test_s();
 	ft_printf("\n");
+}
+
+void	test_%()
+{
+    int		result_ft;
+    int		result_og;
+    
+	ft_printf("Testing 'char c' printing:\n");
+	result_ft = ft_printf("no flags = *%%*\n", c);
+	result_og = printf("no flags = *%%*\n", c);
+	ft_printf("result_ft = %d\n", result_ft);
+	printf("result_og = %d\n", result_og);
+	result_ft = ft_printf("non related flags + min width 5 = *%- #+05.1%*\n", c);
+	result_og = printf("non related flags + min width 5 = *%- #+05.1%*\n", c);
+	ft_printf("result_ft = %d\n", result_ft);
+	printf("result_og = %d\n", result_og);
 }
 
 void	test_c()
