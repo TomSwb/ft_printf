@@ -47,3 +47,8 @@ int puthexa(t_flags *flags, void *value)
     
     return (count);
 }
+
+int ft_putaddress(void *value)
+{
+    
+}
