@@ -14,24 +14,19 @@ int ft_putstr(const char *value, t_flags *flags)
     
     i = 0;
     count = 0;
-    if (value == NULL && (flags->precision_len == 0 || flags->precision_len => 6))
+    if (value == NULL)
     {
-        write(1, "(null)", 6);
-        count += 6;
-    }
-    else if (value == NULL && flags->precision_len < 6 && flags->precision_len > 0)
-        return (count);
-    else if (flags->precision_len)
-    {
-        while (i < flags->precision_len && value[i])
+        if (flags->precision_len >= 6 || !flags->precision)
         {
-            count += ft_putchar(value[i]);
-            i++;
+            write(1, "(null)", 6);
+            count += 6;
         }
+        else
+            return (count);
     }
     else
     {
-        while (value[i])
+        while (value[i] && (!flags->precision || i < flags->precision_len))
         {
             count += ft_putchar(value[i]);
             i++;
