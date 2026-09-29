@@ -20,6 +20,7 @@ typedef struct s_flags
     int spaces;
     
     int min_width;
+    int precision;
     int precision_len;
     
     char converter;
