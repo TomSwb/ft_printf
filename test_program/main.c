@@ -13,7 +13,7 @@
 #include "../ft_printf.h"
 #include <stdio.h>
 
-void test_%();
+void    test_percentage();
 void	test_c();
 void	test_s();
 
@@ -21,7 +21,7 @@ int	main(void)
 {
 	ft_printf("control, string ending with %");
 	ft_printf("\n");
-	test_%();
+	test_percentage();
 	ft_printf("\n");
 	test_c();
 	ft_printf("\n");
@@ -29,7 +29,7 @@ int	main(void)
 	ft_printf("\n");
 }
 
-void	test_%()
+void	test_percentage()
 {
     int		result_ft;
     int		result_og;
