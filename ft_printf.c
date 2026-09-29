@@ -40,11 +40,27 @@ int ft_printf(const char *s, ...)
 
 void printer_manager(t_flags *flags, va_list *args, int *count)
 {
+    char *s;
+    long n;
+    
     if (flags->converter == '%')
         *count += ft_putchar('%');
     else if (flags->converter == 'c')
-        *count += ft_putchar(va_arg(*args, int)); 
+    {
+        if (!flags->left_align)
+            padding(flags, &c);
+        *count += ft_putchar(va_arg(*args, int));
+        if (flags->left_align)
+            padding(flags, &c);
+    }
     else if (flags->converter == 's')
-        *count += ft_putstr(va_arg(*args, char *), flags);
+    {
+        s = va_arg(*args, char *);
+        if (!left_align)
+            padding(flags, s)
+        *count += ft_putstr(s, flags);
+        if (left_align)
+            padding(flags, s)
+    }
 }
 
