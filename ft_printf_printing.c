@@ -7,7 +7,7 @@ int ft_putchar(char value)
 	return (1);    
 }
 
-int ft_putstr(void *value, t_flags *flags)
+int ft_putstr(const char *value, t_flags *flags)
 {
     char *s;
     size_t i;
@@ -34,14 +34,14 @@ int ft_putstr(void *value, t_flags *flags)
     return (count);
 }
 
-int putnbr(void *value)
+int putnbr(int value)
 {
     int count;
     
     return (count);
 }
 
-int puthexa(t_flags *flags, void *value)
+int puthexa(t_flags *flags, int value)
 {
     char *hexa_low;
     char *heca_up;
