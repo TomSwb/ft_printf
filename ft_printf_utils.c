@@ -23,3 +23,10 @@ int	ft_strlen(char *s, t_flags *flags)
 		len = flags->precision_len;
 	return (len);
 }
+
+int int_len(int value, t_flags *flags)
+{
+	int len;
+	
+	len = 0;
+}
