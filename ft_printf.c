@@ -67,8 +67,8 @@ void parser(const char **s, t_flags *flags)
 void printer_manager(t_flags flags, va_list *args, int *count)
 {
     if (flags.converter == '%')
-        count += ft_putchar('%');
-    else
-    {}
+        *count += ft_putchar('%');
+    else if (flags.converter == 'c')
+        *count += ft_putchar(va_arg(*args, int)); 
 }
 
