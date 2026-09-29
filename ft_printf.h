@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/29 17:53:57 by tomswb            #+#    #+#             */
+/*   Updated: 2026/09/29 17:53:58 by tomswb           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -30,7 +42,7 @@ typedef struct s_flags
 
 // ft_printf.c
 int ft_printf(const char *, ...);
-void printer_manager(t_flags flags, va_list *args, int *count);
+void printer_manager(t_flags *flags, va_list *args, int *count);
 
 // ft_printf_parsing.c
 t_flags init_flags(void);
