@@ -41,16 +41,16 @@ void	test_c()
 	result_og = printf("no flags = *%c*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
-	result_ft = ft_printf("flag '-' = *%-c*\n", c);
-	result_og = printf("flag '-' = *%-c*\n", c);
-	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
 	result_ft = ft_printf("flag '-' + min width 5 = *%-5c*\n", c);
 	result_og = printf("flag '-' + min width 5 = *%-5c*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 	result_ft = ft_printf("min width 5 = *%5c*\n", c);
 	result_og = printf("min width 5 = *%5c*\n", c);
+	ft_printf("result_ft = %d\n", result_ft);
+	printf("result_og = %d\n", result_og);
+	result_ft = ft_printf("non related flags + min width 5 = *%#+05.5c*\n", c);
+	result_og = printf("non related flags + min width 5 = *%#+05.5c*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 }
