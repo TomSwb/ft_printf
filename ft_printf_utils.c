@@ -36,28 +36,6 @@ int is_converter(char c)
     return (0);
 }
 
-void parse_min_width_precison(t_flags *flags, const char **s)
-{
-	if (is_num(**s))
-    {
-        while (is_num(**s))
-        {
-            flags->min_width = flags->min_width * 10 + (**s - 48);
-            (*s)++;
-        }
-    }
-    if (**s == '.')
-    {
-        flags->precision = 1;
-        (*s)++;
-        while (is_num(**s))
-        {
-            flags->precision_len = flags->precision_len * 10 + (**s - 48);
-            (*s)++;
-        }
-    }
-}
-
 int min_width()
 {
     
