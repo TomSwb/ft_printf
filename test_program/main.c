@@ -34,7 +34,7 @@ void	test_%()
     int		result_ft;
     int		result_og;
     
-	ft_printf("Testing 'char c' printing:\n");
+	ft_printf("Testing '%' printing:\n");
 	result_ft = ft_printf("no flags = *%%*\n", c);
 	result_og = printf("no flags = *%%*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
