@@ -9,7 +9,9 @@ int ft_putchar(char value)
 
 int putnbr(void *value)
 {
+    int count;
     
+    return (count);
 }
 
 int ft_putstr(void *value)
@@ -32,6 +34,7 @@ int puthexa(t_flags *flags, void *value)
     char *hexa_low;
     char *heca_up;
     char *base;
+    int count;
     
     hexa_low = "0123456789abcdef";
     hexa_up = "0123456789ABCDEF";
@@ -39,4 +42,8 @@ int puthexa(t_flags *flags, void *value)
         base = hexa_up;
     else if (flags->convert == 'x')
         base = hexa_low;
+    
+    
+    
+    return (count);
 }
