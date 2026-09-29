@@ -7,17 +7,28 @@ int ft_putchar(char value)
 	return (1);    
 }
 
-int ft_putstr(void *value)
+int ft_putstr(void *value, t_flags *flags)
 {
     char *s;
     size_t i;
     int count;
     
     s = (char *)value;
-    while (s[i])
+    if (flags->precision_len)
     {
-        count += ft_putchar(s[i]);
-        i++;
+        while (i < flags->precision_len && s[i])
+        {
+            count += ft_putchar(s[i]);
+            i++;
+        }
+    }
+    else
+    {
+        while (s[i])
+        {
+            count += ft_putchar(s[i]);
+            i++;
+        }
     }
     return (count);
 }
