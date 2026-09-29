@@ -37,6 +37,7 @@ t_flags init_flags(void)
     flags.alt_hexa = 0;
     flags.spaces = 0;
     flags.min_width = 0;
+    flags.precision = 0;
     flags.precision_len = 0;
     flags.converter = '\0';
     return (flags);
