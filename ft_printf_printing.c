@@ -34,7 +34,7 @@ int	ft_putstr(const char *value, t_flags *flags)
 	count = 0;
 	if (value == NULL)
 	{
-		if (flags->precision_len >= 6 || !flags->precision)
+		if (!flags->precision || flags->precision_len >= 6)
 		{
 			write(1, "(null)", 6);
 			count += 6;
