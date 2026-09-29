@@ -48,6 +48,7 @@ void min_width_precison_len(t_flags *flags, const char **s)
     }
     if (**s == '.')
     {
+        flags->precision = 1;
         (*s)++;
         while (is_num(**s))
         {
