@@ -47,37 +47,14 @@ int is_converter(char c)
     return (0);
 }
 
-int min_width()
+int ft_strlen(char *s, t_flags *flags)
 {
+    int len;
     
-}
-
-int positive_sign()
-{
-    
-}
-
-int space()
-{
-    
-}
-
-int left_align()
-{
-    
-}
-
-int zero_padding()
-{
-    
-}
-
-int precision()
-{
-    
-}
-
-int alt_hexa()
-{
-    
+    len = 0;
+    while (s[len])
+        len++;
+    if (flags->precision && len > flags->precision_len)
+        len = flags->precision_len);
+    return (len);
 }
