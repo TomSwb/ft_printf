@@ -30,7 +30,7 @@ typedef struct s_flags
 // ft_printf.c
 int ft_printf(const char *, ...);
 void parser(const char **s, t_flags *flags);
-int printer_manager(t_flags flags, va_list *args, int *count);
+void printer_manager(t_flags flags, va_list *args, int *count);
 t_flags init_flags(void);
 
 
