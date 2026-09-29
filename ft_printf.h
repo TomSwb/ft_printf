@@ -22,7 +22,7 @@ typedef struct s_flags
     int min_width;
     int precision_len;
     
-    char type;
+    char converter;
 } t_flags;
 
 // *** Functions *** //
