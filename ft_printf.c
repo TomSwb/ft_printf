@@ -74,3 +74,13 @@ void printer_manager_char(t_flags *flags, va_list *args, int *count)
             padding(flags, ft_strlen(s, flags))
     }
 }
+
+void printer_manager_decimal(t_flags *flags, va_list *args, int *count)
+{
+
+}
+
+void printer_manager_hexa(t_flags *flags, va_list *args, int *count)
+{
+
+}
