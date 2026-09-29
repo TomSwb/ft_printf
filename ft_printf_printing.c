@@ -18,7 +18,7 @@ int	padding(t_flags *flags, int len_value)
 	int i;
 
 	count = flags->min_width - len_value;
-	if (count <= len_value)
+	if (count <= 0)
 		return (0);
 	i = 0;
 	while (i < count)
