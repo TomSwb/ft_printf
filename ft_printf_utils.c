@@ -33,9 +33,9 @@ int	is_flag(char c)
 	return (0);
 }
 
-size_t	ft_strlen(char *s, t_flags *flags)
+int	ft_strlen(char *s, t_flags *flags)
 {
-	size_t	len;
+	int	len;
 
 	len = 0;
 	while (s[len])
