@@ -12,15 +12,17 @@ int ft_putstr(const char *value, t_flags *flags)
     size_t i;
     int count;
     
+    i = 0;
     count = 0;
-    if (value == NULL)
+    if (value == NULL && (flags->precision_len == 0 || flags->precision_len => 6))
     {
         write(1, "(null)", 6);
         count += 6;
     }
+    else if (value == NULL && flags->precision_len < 6 && flags->precision_len > 0)
+        return (count);
     else if (flags->precision_len)
     {
-        i = 0;
         while (i < flags->precision_len && value[i])
         {
             count += ft_putchar(value[i]);
