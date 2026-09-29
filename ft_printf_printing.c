@@ -12,11 +12,24 @@
 
 #include "ft_printf.h"
 
-int	padding(t_flags *flags, size_t len_value)
+int	padding(t_flags *flags, int len_value)
 {
-    int count;
+	int count;
+	int i;
 
-	count = 0;
+	count = flags->min_width - len_value;
+	if (count <= len_value)
+		return (0);
+	i = 0;
+	while (i < count)
+	{
+		if (flags->zero_padding)
+			ft_putchar('0');
+		else
+			ft_putchar(' ');
+		i++;
+	}
+	return (count);
 }
 
 int	ft_putchar(char value)
