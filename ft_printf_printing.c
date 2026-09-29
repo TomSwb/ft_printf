@@ -27,7 +27,16 @@ int ft_putstr(void *value)
     return (count);
 }
 
-int puthexa(void *value)
+int puthexa(t_flags *flags, void *value)
 {
+    char *hexa_low;
+    char *heca_up;
+    char *base;
     
+    hexa_low = "0123456789abcdef";
+    hexa_up = "0123456789ABCDEF";
+    if (flags->convert == 'X')
+        base = hexa_up;
+    else if (flags->convert == 'x')
+        base = hexa_low;
 }
