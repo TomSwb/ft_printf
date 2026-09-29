@@ -8,15 +8,13 @@ int ft_printf(const char *s, ...)
     va_list args;
     
     va_start(args, s);
-    count = 0;
     while (*s)
     {
         if (*s == '%')
         {
             if (!*(s + 1))
             {
-                ft_putchar(*s);
-                count++;
+                count += ft_putchar(*s);
                 break ;
             }
             flags = init_flags();
@@ -25,8 +23,7 @@ int ft_printf(const char *s, ...)
         }
         else
         {
-            ft_putchar(*s);
-            count++;
+            count += ft_putchar(*s);
             s++;
         }
     }
