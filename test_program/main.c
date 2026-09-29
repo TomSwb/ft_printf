@@ -13,7 +13,7 @@
 #include "../ft_printf.h"
 #include <stdio.h>
 
-vois test_%();
+void test_%();
 void	test_c();
 void	test_s();
 
