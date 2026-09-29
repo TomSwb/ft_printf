@@ -45,7 +45,7 @@ int puthexa(void *value);
 int is_num(char c);
 int is_flag(char c);
 int is_converter(char c);
-void min_width_precison_len(t_flags *flags, const char **s);
+void parse_min_width_precison(t_flags *flags, const char **s);
 
 
 int min_width();
