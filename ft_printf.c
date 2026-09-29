@@ -40,27 +40,37 @@ int ft_printf(const char *s, ...)
 
 void printer_manager(t_flags *flags, va_list *args, int *count)
 {
+    if (flags->converter == '%' || flags->converter == 'c' || flags->concerter == 's')
+        printer_manager_char(flags, args, count);
+    else if (flags->converter == 'd' || flags->converter == 'i' || flags->concerter == 'u')
+        printer_manager_decimal(flags, args, count);
+    else if (flags->converter == 'p' || flags->converter == 'x' || flags->concerter == 'X')
+        printer_manager_hexa(flags, args, count);
+}
+
+void printer_manager_char(t_flags *flags, va_list *args, int *count)
+{
+    char c;
     char *s;
-    long n;
     
     if (flags->converter == '%')
         *count += ft_putchar('%');
     else if (flags->converter == 'c')
     {
+        c = va_arg(*args, int);
         if (!flags->left_align)
-            padding(flags, &c);
-        *count += ft_putchar(va_arg(*args, int));
+            padding(flags, 1);
+        *count += ft_putchar(c);
         if (flags->left_align)
-            padding(flags, &c);
+            padding(flags, 1);
     }
     else if (flags->converter == 's')
     {
         s = va_arg(*args, char *);
-        if (!left_align)
-            padding(flags, s)
+        if (!flags->left_align)
+            padding(flags, ft_strlen(s, flags))
         *count += ft_putstr(s, flags);
-        if (left_align)
-            padding(flags, s)
+        if (flags->left_align)
+            padding(flags, ft_strlen(s, flags))
     }
 }
-
