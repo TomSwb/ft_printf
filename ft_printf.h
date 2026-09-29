@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:53:57 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 20:11:26 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/29 20:17:18 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,51 +25,43 @@
 
 typedef struct s_flags
 {
-    int left_align;
-    int zero_padding;
-    int positive_sign;
-    int alt_hexa;
-    int spaces;
+    int		left_align;
+    int		zero_padding;
+    int		positive_sign;
+    int		alt_hexa;
+    int		spaces;
     
-    size_t min_width;
-    int precision;
-    size_t precision_len;
+    size_t	min_width;
+    int		precision;
+    size_t	precision_len;
     
-    char converter;
-} t_flags;
+    char	converter;
+}	t_flags;
 
 // *** Functions *** //
 
 // ft_printf.c
-int ft_printf(const char *, ...);
-void printer_manager(t_flags *flags, va_list *args, int *count);
-void printer_manager_char(t_flags *flags, va_list *args, int *count);
-void printer_manager_decimal(t_flags *flags, va_list *args, int *count);
-void printer_manager_hexa(t_flags *flags, va_list *args, int *count);
+int		ft_printf(const char *, ...);
+void	printer_manager(t_flags *flags, va_list *args, int *count);
+void	printer_manager_char(t_flags *flags, va_list *args, int *count);
+void	printer_manager_decimal(t_flags *flags, va_list *args, int *count);
+void	printer_manager_hexa(t_flags *flags, va_list *args, int *count);
 
 // ft_printf_parsing.c
-t_flags init_flags(void);
-void parser(const char **s, t_flags *flags);
-void parse_min_width_precison(t_flags *flags, const char **s);
+t_flags	init_flags(void);
+void	parser(const char **s, t_flags *flags);
+void	parse_min_width_precison(t_flags *flags, const char **s);
 
 // ft_printf_printing.c
-int padding(t_flags *flags, size_t len_value);
-int ft_putchar(char value);
-int ft_putstr(const char *value, t_flags *flags);
-int putnbr(void *value);
-int puthexa(void *value);
+int		padding(t_flags *flags, size_t len_value);
+int		ft_putchar(char value);
+int		ft_putstr(const char *value, t_flags *flags);
+int 	ft_putnbr(void *value);
+int		ft_puthexa(void *value);
 
 // fr_printf_utils.c
-int is_num(char c);
-int is_flag(char c);
-size_t ft_strlen(char *s, t_flags *flags);
-
-int min_width();
-int positive_sign();
-int space();
-int left_align();
-int zero_padding();
-int precision();
-int alt_hexa();
+int		is_num(char c);
+int		is_flag(char c);
+size_t	ft_strlen(char *s, t_flags *flags);
 
 #endif
