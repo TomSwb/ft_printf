@@ -9,25 +9,23 @@ int ft_putchar(char value)
 
 int ft_putstr(const char *value, t_flags *flags)
 {
-    char *s;
     size_t i;
     int count;
     
-    s = (char *)value;
     count = 0;
     if (flags->precision_len)
     {
-        while (i < flags->precision_len && s[i])
+        while (i < flags->precision_len && value[i])
         {
-            count += ft_putchar(s[i]);
+            count += ft_putchar(value[i]);
             i++;
         }
     }
     else
     {
-        while (s[i])
+        while (value[i])
         {
-            count += ft_putchar(s[i]);
+            count += ft_putchar(value[i]);
             i++;
         }
     }
