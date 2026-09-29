@@ -7,13 +7,6 @@ int ft_putchar(char value)
 	return (1);    
 }
 
-int putnbr(void *value)
-{
-    int count;
-    
-    return (count);
-}
-
 int ft_putstr(void *value)
 {
     char *s;
@@ -26,6 +19,13 @@ int ft_putstr(void *value)
         count += ft_putchar(s[i]);
         i++;
     }
+    return (count);
+}
+
+int putnbr(void *value)
+{
+    int count;
+    
     return (count);
 }
 
