@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 20:02:13 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/29 20:07:33 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int is_flag(char c)
     return (0);
 }
 
-int ft_strlen(char *s, t_flags *flags)
+size_t ft_strlen(char *s, t_flags *flags)
 {
-    int len;
+    size_t len;
     
     len = 0;
     while (s[len])

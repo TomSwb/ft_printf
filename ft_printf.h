@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:53:57 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 20:03:39 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/29 20:11:26 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct s_flags
     int alt_hexa;
     int spaces;
     
-    int min_width;
+    size_t min_width;
     int precision;
-    int precision_len;
+    size_t precision_len;
     
     char converter;
 } t_flags;
@@ -53,7 +53,7 @@ void parser(const char **s, t_flags *flags);
 void parse_min_width_precison(t_flags *flags, const char **s);
 
 // ft_printf_printing.c
-int padding(t_flags *flags, int len_value);
+int padding(t_flags *flags, size_t len_value);
 int ft_putchar(char value);
 int ft_putstr(const char *value, t_flags *flags);
 int putnbr(void *value);
@@ -62,7 +62,7 @@ int puthexa(void *value);
 // fr_printf_utils.c
 int is_num(char c);
 int is_flag(char c);
-int ft_strlen(char *s, t_flags *flags);
+size_t ft_strlen(char *s, t_flags *flags);
 
 int min_width();
 int positive_sign();
