@@ -30,10 +30,12 @@ typedef struct s_flags
 
 // ft_printf.c
 int ft_printf(const char *, ...);
-void parser(const char **s, t_flags *flags);
 void printer_manager(t_flags flags, va_list *args, int *count);
-t_flags init_flags(void);
 
+// ft_printf_parsing.c
+t_flags init_flags(void);
+void parser(const char **s, t_flags *flags);
+void parse_min_width_precison(t_flags *flags, const char **s);
 
 // ft_printf_printing.c
 int ft_putchar(char value);
@@ -45,7 +47,6 @@ int puthexa(void *value);
 int is_num(char c);
 int is_flag(char c);
 int is_converter(char c);
-void parse_min_width_precison(t_flags *flags, const char **s);
 
 
 int min_width();
