@@ -31,9 +31,9 @@ typedef struct s_flags
     int		alt_hexa;
     int		spaces;
     
-    size_t	min_width;
+    int	min_width;
     int		precision;
-    size_t	precision_len;
+    int	precision_len;
     
     char	converter;
 }	t_flags;
@@ -62,6 +62,6 @@ int		ft_puthexa(void *value);
 // fr_printf_utils.c
 int		is_num(char c);
 int		is_flag(char c);
-size_t	ft_strlen(char *s, t_flags *flags);
+int	ft_strlen(char *s, t_flags *flags);
 
 #endif
