@@ -7,16 +7,12 @@ int ft_printf(const char *s, ...)
     t_flags flags;
     va_list args;
     
+    count = 0;
     va_start(args, s);
     while (*s)
     {
-        if (*s == '%')
+        if (*s == '%' && *(s + 1))
         {
-            if (!*(s + 1))
-            {
-                count += ft_putchar(*s);
-                break ;
-            }
             flags = init_flags();
             parser(&s, &flags);
             printer_manager(flags, &args, &count);
