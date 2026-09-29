@@ -85,7 +85,7 @@ I use VSCodium on purpose to not have AI integration. This means that, except fo
 
 3. Original printf converter and flags description to understand what implementation is required (basically a detailed and comprehensif summary of man printf, see detailed description section).
 
-4. Help on making this Readme.
+4. Help on making this Readme, generation of the Conversions & Bonus Flags Reference section for reference purposes.
 
 ## Detailed descriptions:
 
