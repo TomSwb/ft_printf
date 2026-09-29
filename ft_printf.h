@@ -39,7 +39,7 @@ void parse_min_width_precison(t_flags *flags, const char **s);
 
 // ft_printf_printing.c
 int ft_putchar(char value);
-int putstr(const char *value, t_flags *flags);
+int ft_putstr(const char *value, t_flags *flags);
 int putnbr(void *value);
 int puthexa(void *value);
 
