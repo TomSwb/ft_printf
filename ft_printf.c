@@ -45,7 +45,7 @@ t_flags init_flags(void)
     flags.spaces = 0;
     flags.min_width = 0;
     flags.precision_len = 0;
-    flags.type = '\0';
+    flags.cpnverter = '\0';
     return (flags);
 }
 
@@ -67,13 +67,13 @@ void parser(const char **s, t_flags *flags)
         (*s)++;
     }
     min_width_precison_len(flags, s);
-    flags->type = **s;
+    flags->converter = **s;
     (*s)++;
 }
 
 void printer_manager(t_flags flags, va_list *args, int *count)
 {
-    if (flags->type == %)
+    if (flags->converter == %)
         count += ft_putchar("%");
     else
     {}
