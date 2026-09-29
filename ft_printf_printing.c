@@ -23,7 +23,8 @@ int	padding(t_flags *flags, int len_value)
 	i = 0;
 	while (i < count)
 	{
-		if (flags->zero_padding)
+		if (flags->zero_padding && (flags->converter != 'c' 
+			|| flags->converter != 's' || flags->converter != 'p'))
 			ft_putchar('0');
 		else
 			ft_putchar(' ');
