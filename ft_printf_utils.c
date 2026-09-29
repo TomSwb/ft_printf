@@ -6,13 +6,13 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 20:15:50 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/30 00:26:28 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen(char *s, t_flags *flags)
+int	s_len(char *s, t_flags *flags)
 {
 	int	len;
 
@@ -24,7 +24,7 @@ int	ft_strlen(char *s, t_flags *flags)
 	return (len);
 }
 
-int int_len(int value, t_flags *flags)
+int	deci_len(long value, t_flags *flags)
 {
 	int len;
 	

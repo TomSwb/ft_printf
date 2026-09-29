@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 20:15:16 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/30 00:28:04 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_printf(const char *s, ...)
 		{
 			if (*s == '%')
 				return (-1);
-			count += ft_putchar(*s);
+			count += print_char(*s);
 			s++;
 		}
 	}
@@ -56,13 +56,13 @@ void	printer_manager_char(t_flags *flags, va_list *args, int *count)
 	char	*s;
 
 	if (flags->converter == '%')
-		*count += ft_putchar('%');
+		*count += print_char('%');
 	else if (flags->converter == 'c')
 	{
 		c = va_arg(*args, int);
 		if (!flags->left_align && flags->min_width > 0)
 			*count = padding(flags, 1);
-		*count += ft_putchar(c);
+		*count += print_char(c);
 		if (flags->left_align && flags->min_width > 0)
 			*count = padding(flags, 1);
 	}
@@ -70,16 +70,24 @@ void	printer_manager_char(t_flags *flags, va_list *args, int *count)
 	{
 		s = va_arg(*args, char *);
 		if (!flags->left_align && flags->min_width > 0)
-			*count = padding(flags, ft_strlen(s, flags));
-		*count += ft_putstr(s, flags);
+			*count = padding(flags, s_len(s, flags));
+		*count += print_s(s, flags);
 		if (flags->left_align && flags->min_width > 0)
-			*count = padding(flags, ft_strlen(s, flags));
+			*count = padding(flags, s_len(s, flags));
 	}
 }
 
 void	printer_manager_decimal(t_flags *flags, va_list *args, int *count)
 {
-
+	long	value;
+	int		len;
+	
+	if (flags->converter == 'u')
+		value = (long)va_arg(*args, unsigned int);
+	else
+		value = (long)va_arg(*args, int);
+	len = deci_len(value, flags);
+	
 }
 
 void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)

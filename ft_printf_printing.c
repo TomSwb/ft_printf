@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/29 20:13:45 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/30 00:27:46 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ int	padding(t_flags *flags, int len_value)
 	{
 		if (flags->zero_padding && (flags->converter != 'c' 
 			|| flags->converter != 's' || flags->converter != 'p'))
-			ft_putchar('0');
+			print_char('0');
 		else
-			ft_putchar(' ');
+			print_char(' ');
 		i++;
 	}
 	return (count);
 }
 
-int	ft_putchar(char value)
+int	print_char(char value)
 {
 	write(1, &value, 1);
 	return (1);
 }
 
-int	ft_putstr(const char *value, t_flags *flags)
+int	print_s(const char *value, t_flags *flags)
 {
 	size_t	i;
 	int		count;
@@ -60,21 +60,21 @@ int	ft_putstr(const char *value, t_flags *flags)
 	{
 		while (value[i] && (!flags->precision || i < flags->precision_len))
 		{
-			count += ft_putchar(value[i]);
+			count += print_char(value[i]);
 			i++;
 		}
 	}
 	return (count);
 }
 /*
-int putnbr(int value)
+int print_deci(int value)
 {
     int count;
     
     return (count);
 }
 
-int puthexa(t_flags *flags, int value)
+int print_hexa(t_flags *flags, int value)
 {
     char *hexa_low;
     char *heca_up;
