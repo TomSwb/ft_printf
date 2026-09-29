@@ -37,8 +37,8 @@ t_flags init_flags(void);
 
 // ft_printf_printing.c
 int ft_putchar(char value);
+int putstr(const char *value, t_flags *flags);
 int putnbr(void *value);
-int putstr(void *value);
 int puthexa(void *value);
 
 // fr_printf_utils.c
