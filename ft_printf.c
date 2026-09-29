@@ -30,6 +30,8 @@ int	ft_printf(const char *s, ...)
 		}
 		else
 		{
+			if (*s == '%')
+				return (-1);
 			count += ft_putchar(*s);
 			s++;
 		}
