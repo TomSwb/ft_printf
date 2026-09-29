@@ -60,7 +60,7 @@ void parser(const char **s, t_flags *flags)
             flags->spaces = 1;
         (*s)++;
     }
-    min_width_precison_len(flags, s);
+    parse_min_width_precison(flags, s);
     flags->converter = **s;
     (*s)++;
 }
