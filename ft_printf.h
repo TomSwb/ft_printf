@@ -51,6 +51,8 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count);
 t_flags	init_flags(void);
 void	parser(const char **s, t_flags *flags);
 void	parse_min_width_precison(t_flags *flags, const char **s);
+int		is_num(char c);
+int		is_flag(char c);
 
 // ft_printf_printing.c
 int		padding(t_flags *flags, size_t len_value);
@@ -60,8 +62,6 @@ int 	ft_putnbr(void *value);
 int		ft_puthexa(void *value);
 
 // fr_printf_utils.c
-int		is_num(char c);
-int		is_flag(char c);
 int	ft_strlen(char *s, t_flags *flags);
 
 #endif
