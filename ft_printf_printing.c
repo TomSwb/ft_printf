@@ -16,14 +16,15 @@ int ft_putstr(void *value)
 {
     char *s;
     size_t i;
+    int count;
     
     s = (char *)value;
     while (s[i])
     {
-        ft_putchar(s[i]);
+        count += ft_putchar(s[i]);
         i++;
     }
-    return (i - 1);
+    return (count);
 }
 
 int puthexa(void *value)
