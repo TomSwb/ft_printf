@@ -25,7 +25,8 @@ int	ft_printf(const char *s, ...)
 		if (*s == '%' && *(s + 1))
 		{
 			flags = init_flags();
-			parser(&s, &flags);
+			if (parser(&s, &flags) == -1)
+				return (-1);
 			printer_manager(&flags, &args, &count);
 		}
 		else
