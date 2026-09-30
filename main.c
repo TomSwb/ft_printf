@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void	test_percentage();
+void	test_percent();
 void	test_c();
 void	test_s();
 
