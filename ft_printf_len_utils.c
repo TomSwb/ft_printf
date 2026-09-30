@@ -29,7 +29,8 @@ int	deci_len(long value, t_flags *flags)
 	int len;
 	
 	len = 0;
-	if (value >= 0 && ((flags->positive_sign || flags->space) && flags->converter != 'u'))
+	if (value >= 0 && ((flags->positive_sign || flags->space)
+		&& flags->converter != 'u'))
 		len++;
 	if (value <= 0)
 	{
