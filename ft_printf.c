@@ -46,8 +46,10 @@ void	printer_manager(t_flags *flags, va_list *args, int *count)
 		printer_manager_char(flags, args, count);
 	else if (flags->converter == 'd' || flags->converter == 'i' || flags->converter == 'u')
 		printer_manager_decimal(flags, args, count);
-	// else if (flags->converter == 'p' || flags->converter == 'x' || flags->converter == 'X')
-		// printer_manager_hexa(flags, args, count);
+	else if (flags->converter == 'x' || flags->converter == 'X')
+		printer_manager_hexa(flags, args, count);
+	else if (flags->converter == 'p')
+		 printer_manager_memory(flags, args, count);
 }
 
 void	printer_manager_char(t_flags *flags, va_list *args, int *count)
@@ -101,8 +103,31 @@ void	printer_manager_decimal(t_flags *flags, va_list *args, int *count)
 	}
 	*count += print_deci(value, len, sign, flags);
 }
-/*
+
 void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
+{
+	long	value;
+	int		len;
+	int		sign;
+	
+	value = (long)va_arg(*args, int);
+	len = deci_len(value, flags);
+	sign = 0;
+	if (value == 0 && flags->precision && flags->precision_len == 0)
+	{
+		*count += print_nothing(len, sign, flags);
+		return ;
+	}
+	if (value < 0)
+	{
+		sign = 1;
+		value = -value;
+	}
+	*count += print_hexa(value, len, sign, flags);
+}
+
+/*
+void	printer_manager_memory(t_flags *flags, va_list *args, int *count)
 {
 
 }
