@@ -24,7 +24,7 @@ int	s_len(char *s, t_flags *flags)
 	return (len);
 }
 
-int	deci_len(long value, t_flags *flags)
+int	deci_len(long long value, t_flags *flags)
 {
 	int len;
 	
