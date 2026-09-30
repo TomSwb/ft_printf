@@ -6,32 +6,11 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/30 00:27:46 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/30 03:20:43 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	padding(t_flags *flags, int len_value)
-{
-	int count;
-	int i;
-
-	count = flags->min_width - len_value;
-	if (count <= 0)
-		return (0);
-	i = 0;
-	while (i < count)
-	{
-		if (flags->zero_padding && (flags->converter != 'c' 
-			|| flags->converter != 's' || flags->converter != 'p'))
-			print_char('0');
-		else
-			print_char(' ');
-		i++;
-	}
-	return (count);
-}
 
 int	print_char(char value)
 {
@@ -41,7 +20,7 @@ int	print_char(char value)
 
 int	print_s(const char *value, t_flags *flags)
 {
-	size_t	i;
+	int	i;
 	int		count;
 
 	i = 0;
@@ -66,14 +45,37 @@ int	print_s(const char *value, t_flags *flags)
 	}
 	return (count);
 }
-/*
-int print_deci(int value)
+
+int print_deci(long value, int len, int sign, t_flags *flags)
 {
     int count;
-    
+	int	div;
+
+	count = 0;
+	div = 1;
+	while (value / div >= 10)
+		div *= 10;
+	if (flags->zero_padding && !flags->precision && !flags->left_align
+		&& (flags->converter == 'd' || flags->converter == 'i'))
+		count += print_sign(sign, flags);
+	if (!flags->left_align && flags->min_width > 0)
+		count += print_padding(flags, len + pr_len(len, sign, flags));
+	if ((!flags->zero_padding || flags->precision || flags->left_align)
+		&& (flags->converter == 'd' || flags->converter == 'i'))
+		count += print_sign(sign, flags);
+	if (flags->precision)
+		count += print_precision(pr_len(len, sign, flags));
+	while (div > 0)
+	{
+		count += print_char((value / div) % 10 + 48);
+		div /= 10;
+	}
+	if (flags->left_align && flags->min_width > 0)
+		count += print_padding(flags, len + pr_len(len, sign, flags));
     return (count);
 }
 
+/*
 int print_hexa(t_flags *flags, int value)
 {
     char *hexa_low;

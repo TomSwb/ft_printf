@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/30 00:28:04 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/30 03:24:38 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	printer_manager(t_flags *flags, va_list *args, int *count)
 		printer_manager_char(flags, args, count);
 	else if (flags->converter == 'd' || flags->converter == 'i' || flags->converter == 'u')
 		printer_manager_decimal(flags, args, count);
-	else if (flags->converter == 'p' || flags->converter == 'x' || flags->converter == 'X')
-		printer_manager_hexa(flags, args, count);
+	// else if (flags->converter == 'p' || flags->converter == 'x' || flags->converter == 'X')
+		// printer_manager_hexa(flags, args, count);
 }
 
 void	printer_manager_char(t_flags *flags, va_list *args, int *count)
@@ -61,19 +61,19 @@ void	printer_manager_char(t_flags *flags, va_list *args, int *count)
 	{
 		c = va_arg(*args, int);
 		if (!flags->left_align && flags->min_width > 0)
-			*count = padding(flags, 1);
+			*count += print_padding(flags, 1);
 		*count += print_char(c);
 		if (flags->left_align && flags->min_width > 0)
-			*count = padding(flags, 1);
+			*count += print_padding(flags, 1);
 	}
 	else if (flags->converter == 's')
 	{
 		s = va_arg(*args, char *);
 		if (!flags->left_align && flags->min_width > 0)
-			*count = padding(flags, s_len(s, flags));
+			*count += print_padding(flags, s_len(s, flags));
 		*count += print_s(s, flags);
 		if (flags->left_align && flags->min_width > 0)
-			*count = padding(flags, s_len(s, flags));
+			*count += print_padding(flags, s_len(s, flags));
 	}
 }
 
@@ -81,16 +81,29 @@ void	printer_manager_decimal(t_flags *flags, va_list *args, int *count)
 {
 	long	value;
 	int		len;
+	int		sign;
 	
 	if (flags->converter == 'u')
 		value = (long)va_arg(*args, unsigned int);
 	else
 		value = (long)va_arg(*args, int);
 	len = deci_len(value, flags);
-	
+	sign = 0;
+	if (value == 0 && flags->precision && flags->precision_len == 0)
+	{
+		*count += print_nothing(len, sign, flags);
+		return ;
+	}
+	if (value < 0)
+	{
+		sign = 1;
+		value = -value;
+	}
+	*count += print_deci(value, len, sign, flags);
 }
-
+/*
 void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 {
 
 }
+*/

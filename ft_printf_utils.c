@@ -6,27 +6,71 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/30 00:26:28 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/30 03:13:28 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	s_len(char *s, t_flags *flags)
+int	print_padding(t_flags *flags, int len_value)
 {
-	int	len;
+	int count;
+	int i;
 
-	len = 0;
-	while (s[len])
-		len++;
-	if (flags->precision && len > flags->precision_len)
-		len = flags->precision_len;
-	return (len);
+	count = flags->min_width - len_value;
+	if (count <= 0)
+		return (0);
+	i = 0;
+	while (i < count)
+	{
+		if (flags->zero_padding && !flags->left_align && !flags->precision
+			&& flags->converter != 'c' && flags->converter != 's'
+			&& flags->converter != 'p')
+			print_char('0');
+		else
+			print_char(' ');
+		i++;
+	}
+	return (count);
 }
 
-int	deci_len(long value, t_flags *flags)
+int	print_sign(int sign, t_flags *flags)
 {
-	int len;
+	int	count;
+
+	count = 0;
+	if (sign)
+		count += print_char('-');
+	else if (flags->positive_sign)
+		count += print_char('+');
+	else if (flags->space)
+		count += print_char(' ');
+	return (count);
+}
+
+int	print_precision(int pr_len)
+{
+	int count;
 	
-	len = 0;
+	count = 0;
+	while (pr_len > 0)
+	{
+		count += print_char('0');
+		pr_len--;
+	}
+	return (count);
+}
+
+int	print_nothing(int len, int sign, t_flags *flags)
+{
+	int count;
+
+	count = 0;
+	if (!flags->left_align)
+		count += print_padding(flags, len - 1);
+	if (flags->converter == 'd' || flags->converter == 'i')
+		count += print_sign(sign, flags);
+	if (flags->left_align)
+		count += print_padding(flags, len - 1);
+	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:53:57 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/30 00:27:56 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/09/30 03:13:38 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ typedef struct s_flags
 	int		zero_padding;
 	int		positive_sign;
 	int		alt_hexa;
-	int		spaces;
+	int		space;
 
-	int	min_width;
+	int		min_width;
 	int		precision;
-	int	precision_len;
+	int		precision_len;
 
 	char	converter;
 }	t_flags;
@@ -55,14 +55,20 @@ int		is_num(char c);
 int		is_flag(char c);
 
 // ft_printf_printing.c
-int		padding(t_flags *flags, int len_value);
 int		print_char(char value);
 int		print_s(const char *value, t_flags *flags);
-int		print_deci(void *value);
-int		print_hexa(void *value);
+int		print_deci(long value, int len, int sign, t_flags *flags);
+int		print_hexa(void *value, t_flags *flags);
 
 // fr_printf_utils.c
-int	s_len(char *s, t_flags *flags);
-int	deci_len(long value, t_flags *flags);
+int		print_padding(t_flags *flags, int len_value);
+int		print_sign(int sign, t_flags *flags);
+int		print_precision(int len);
+int		print_nothing(int len, int sign, t_flags *flags);
+
+// ft_printf_len_utils.c
+int		s_len(char *s, t_flags *flags);
+int		deci_len(long value, t_flags *flags);
+int		pr_len(int pr_len, int sign, t_flags *flags);
 
 #endif
