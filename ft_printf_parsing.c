@@ -91,7 +91,7 @@ int pasing_check(t_flags *flags)
 		|| flags->positive_sign != 0 || flags->space != 0))
 		return (0);
 	else if ((flags->converter == 'x' || flags->converter == 'X')
-		&& (flags->space != 0 || flags->positive_sign != 0)
+		&& (flags->space != 0 || flags->positive_sign != 0))
 		return (0);
 	return (1);
 }
