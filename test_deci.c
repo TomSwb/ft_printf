@@ -1,28 +1,28 @@
 
 #include "ft_printf.h"
 
-void	test_s()
+void	test_d()
 {
     int		result_ft;
     int		result_og;
-    char	*s;
+    int  d;
     
-	s = "Hello World!";
-	ft_printf("Testing 'char *s':\n");
-	result_ft = ft_printf("no flags = *%s*\n", s);
-	result_og = printf("no flags = *%s*\n", s);
+	d = 42;
+	ft_printf("Testing 'int d':\n");
+	result_ft = ft_printf("no flags = *%d*\n", d);
+	result_og = printf("no flags = *%d*\n", d);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
-	result_ft = ft_printf("flag '-' = *%-s*\n", s);
-	result_og = printf("flag '-' = *%-s*\n", s);
+	result_ft = ft_printf("flag '-' = *%-d*\n", d);
+	result_og = printf("flag '-' = *%-d*\n", d);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
-	result_ft = ft_printf("flag '-' + min width 5 = *%-5s*\n", s);
-	result_og = printf("flag '-' + min width 5 = *%-5s*\n", s);
+	result_ft = ft_printf("flag '-' + min width 5 = *%-5d*\n", d);
+	result_og = printf("flag '-' + min width 5 = *%-5d*\n", d);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
-	result_ft = ft_printf("min width 5 = *%5s*\n", s);
-	result_og = printf("min width 5 = *%5s*\n", s);
+	result_ft = ft_printf("min width 5 = *%5d*\n", d);
+	result_og = printf("min width 5 = *%ds*\n", d);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
