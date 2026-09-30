@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-void    test_percentage();
+void	test_percentage();
 void	test_c();
 void	test_s();
 
@@ -29,4 +29,10 @@ int	main(void)
 	ft_printf("\n");
 	test_s();
 	ft_printf("\n");
+    test_d();
+    ft_printf("\n");
+    test_i();
+    ft_printf("\n");
+    test_u();
+    ft_printf("\n");
 }
