@@ -33,9 +33,7 @@ int	parser(const char **s, t_flags *flags)
 	(*s)++;
 	while (**s && is_flag(**s))
 	{
-		if (!is_converter(**s))
-			return (-1);
-		else if (**s == '-')
+		if (**s == '-')
 			flags->left_align = 1;
 		else if (**s == '0')
 			flags->zero_padding = 1;
@@ -77,6 +75,8 @@ void	parse_min_width_precison(t_flags *flags, const char **s)
 
 int parsing_check(t_flags *flags)
 {
+	if (!is_converter(flags->converter))
+			return (0);
 	if ((flags->converter == 'c' || flags->converter == 'p')
 		&& (flags->zero_padding != 0 || flags->positive_sign != 0
 		|| flags->alt_hexa != 0 || flags->space != 0
