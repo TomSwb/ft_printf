@@ -108,22 +108,15 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 {
 	long	value;
 	int		len;
-	int		sign;
 	
-	value = (long)va_arg(*args, int);
+	value = (long)va_arg(*args, unsigned int);
 	len = deci_len(value, flags);
-	sign = 0;
 	if (value == 0 && flags->precision && flags->precision_len == 0)
 	{
-		*count += print_nothing(len, sign, flags);
+		*count += print_nothing(len, 0, flags);
 		return ;
 	}
-	if (value < 0)
-	{
-		sign = 1;
-		value = -value;
-	}
-	*count += print_hexa(value, len, sign, flags);
+	*count += print_hexa(value, len, flags);
 }
 
 /*
