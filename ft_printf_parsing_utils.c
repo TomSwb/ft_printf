@@ -1,6 +1,20 @@
 
 #include "ft_printf.h"
 
+int	is_converter(char c)
+{
+	char	*s;
+
+	s = "cspdiuxX%";
+	while (*s)
+	{
+		if (*s == c)
+			return (1);
+		s++;
+	}
+	return (0);
+}
+
 int	is_num(char c)
 {
 	if (c >= '0' && c <= '9')
