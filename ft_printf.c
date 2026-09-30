@@ -81,14 +81,14 @@ void	printer_manager_char(t_flags *flags, va_list *args, int *count)
 
 void	printer_manager_decimal(t_flags *flags, va_list *args, int *count)
 {
-	long	value;
+	long	long value;
 	int		len;
 	int		sign;
 	
 	if (flags->converter == 'u')
-		value = (long)va_arg(*args, unsigned int);
+		value = (long long)va_arg(*args, unsigned int);
 	else
-		value = (long)va_arg(*args, int);
+		value = (long long)va_arg(*args, int);
 	len = deci_len(value, flags);
 	sign = 0;
 	if (value == 0 && flags->precision && flags->precision_len == 0)
@@ -106,10 +106,10 @@ void	printer_manager_decimal(t_flags *flags, va_list *args, int *count)
 
 void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 {
-	long	value;
+	long	long value;
 	int		len;
 	
-	value = (long)va_arg(*args, unsigned int);
+	value = (long long)va_arg(*args, unsigned int);
 	len = deci_len(value, flags);
 	if (value == 0 && flags->precision && flags->precision_len == 0)
 	{
