@@ -28,7 +28,7 @@ t_flags	init_flags(void)
 	return (flags);
 }
 
-void	parser(const char **s, t_flags *flags)
+int	parser(const char **s, t_flags *flags)
 {
 	(*s)++;
 	while (**s && is_flag(**s))
@@ -48,6 +48,7 @@ void	parser(const char **s, t_flags *flags)
 	parse_min_width_precison(flags, s);
 	flags->converter = **s;
 	(*s)++;
+	return (parsing_check(flags));
 }
 
 void	parse_min_width_precison(t_flags *flags, const char **s)
