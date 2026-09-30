@@ -86,8 +86,11 @@ int pasing_check(t_flags *flags)
 	else if (flags->converter == 'd' && flags->converter == 'i' 
 		&& flags->alt_hexa != 0)
 		return (-1);
-	else if (flags->converter == 'd' && flags->converter == 'i' 
-		&& flags->alt_hexa != 0)
+	else if (flags->converter == 'u' && (flags->alt_hexa != 0 
+		|| flags->positive_sign != 0 || flags->space != 0))
+		return (-1);
+	else if (flags->converter == 'x' && flags->converter == 'X' 
+		&& flags->space != 0)
 		return (-1);
 	
 }
