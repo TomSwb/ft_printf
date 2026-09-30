@@ -51,6 +51,9 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count);
 t_flags	init_flags(void);
 void	parser(const char **s, t_flags *flags);
 void	parse_min_width_precison(t_flags *flags, const char **s);
+int parsing_check(t_flags *flags);
+
+// ft_printf_parsing_utils.c
 int		is_num(char c);
 int		is_flag(char c);
 
