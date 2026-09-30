@@ -46,9 +46,9 @@ int	print_s(const char *value, t_flags *flags)
 	return (count);
 }
 
-int print_deci(long value, int len, int sign, t_flags *flags)
+int print_deci(long long value, int len, int sign, t_flags *flags)
 {
-    int count;
+	int count;
 	int	div;
 
 	count = 0;
