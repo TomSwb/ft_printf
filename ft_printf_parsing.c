@@ -73,7 +73,7 @@ void	parse_min_width_precison(t_flags *flags, const char **s)
 	}
 }
 
-int pasing_check(t_flags *flags)
+int parsing_check(t_flags *flags)
 {
 	if ((flags->converter == 'c' || flags->converter == 'p')
 		&& (flags->zero_padding != 0 || flags->positive_sign != 0
