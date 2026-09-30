@@ -73,6 +73,25 @@ void	parse_min_width_precison(t_flags *flags, const char **s)
 	}
 }
 
+int pasing_check(t_flags *flags)
+{
+	if (flags->converter == 'c' && (flags->zero_padding != 0
+		|| flags->positive_sign != 0 || flags->alt_hexa != 0
+		|| flags->space != 0 || flags->precision != 0))
+		return (-1);
+	else if (flags->converter == 's' && (flags->zero_padding != 0
+		|| flags->positive_sign != 0 || flags->alt_hexa != 0
+		|| flags->space != 0))
+		return (-1);
+	else if (flags->converter == 'd' && flags->converter == 'i' 
+		&& flags->alt_hexa != 0)
+		return (-1);
+	else if (flags->converter == 'd' && flags->converter == 'i' 
+		&& flags->alt_hexa != 0)
+		return (-1);
+	
+}
+
 int	is_num(char c)
 {
 	if (c >= '0' && c <= '9')
