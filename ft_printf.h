@@ -57,8 +57,8 @@ int		is_flag(char c);
 // ft_printf_printing.c
 int		print_char(char value);
 int		print_s(const char *value, t_flags *flags);
-int		print_deci(long value, int len, int sign, t_flags *flags);
-int		print_hexa(void *value, t_flags *flags);
+int		print_deci(long long value, int len, int sign, t_flags *flags);
+int		print_hexa(long long value, int len, t_flags *flags);
 
 // fr_printf_utils.c
 int		print_padding(t_flags *flags, int len_value);
@@ -68,7 +68,7 @@ int		print_nothing(int len, int sign, t_flags *flags);
 
 // ft_printf_len_utils.c
 int		s_len(char *s, t_flags *flags);
-int		deci_len(long value, t_flags *flags);
+int		deci_len(long long value, t_flags *flags);
 int		pr_len(int pr_len, int sign, t_flags *flags);
 
 #endif
