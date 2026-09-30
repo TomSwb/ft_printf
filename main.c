@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 	if (av[1][0] == '%')
 	{
 		ft_printf("\n");
-		test_percentage();
+		test_percent();
 		ft_printf("\n");
 	}
 	if (av[1][0] == 'c')
