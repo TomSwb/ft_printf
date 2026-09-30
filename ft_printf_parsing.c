@@ -33,7 +33,9 @@ int	parser(const char **s, t_flags *flags)
 	(*s)++;
 	while (**s && is_flag(**s))
 	{
-		if (**s == '-')
+		if (!is_converter(**s))
+			return (-1);
+		else if (**s == '-')
 			flags->left_align = 1;
 		else if (**s == '0')
 			flags->zero_padding = 1;
