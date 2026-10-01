@@ -107,13 +107,11 @@ void	printer_manager_decimal(t_flags *flags, va_list *args, int *count)
 void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 {
 	long	long value;
-	int		len;
 	char	*hexa_low;
     char	*hexa_up;
     char	*base;
 
 	value = (long long)va_arg(*args, unsigned int);
-	len = deci_len(value, flags);
 	if (value == 0 && flags->alt_hexa)
 	{
 		*count += print_char('0');
