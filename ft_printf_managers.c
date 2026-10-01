@@ -94,7 +94,7 @@ void	printer_manager_address(t_flags *flags, va_list *args, int *count)
 	int adrs_len;
 
 	address = va_arg(*args, void *);
-	value = (unintptr_t)address;
+	value = (uintptr_t)address;
 	adrs_len = address_len(value);
 	if (!flags->left_align && flags->min_width > 0)
 		*count += print_padding(flags, adrs_len);
