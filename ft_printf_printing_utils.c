@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 13:26:41 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 13:56:22 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	print_padding(t_flags *flags, int len_value)
 	return (count);
 }
 
-int	print_sign(t_flags *flags)
+int	print_prefix(t_flags *flags)
 {
 	int	count;
 
@@ -77,7 +77,7 @@ int	print_nothing(int len, t_flags *flags)
 	if (!flags->left_align)
 		count += print_padding(flags, len - 1);
 	if (flags->converter == 'd' || flags->converter == 'i')
-		count += print_sign(flags);
+		count += print_prefix(flags);
 	if (flags->left_align)
 		count += print_padding(flags, len - 1);
 	return (count);

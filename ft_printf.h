@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:53:57 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 13:20:39 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 13:56:14 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		print_hexa(long long value, char *base, t_flags *flags);
 
 // fr_printf_utils.c
 int		print_padding(t_flags *flags, int len_value);
-int		print_sign(t_flags *flags);
+int		print_prefix(t_flags *flags);
 int		print_precision(int len);
 int		print_nothing(int len, t_flags *flags);
 
