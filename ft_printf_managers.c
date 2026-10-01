@@ -89,12 +89,14 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 
 void	printer_manager_address(t_flags *flags, va_list *args, int *count)
 {
-	void *p;
+	void *address;
+	unintptr_t value;
 
-	p = va_arg(*args, void *);
+	address = va_arg(*args, void *);
+	value = (unintptr_t)address;
 	if (!flags->left_align && flags->min_width > 0)
 		*count += print_padding(flags, 1);
-	*count += print_address(p);
+	*count += print_address(value);
 	if (flags->left_align && flags->min_width > 0)
 		*count += print_padding(flags, 1);
 }
