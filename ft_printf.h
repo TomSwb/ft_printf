@@ -74,5 +74,6 @@ int		print_nothing(int len, int sign, t_flags *flags);
 int		s_len(char *s, t_flags *flags);
 int		deci_len(long long value, t_flags *flags);
 int		pr_len(int pr_len, int sign, t_flags *flags);
+int	hexa_len(long long value);
 
 #endif
