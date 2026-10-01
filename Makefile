@@ -19,7 +19,7 @@ AR = ar -rcs
 
 RM = rm -f
 
-%.o: %.c libft.h
+%.o: %.c ft_printf.h
 	${CC} ${CFLAGS} -c $< -o $@
 
 all: ${NAME}
