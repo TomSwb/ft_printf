@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 02:55:43 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 22:41:08 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 22:58:01 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	s_len(char *s, t_flags *flags)
 
 int	deci_len(long long value, t_flags *flags)
 {
-	int len;
-	
+	int	len;
+
 	len = 0;
 	if (value >= 0 && ((flags->positive_sign || flags->space)
-		&& flags->converter != 'u'))
+			&& flags->converter != 'u'))
 		len++;
 	if (value <= 0)
 	{
@@ -51,14 +51,14 @@ int	deci_len(long long value, t_flags *flags)
 
 int	pr_len(int len, t_flags *flags)
 {
-	int pr_len;
-	
+	int	pr_len;
+
 	pr_len = 0;
 	if (!flags->precision)
 		return (0);
 	pr_len = len;
-	if (flags->neg_sign || ((flags->positive_sign || flags->space) 
-		&& flags->converter != 'u'))
+	if (flags->neg_sign || ((flags->positive_sign || flags->space)
+			&& flags->converter != 'u'))
 		pr_len--;
 	if (flags->alt_hexa && flags->precision_len != 0
 		&& (flags->converter == 'x' || flags->converter == 'X'))
@@ -71,8 +71,8 @@ int	pr_len(int len, t_flags *flags)
 
 int	hexa_len(long long value, t_flags *flags)
 {
-	int len;
-	
+	int	len;
+
 	len = 0;
 	if (value == 0 && flags->min_width > 0 && !flags->alt_hexa
 		&& !flags->positive_sign && !flags->precision
@@ -90,10 +90,10 @@ int	hexa_len(long long value, t_flags *flags)
 	return (len);
 }
 
-int address_len(uintptr_t value)
+int	address_len(uintptr_t value)
 {
-	int len;
-	
+	int	len;
+
 	len = 2;
 	if (value == 0)
 		return (5);

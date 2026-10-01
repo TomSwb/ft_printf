@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:53:57 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 17:12:03 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 23:11:01 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_flags
 // *** Functions *** //
 
 // ft_printf.c
-int			ft_printf(const char *, ...);
+int			ft_printf(const char *s, ...);
 
 //ft_printf_managers.c
 void		printer_manager(t_flags *flags, va_list *args, int *count);
@@ -55,7 +55,7 @@ void		printer_manager_hexa(t_flags *flags, va_list *args, int *count);
 void		printer_manager_address(t_flags *flags, va_list *args, int *count);
 
 // ft_printf_parsing.c
-t_flags	init_flags(void);
+t_flags		init_flags(void);
 int			parser(const char **s, t_flags *flags);
 void		parse_min_width_precison(t_flags *flags, const char **s);
 int			parsing_check(t_flags *flags);

@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:07 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 22:48:46 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 23:06:36 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	parser(const char **s, t_flags *flags)
 		else if (**s == ' ' && flags->space != 1)
 			flags->space = 1;
 		else
-		 	return (0);
+			return (0);
 		(*s)++;
 	}
 	parse_min_width_precison(flags, s);
@@ -78,30 +78,31 @@ void	parse_min_width_precison(t_flags *flags, const char **s)
 	}
 }
 
-int parsing_check(t_flags *flags)
+int	parsing_check(t_flags *flags)
 {
 	if ((flags->converter == 'c' || flags->converter == 'p')
 		&& (flags->zero_padding != 0 || flags->positive_sign != 0
-		|| flags->alt_hexa != 0 || flags->space != 0 || flags->precision != 0))
+			|| flags->alt_hexa != 0 || flags->space != 0
+			|| flags->precision != 0))
 		return (0);
 	else if (flags->converter == 's' && (flags->zero_padding != 0
-		|| flags->positive_sign != 0 || flags->alt_hexa != 0
-		|| flags->space != 0))
+			|| flags->positive_sign != 0 || flags->alt_hexa != 0
+			|| flags->space != 0))
 		return (0);
 	else if ((flags->converter == 'd' || flags->converter == 'i')
 		&& (flags->alt_hexa != 0 || ((flags->left_align == 1
-		|| flags->precision == 1) && flags->zero_padding != 0)
-		|| (flags->positive_sign == 1 && flags->space != 0)))
+					|| flags->precision == 1) && flags->zero_padding != 0)
+			|| (flags->positive_sign == 1 && flags->space != 0)))
 		return (0);
-	else if (flags->converter == 'u' && ((flags->alt_hexa != 0 
-		|| flags->positive_sign != 0 || flags->space != 0)
-		|| ((flags->left_align == 1 || flags->precision == 1)
-		&& flags->zero_padding != 0)))
+	else if (flags->converter == 'u' && ((flags->alt_hexa != 0
+				|| flags->positive_sign != 0 || flags->space != 0)
+			|| ((flags->left_align == 1 || flags->precision == 1)
+				&& flags->zero_padding != 0)))
 		return (0);
 	else if ((flags->converter == 'x' || flags->converter == 'X')
 		&& ((flags->space != 0 || flags->positive_sign != 0
-		|| ((flags->left_align == 1	|| flags->precision == 1)
-		&& flags->zero_padding != 0))))
+				|| ((flags->left_align == 1 || flags->precision == 1)
+					&& flags->zero_padding != 0))))
 		return (0);
 	return (1);
 }

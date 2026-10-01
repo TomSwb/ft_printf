@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 19:43:06 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 23:08:11 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	print_padding(t_flags *flags, int len_value)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	count = flags->min_width - len_value;
 	if (count <= 0)
@@ -58,8 +58,8 @@ int	print_prefix(t_flags *flags)
 
 int	print_precision(int pr_len)
 {
-	int count;
-	
+	int	count;
+
 	count = 0;
 	while (pr_len > 0)
 	{
@@ -71,7 +71,7 @@ int	print_precision(int pr_len)
 
 int	print_nothing(int len, t_flags *flags)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (!flags->left_align)
@@ -83,11 +83,11 @@ int	print_nothing(int len, t_flags *flags)
 	return (count);
 }
 
-long long def_div(long long value, t_flags *flags)
+long long	def_div(long long value, t_flags *flags)
 {
-	long long div;
-	int base;
-	
+	long long	div;
+	int			base;
+
 	if (flags->converter == 'd' || flags->converter == 'i'
 		|| flags->converter == 'u')
 		base = 10;

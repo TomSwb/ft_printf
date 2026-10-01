@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 22:39:46 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 23:09:50 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	print_s(const char *value, t_flags *flags)
 	return (count);
 }
 
-int print_deci(long long value, int len, t_flags *flags)
+int	print_deci(long long value, int len, t_flags *flags)
 {
 	int			count;
 	long long	div;
@@ -70,11 +70,10 @@ int print_deci(long long value, int len, t_flags *flags)
 	}
 	if (flags->left_align && flags->min_width > 0)
 		count += print_padding(flags, len + pr_len(len, flags));
-    return (count);
+	return (count);
 }
 
-
-int		print_hexa(long long value, char *base, t_flags *flags)
+int	print_hexa(long long value, char *base, t_flags *flags)
 {
 	int			hex_len;
 	int			count;
@@ -86,7 +85,7 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 	if (!flags->left_align && flags->min_width > 0)
 		count += print_padding(flags, hex_len + pr_len(hex_len, flags));
 	if ((!flags->zero_padding || flags->precision
-		|| flags->left_align) && value != 0)
+			|| flags->left_align) && value != 0)
 		count += print_prefix(flags);
 	if (flags->precision && flags->precision_len != 0)
 		count += print_precision(pr_len(hex_len, flags));
@@ -103,8 +102,7 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 	return (count);
 }
 
-
-int print_address(uintptr_t value)
+int	print_address(uintptr_t value)
 {
 	int			count;
 	uintptr_t	div;
