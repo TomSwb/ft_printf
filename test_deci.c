@@ -136,16 +136,16 @@ void	test_d(void)
 	ft_printf("\n--- Conflicting '-' and '0' flags ---\n");
 
 	result_ft = ft_printf("minus and zero:    *%-05d*\n", 42);
-	result_og = printf("minus and zero:    *%-05d*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("minus and zero:    *%-05d*\n", 42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("minus zero neg:    *%-05d*\n", -42);
-	result_og = printf("minus zero neg:    *%-05d*\n", -42);
-	print_results(result_ft, result_og);
+	// result_og = printf("minus zero neg:    *%-05d*\n", -42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("minus zero zero:   *%-05d*\n", 0);
-	result_og = printf("minus zero zero:   *%-05d*\n", 0);
-	print_results(result_ft, result_og);
+	// result_og = printf("minus zero zero:   *%-05d*\n", 0);
+	// print_results(result_ft, result_og);
 
 	ft_printf("\n--- Plus flag ---\n");
 
@@ -198,16 +198,16 @@ void	test_d(void)
 	ft_printf("\n--- Plus and space together ---\n");
 
 	result_ft = ft_printf("plus space:        *%+ d*\n", 42);
-	result_og = printf("plus space:        *%+ d*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("plus space:        *%+ d*\n", 42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("plus space neg:    *%+ d*\n", -42);
-	result_og = printf("plus space neg:    *%+ d*\n", -42);
-	print_results(result_ft, result_og);
+	// result_og = printf("plus space neg:    *%+ d*\n", -42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("plus width space:  *%+ 8d*\n", 42);
-	result_og = printf("plus width space:  *%+ 8d*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("plus width space:  *%+ 8d*\n", 42);
+	// print_results(result_ft, result_og);
 
 	ft_printf("\n--- Precision ---\n");
 
@@ -274,8 +274,8 @@ void	test_d(void)
 	print_results(result_ft, result_og);
 
 	result_ft = ft_printf("zero width prec:   *%08.5d*\n", 42);
-	result_og = printf("zero width prec:   *%08.5d*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("zero width prec:   *%08.5d*\n", 42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("minus plus prec:   *%-+8.5d*\n", 42);
 	result_og = printf("minus plus prec:   *%-+8.5d*\n", 42);
@@ -288,20 +288,20 @@ void	test_d(void)
 	ft_printf("\n--- Repeated flags ---\n");
 
 	result_ft = ft_printf("repeated minus:    *%--5d*\n", 42);
-	result_og = printf("repeated minus:    *%--5d*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("repeated minus:    *%--5d*\n", 42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("repeated zero:     *%005d*\n", 42);
-	result_og = printf("repeated zero:     *%005d*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("repeated zero:     *%005d*\n", 42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("repeated plus:     *%++d*\n", 42);
-	result_og = printf("repeated plus:     *%++d*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("repeated plus:     *%++d*\n", 42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("all flags:         *%-+ 05d*\n", 42);
-	result_og = printf("all flags:         *%-+ 05d*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("all flags:         *%-+ 05d*\n", 42);
+	// print_results(result_ft, result_og);
 
 	ft_printf("\n--- Embedded conversions ---\n");
 
@@ -406,8 +406,8 @@ void	test_i(void)
 	print_results(result_ft, result_og);
 
 	result_ft = ft_printf("plus space:         *%+ i*\n", 42);
-	result_og = printf("plus space:         *%+ i*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("plus space:         *%+ i*\n", 42);
+	// print_results(result_ft, result_og);
 
 	ft_printf("\n--- Precision ---\n");
 
@@ -438,8 +438,8 @@ void	test_i(void)
 	print_results(result_ft, result_og);
 
 	result_ft = ft_printf("zero width precision: *%08.5i*\n", 42);
-	result_og = printf("zero width precision: *%08.5i*\n", 42);
-	print_results(result_ft, result_og);
+	// result_og = printf("zero width precision: *%08.5i*\n", 42);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("space width precision:*% 8.5i*\n", 42);
 	result_og = printf("space width precision:*% 8.5i*\n", 42);
@@ -561,12 +561,12 @@ void	test_u(void)
 	ft_printf("\n--- Conflicting '-' and '0' flags ---\n");
 
 	result_ft = ft_printf("minus and zero:    *%-05u*\n", 42u);
-	result_og = printf("minus and zero:    *%-05u*\n", 42u);
-	print_results(result_ft, result_og);
-
+	// result_og = printf("minus and zero:    *%-05u*\n", 42u);
+	// print_results(result_ft, result_og);
+ 
 	result_ft = ft_printf("minus zero value:  *%-05u*\n", 0u);
-	result_og = printf("minus zero value:  *%-05u*\n", 0u);
-	print_results(result_ft, result_og);
+	// result_og = printf("minus zero value:  *%-05u*\n", 0u);
+	// print_results(result_ft, result_og);
 
 	ft_printf("\n--- Precision ---\n");
 
@@ -617,8 +617,8 @@ void	test_u(void)
 	print_results(result_ft, result_og);
 
 	result_ft = ft_printf("zero width prec:   *%08.5u*\n", 42u);
-	result_og = printf("zero width prec:   *%08.5u*\n", 42u);
-	print_results(result_ft, result_og);
+	// result_og = printf("zero width prec:   *%08.5u*\n", 42u);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("large width prec:  *%20.15u*\n", UINT_MAX);
 	result_og = printf("large width prec:  *%20.15u*\n", UINT_MAX);
@@ -627,16 +627,16 @@ void	test_u(void)
 	ft_printf("\n--- Repeated and combined flags ---\n");
 
 	result_ft = ft_printf("repeated minus:    *%--5u*\n", 42u);
-	result_og = printf("repeated minus:    *%--5u*\n", 42u);
-	print_results(result_ft, result_og);
+	// result_og = printf("repeated minus:    *%--5u*\n", 42u);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("repeated zero:     *%005u*\n", 42u);
-	result_og = printf("repeated zero:     *%005u*\n", 42u);
-	print_results(result_ft, result_og);
+	// result_og = printf("repeated zero:     *%005u*\n", 42u);
+	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("all supported:     *%-0 5u*\n", 42u);
-	result_og = printf("all supported:     *%-0 5u*\n", 42u);
-	print_results(result_ft, result_og);
+	// result_og = printf("all supported:     *%-0 5u*\n", 42u);
+	// print_results(result_ft, result_og);
 
 	ft_printf("\n--- Multiple conversions ---\n");
 

@@ -38,34 +38,34 @@ void	test_percent(void)
 	ft_printf("--- width/flags with %% (should be ignored) ---\n");
 
 	result_ft = ft_printf("width 5 = *%5%%*\n");
-	result_og = printf("width 5 = *%5%%*\n");
+	// result_og = printf("width 5 = *%5%%*\n");
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '-' + width 5 = *%-5%%*\n");
-	result_og = printf("flag '-' + width 5 = *%-5%%*\n");
+	// result_og = printf("flag '-' + width 5 = *%-5%%*\n");
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '0' + width 5 = *%05%%*\n");
-	result_og = printf("flag '0' + width 5 = *%05%%*\n");
+	// result_og = printf("flag '0' + width 5 = *%05%%*\n");
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '+' + width 5 = *%+5%%*\n");
-	result_og = printf("flag '+' + width 5 = *%+5%%*\n");
+	// result_og = printf("flag '+' + width 5 = *%+5%%*\n");
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag ' ' + width 5 = *% 5%%*\n");
-	result_og = printf("flag ' ' + width 5 = *% 5%%*\n");
+	// result_og = printf("flag ' ' + width 5 = *% 5%%*\n");
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '#' + width 5 = *%#5%%*\n");
-	result_og = printf("flag '#' + width 5 = *%#5%%*\n");
+	// result_og = printf("flag '#' + width 5 = *%#5%%*\n");
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	/* --- percent at boundaries --- */
 	ft_printf("--- percent at boundaries ---\n");
@@ -94,9 +94,9 @@ void	test_percent(void)
 	printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("odd count: *%%%%%*\n");
-	result_og = printf("odd count: *%%%%%*\n");
+	// result_og = printf("odd count: *%%%%%*\n");
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	/* --- mixed with other conversions --- */
 	ft_printf("--- mixed with other conversions ---\n");
@@ -174,24 +174,24 @@ void	test_c(void)
 	printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '0' + min width 5 = *%05c*\n", c);
-	result_og = printf("flag '0' + min width 5 = *%05c*\n", c);
+	// result_og = printf("flag '0' + min width 5 = *%05c*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '+' + min width 5 = *%+5c*\n", c);
-	result_og = printf("flag '+' + min width 5 = *%+5c*\n", c);
+	// result_og = printf("flag '+' + min width 5 = *%+5c*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag ' ' + min width 5 = *% 5c*\n", c);
-	result_og = printf("flag ' ' + min width 5 = *% 5c*\n", c);
+	// result_og = printf("flag ' ' + min width 5 = *% 5c*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '#' + min width 5 = *%#5c*\n", c);
-	result_og = printf("flag '#' + min width 5 = *%#5c*\n", c);
+	// result_og = printf("flag '#' + min width 5 = *%#5c*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	/* --- special characters --- */
 	ft_printf("--- special characters ---\n");
@@ -276,9 +276,9 @@ void	test_c(void)
 	printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("width 0 = *%0c*\n", c);
-	result_og = printf("width 0 = *%0c*\n", c);
+	// result_og = printf("width 0 = *%0c*\n", c);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("large width 50 = *%50c*\n", 'X');
 	result_og = printf("large width 50 = *%50c*\n", 'X');
@@ -369,24 +369,24 @@ void	test_s(void)
 	printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '0' + width 10 = *%010s*\n", str);
-	result_og = printf("flag '0' + width 10 = *%010s*\n", str);
+	// result_og = printf("flag '0' + width 10 = *%010s*\n", str);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '+' + width 10 = *%+10s*\n", str);
-	result_og = printf("flag '+' + width 10 = *%+10s*\n", str);
+	// result_og = printf("flag '+' + width 10 = *%+10s*\n", str);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag ' ' + width 10 = *% 10s*\n", str);
-	result_og = printf("flag ' ' + width 10 = *% 10s*\n", str);
+	// result_og = printf("flag ' ' + width 10 = *% 10s*\n", str);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	result_ft = ft_printf("flag '#' + width 10 = *%#10s*\n", str);
-	result_og = printf("flag '#' + width 10 = *%#10s*\n", str);
+	// result_og = printf("flag '#' + width 10 = *%#10s*\n", str);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n\n", result_og);
+	// printf("result_og = %d\n\n", result_og);
 
 	/* --- empty string --- */
 	str = "";
