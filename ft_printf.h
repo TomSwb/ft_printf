@@ -77,6 +77,7 @@ int		print_padding(t_flags *flags, int len_value);
 int		print_prefix(t_flags *flags);
 int		print_precision(int len);
 int		print_nothing(int len, t_flags *flags);
+long long def_div(long long value, t_flags *flags);
 
 // ft_printf_len_utils.c
 int		s_len(char *s, t_flags *flags);
