@@ -1,7 +1,13 @@
 
-NAME = libft.a
+NAME = libftprintf.a
 
-SOURCES = ${PART1} ${PART2} ${PART3}
+SOURCES = ft_printf.c \
+		ft_printf_managers.c \
+		ft_printf_parsing.c \
+		ft_printf_parsing_utils.c \
+		ft_printf_printing.c \
+		ft_printf_printing_utils.c \
+		ft_printf_len_utils.c
 		
 CC = gcc
 
