@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 02:55:43 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 18:36:52 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 18:40:10 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	hexa_len(long long value, t_flags *flags)
 	if (value == 0 && flags->min_width > 0 && !flags->alt_hexa
 		&& !flags->positive_sign && !flags->precision
 		&& !flags->space && !flags->zero_padding)
-		len++;
+		return (1);
 	else if (value == 0)
 		return (0);
 	if (flags->alt_hexa)
