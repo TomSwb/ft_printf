@@ -71,6 +71,8 @@ int	hexa_len(long long value)
 	len = 0;
 	if (value == 0)
 		return (1);
+	if (flags->alt_hexa)
+		len += 2;
 	while (value > 0)
 	{
 		len++;
