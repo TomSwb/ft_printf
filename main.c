@@ -18,6 +18,9 @@ void	test_s(void);
 void	test_d(void);
 void	test_i(void);
 void	test_u(void);
+void	test_x(void);
+void	test_X(void);
+void	test_p(void);
 
 int	main(int ac, char **av)
 {
@@ -66,6 +69,24 @@ int	main(int ac, char **av)
 	{
 		ft_printf("\n");
 		test_u();
+		ft_printf("\n");
+	}
+	if (av[1][0] == 'x')
+	{
+		ft_printf("\n");
+		test_x();
+		ft_printf("\n");
+	}
+	if (av[1][0] == 'X')
+	{
+		ft_printf("\n");
+		test_X();
+		ft_printf("\n");
+	}
+	if (av[1][0] == 'p')
+	{
+		ft_printf("\n");
+		test_p();
 		ft_printf("\n");
 	}
 }
