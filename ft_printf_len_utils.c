@@ -86,6 +86,8 @@ int address_len(uintptr_t value)
 	int len;
 	
 	len = 2;
+	if (value == 0)
+		return (3);
 	while (value > 0)
 	{
 		len++;
