@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 13:19:37 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 13:47:35 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 
 	value = (long long)va_arg(*args, unsigned int);
 	len = deci_len(value, flags);
-	if (value == 0 && flags->precision && flags->precision_len == 0)
+	if (value == 0 && flags->alt_hexa)
 	{
-		*count += print_nothing(len, flags);
+		*count += print_char('0');
 		return ;
 	}
 	hexa_low = "0123456789abcdef";
