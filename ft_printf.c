@@ -126,9 +126,15 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 	*count += print_hexa(value, base, flags);
 }
 
-/*
-void	printer_manager_memory(t_flags *flags, va_list *args, int *count)
-{
 
+void	printer_manager_address(t_flags *flags, va_list *args, int *count)
+{
+	void *p;
+
+	p = va_arg(*args, int);
+	if (!flags->left_align && flags->min_width > 0)
+		*count += print_padding(flags, 1);
+	*count += print_address(p);
+	if (flags->left_align && flags->min_width > 0)
+		*count += print_padding(flags, 1);
 }
-*/
