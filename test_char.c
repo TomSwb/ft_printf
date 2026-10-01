@@ -204,4 +204,24 @@ void	test_s(void)
 	result_og = printf("flag '-' + precision 5 + min width 10 = *%-10.5s*\n", str);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
+
+	// NULL string with precision and width
+	str = NULL;
+	ft_printf("\nTesting 'char *str = NULL':\n");
+	ft_printf("\n");
+
+	result_ft = ft_printf("no flags = *%s*\n", str);
+	result_og = printf("no flags = *%s*\n", str);
+	ft_printf("result_ft = %d\n", result_ft);
+	printf("result_og = %d\n", result_og);
+
+	result_ft = ft_printf("precision 5 + min width 10 = *%10.5s*\n", str);
+	result_og = printf("precision 5 + min width 10 = *%10.5s*\n", str);
+	ft_printf("result_ft = %d\n", result_ft);
+	printf("result_og = %d\n", result_og);
+
+	result_ft = ft_printf("flag '-' + precision 5 + min width 10 = *%-10.5s*\n", str);
+	result_og = printf("flag '-' + precision 5 + min width 10 = *%-10.5s*\n", str);
+	ft_printf("result_ft = %d\n", result_ft);
+	printf("result_og = %d\n", result_og);
 }

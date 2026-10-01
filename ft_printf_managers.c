@@ -10,7 +10,7 @@ void	printer_manager(t_flags *flags, va_list *args, int *count)
 	else if (flags->converter == 'x' || flags->converter == 'X')
 		printer_manager_hexa(flags, args, count);
 	else if (flags->converter == 'p')
-		printer_manager_memory(flags, args, count);
+		printer_manager_address(flags, args, count);
 }
 
 void	printer_manager_char(t_flags *flags, va_list *args, int *count)
@@ -72,11 +72,6 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 	char	*base;
 
 	value = (long long)va_arg(*args, unsigned int);
-	if (value == 0 && flags->alt_hexa)
-	{
-		*count += print_char('0');
-		return ;
-	}
 	hexa_low = "0123456789abcdef";
 	hexa_up = "0123456789ABCDEF";
 	if (flags->converter == 'X')
@@ -97,7 +92,13 @@ void	printer_manager_address(t_flags *flags, va_list *args, int *count)
 	adrs_len = address_len(value);
 	if (!flags->left_align && flags->min_width > 0)
 		*count += print_padding(flags, adrs_len);
-	*count += print_address(value);
+	if (value == 0)
+	{
+		write(1, "(nil)", 5);
+		*count += 5;
+	}
+	else
+		*count += print_address(value);
 	if (flags->left_align && flags->min_width > 0)
 		*count += print_padding(flags, adrs_len);
 }

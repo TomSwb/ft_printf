@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:07 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 13:18:03 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 16:33:55 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	parser(const char **s, t_flags *flags)
 	}
 	parse_min_width_precison(flags, s);
 	flags->converter = **s;
+	if (!is_converter(flags->converter))
+		return (0);
 	(*s)++;
 	return (parsing_check(flags));
 }
@@ -76,8 +78,6 @@ void	parse_min_width_precison(t_flags *flags, const char **s)
 
 int parsing_check(t_flags *flags)
 {
-	if (!is_converter(flags->converter))
-			return (0);
 	if ((flags->converter == 'c' || flags->converter == 'p')
 		&& (flags->zero_padding != 0 || flags->positive_sign != 0
 		|| flags->alt_hexa != 0 || flags->space != 0 || flags->precision != 0))
@@ -97,7 +97,9 @@ int parsing_check(t_flags *flags)
 		&& flags->zero_padding != 0)))
 		return (0);
 	else if ((flags->converter == 'x' || flags->converter == 'X')
-		&& (flags->space != 0 || flags->positive_sign != 0))
+		&& ((flags->space != 0 || flags->positive_sign != 0
+		|| ((flags->left_align == 1	|| flags->precision == 1)
+		&& flags->zero_padding != 0))))
 		return (0);
 	return (1);
 }

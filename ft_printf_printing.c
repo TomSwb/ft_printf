@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 13:56:41 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 18:13:45 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	print_char(char value)
 int	print_s(const char *value, t_flags *flags)
 {
 	int	i;
-	int		count;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -48,7 +48,7 @@ int	print_s(const char *value, t_flags *flags)
 
 int print_deci(long long value, int len, t_flags *flags)
 {
-	int count;
+	int			count;
 	long long	div;
 
 	count = 0;
@@ -76,25 +76,32 @@ int print_deci(long long value, int len, t_flags *flags)
 
 int		print_hexa(long long value, char *base, t_flags *flags)
 {
-	int	hex_len;
-	int count;
+	int			hex_len;
+	int			count;
 	long long	div;
 
 	count = 0;
 	hex_len = hexa_len(value, flags);
-	div = def_div(value, flags)
-	if (flags->zero_padding && !flags->precision && !flags->left_align)
+	div = def_div(value, flags);
+	if ((flags->zero_padding && !flags->precision &&
+		!flags->left_align) && value != 0)
 		count += print_prefix(flags);
 	if (!flags->left_align && flags->min_width > 0)
 		count += print_padding(flags, hex_len + pr_len(hex_len, flags));
-	if ((!flags->zero_padding || flags->precision || flags->left_align))
+	if ((!flags->zero_padding || flags->precision
+		|| flags->left_align) && value != 0)
 		count += print_prefix(flags);
-	if (flags->precision)
+	if (flags->precision && flags->precision_len != 0)
 		count += print_precision(pr_len(hex_len, flags));
-	while (div > 0)
+	if (value == 0 && !flags->precision && !flags->zero_padding)
+		count += print_char('0');
+	else
 	{
-		count += print_char(base[(value / div) % 16]);
-		div /= 16;
+		while (div > 0)
+		{
+			count += print_char(base[(value / div) % 16]);
+			div /= 16;
+		}
 	}
 	if (flags->left_align && flags->min_width > 0)
 		count += print_padding(flags, hex_len + pr_len(hex_len, flags));
@@ -104,20 +111,20 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 
 int print_address(uintptr_t value)
 {
-	int count;
+	int			count;
 	uintptr_t	div;
-	char *base;
+	char		*base;
 
 	base = "0123456789abcdef";
 	count = 0;
 	count += print_char('0');
 	count += print_char('x');
-	div = 1
+	div = 1;
 	while (value / div >= 16)
 	{
 		if (div > value / 16)
 			break ;
-		div *= base;
+		div *= 16;
 	}
 	while (div > 0)
 	{
