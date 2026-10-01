@@ -70,7 +70,7 @@ int		print_char(char value);
 int		print_s(const char *value, t_flags *flags);
 int		print_deci(long long value, int len, t_flags *flags);
 int		print_hexa(long long value, char *base, t_flags *flags);
-int		print_address(void *value);
+int		print_address(unintptr_t value);
 
 // fr_printf_utils.c
 int		print_padding(t_flags *flags, int len_value);
