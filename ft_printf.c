@@ -105,20 +105,22 @@ void	printer_manager_decimal(t_flags *flags, va_list *args, int *count)
 	*count += print_deci(value, len, sign, flags);
 }
 
-// void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
-// {
-// 	long	long value;
-// 	int		len;
-	
-// 	value = (long long)va_arg(*args, unsigned int);
-// 	len = deci_len(value, flags);
-// 	if (value == 0 && flags->precision && flags->precision_len == 0)
-// 	{
-// 		*count += print_nothing(len, 0, flags);
-// 		return ;
-// 	}
-// 	*count += print_hexa(value, len, flags);
-// }
+void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
+{
+	long	long value;
+	int		len;
+	int hexa_len;
+
+	value = (long long)va_arg(*args, unsigned int);
+	len = deci_len(value, flags);
+	hexa_len = he a_len(value);
+	if (value == 0 && flags->precision && flags->precision_len == 0)
+	{
+		*count += print_nothing(len, 0, flags);
+		return ;
+	}
+	*count += print_hexa(value, len, flags);
+}
 
 /*
 void	printer_manager_memory(t_flags *flags, va_list *args, int *count)
