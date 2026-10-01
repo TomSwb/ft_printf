@@ -105,9 +105,22 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 	return (count);
 }
 
-/*
-int print_address(void *value)
+
+int print_address(unintptr_t value)
 {
-    
+	int count;
+	int	div;
+	char *base;
+
+	base = "0123456789abcdef";
+	count = 0;
+	div = 1;
+	while (value / div >= 16)
+		div *= 16;
+	while (div > 0)
+	{
+		count += print_char(base[(value / div) % 16]);
+		div /= 16;
+	}
+	return (count);
 }
-*/
