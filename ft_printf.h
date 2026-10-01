@@ -43,10 +43,13 @@ typedef struct s_flags
 
 // ft_printf.c
 int		ft_printf(const char *, ...);
+
+//ft_printf_managers.c
 void	printer_manager(t_flags *flags, va_list *args, int *count);
 void	printer_manager_char(t_flags *flags, va_list *args, int *count);
 void	printer_manager_decimal(t_flags *flags, va_list *args, int *count);
 void	printer_manager_hexa(t_flags *flags, va_list *args, int *count);
+void	printer_manager_address(t_flags *flags, va_list *args, int *count);
 
 // ft_printf_parsing.c
 t_flags	init_flags(void);
@@ -64,6 +67,7 @@ int		print_char(char value);
 int		print_s(const char *value, t_flags *flags);
 int		print_deci(long long value, int len, t_flags *flags);
 int		print_hexa(long long value, char *base, t_flags *flags);
+int		print_address(void *value);
 
 // fr_printf_utils.c
 int		print_padding(t_flags *flags, int len_value);
