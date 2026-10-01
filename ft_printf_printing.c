@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 18:13:45 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 19:39:53 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 	count = 0;
 	hex_len = hexa_len(value, flags);
 	div = def_div(value, flags);
-	if ((flags->zero_padding && !flags->precision &&
-		!flags->left_align) && value != 0)
-		count += print_prefix(flags);
 	if (!flags->left_align && flags->min_width > 0)
 		count += print_padding(flags, hex_len + pr_len(hex_len, flags));
 	if ((!flags->zero_padding || flags->precision
@@ -103,8 +100,6 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 			div /= 16;
 		}
 	}
-	if (flags->left_align && flags->min_width > 0)
-		count += print_padding(flags, hex_len + pr_len(hex_len, flags));
 	return (count);
 }
 

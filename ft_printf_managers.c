@@ -70,6 +70,7 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 	char	*hexa_low;
 	char	*hexa_up;
 	char	*base;
+	int		hex_len;
 
 	value = (long long)va_arg(*args, unsigned int);
 	hexa_low = "0123456789abcdef";
@@ -78,7 +79,13 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 		base = hexa_up;
 	else if (flags->converter == 'x')
 		base = hexa_low;
+	if ((flags->zero_padding && !flags->precision &&
+		!flags->left_align) && value != 0)
+		*count += print_prefix(flags);
 	*count += print_hexa(value, base, flags);
+	hex_len = hexa_len(value, flags);
+	if (flags->left_align && flags->min_width > 0)
+		*count += print_padding(flags, hex_len + pr_len(hex_len, flags));
 }
 
 void	printer_manager_address(t_flags *flags, va_list *args, int *count)
