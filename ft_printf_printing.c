@@ -82,7 +82,7 @@ int		print_hexa(long long value, char *base, t_flags *flags)
     int count;
 	int	div;
     
-	hex_len = hexa_len(value);
+	hex_len = hexa_len(value, flags);
 	div = 1;
 	while (value / div >= 16)
 		div *= 16;
