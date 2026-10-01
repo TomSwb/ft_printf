@@ -52,13 +52,7 @@ int print_deci(long long value, int len, t_flags *flags)
 	long long	div;
 
 	count = 0;
-	div = 1;
-	while (value / div >= 10)
-	{
-		if (div > value / 10)
-			break ;
-		div *= 10;
-	}
+	div = def_div(value, flags);
 	if (flags->zero_padding && !flags->precision && !flags->left_align
 		&& (flags->converter == 'd' || flags->converter == 'i'))
 		count += print_prefix(flags);
@@ -88,13 +82,7 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 
 	count = 0;
 	hex_len = hexa_len(value, flags);
-	div = 1;
-	while (value / div >= 16)
-	{
-		if (div > value / 16)
-			break ;
-		div *= 16;
-	}
+	div = def_div(value, flags)
 	if (flags->zero_padding && !flags->precision && !flags->left_align)
 		count += print_prefix(flags);
 	if (!flags->left_align && flags->min_width > 0)
@@ -122,15 +110,9 @@ int print_address(uintptr_t value)
 
 	base = "0123456789abcdef";
 	count = 0;
-	div = 1;
 	count += print_char('0');
 	count += print_char('x');
-	while (value / div >= 16)
-	{
-		if (div > value / 16)
-			break ;
-		div *= 16;
-	}
+	div = def_div(value, flags);
 	while (div > 0)
 	{
 		count += print_char(base[(value / div) % 16]);
