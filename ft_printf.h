@@ -21,6 +21,9 @@
 // write();
 # include <unistd.h>
 
+// unintptr_t type
+# include <stdint.h>
+
 // *** Struct *** //
 
 typedef struct s_flags
