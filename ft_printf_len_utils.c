@@ -61,3 +61,18 @@ int	pr_len(int len, int sign, t_flags *flags)
 		pr_len = 0;
 	return (pr_len);
 }
+
+int	hexa_len(long long value, t_flags *flags)
+{
+	int len;
+	
+	len = 0;
+	if (value == 0)
+		return (1);
+	while (value > 0)
+	{
+		len++;
+		value /= 16;
+	}
+	return (len);
+}
