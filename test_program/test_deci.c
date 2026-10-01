@@ -288,18 +288,22 @@ void	test_d(void)
 	ft_printf("\n--- Repeated flags ---\n");
 
 	result_ft = ft_printf("repeated minus:    *%--5d*\n", 42);
+	ft_printf("result_ft = %d\n", result_ft);
 	// result_og = printf("repeated minus:    *%--5d*\n", 42);
 	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("repeated zero:     *%005d*\n", 42);
+	ft_printf("result_ft = %d\n", result_ft);
 	// result_og = printf("repeated zero:     *%005d*\n", 42);
 	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("repeated plus:     *%++d*\n", 42);
+	ft_printf("result_ft = %d\n", result_ft);
 	// result_og = printf("repeated plus:     *%++d*\n", 42);
 	// print_results(result_ft, result_og);
 
 	result_ft = ft_printf("all flags:         *%-+ 05d*\n", 42);
+	ft_printf("result_ft = %d\n", result_ft);
 	// result_og = printf("all flags:         *%-+ 05d*\n", 42);
 	// print_results(result_ft, result_og);
 

@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 02:55:43 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 19:35:03 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 22:41:08 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	s_len(char *s, t_flags *flags)
 	int	len;
 
 	len = 0;
+	if (s == NULL && flags->precision)
+		return (0);
 	if (s == NULL)
-		return (len);
+		return (6);
 	while (s[len])
 		len++;
 	if (flags->precision && len > flags->precision_len)
