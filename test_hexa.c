@@ -305,6 +305,197 @@ void	test_x(void)
 	result_og = printf("n = 4294967295: *%x*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
+
+	// ---------- Additional edge / missing cases ----------
+    ft_printf("\n--- Additional edge / missing cases ---\n");
+
+    // Precision 0 with nonzero values
+    n = 1u;
+    result_ft = ft_printf("precision 0, n = 1: *%.0x*\n", n);
+    result_og = printf("precision 0, n = 1: *%.0x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("precision 0, n = 15: *%.0x*\n", n);
+    result_og = printf("precision 0, n = 15: *%.0x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 255u;
+    result_ft = ft_printf("precision 0, n = 255: *%.0x*\n", n);
+    result_og = printf("precision 0, n = 255: *%.0x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    // Precision 0 + width with zero value (various widths)
+    result_ft = ft_printf("precision 0 + width 5, n = 0: *%5.0x*\n", 0u);
+    result_og = printf("precision 0 + width 5, n = 0: *%5.0x*\n", 0u);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("precision 0 + width 1, n = 0: *%1.0x*\n", 0u);
+    result_og = printf("precision 0 + width 1, n = 0: *%1.0x*\n", 0u);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("precision 0 + width 0, n = 0: *%0.0x*\n", 0u);
+    // result_og = printf("precision 0 + width 0, n = 0: *%0.0x*\n", 0u);
+    ft_printf("result_ft = %d\n", result_ft);
+    // printf("result_og = %d\n", result_og);
+
+    // Precision 0 + width with nonzero values
+    n = 1u;
+    result_ft = ft_printf("precision 0 + width 5, n = 1: *%5.0x*\n", n);
+    result_og = printf("precision 0 + width 5, n = 1: *%5.0x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("precision 0 + width 5, n = 15: *%5.0x*\n", n);
+    result_og = printf("precision 0 + width 5, n = 15: *%5.0x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("flag '-' + precision 0 + width 5, n = 15: *%-5.0x*\n", n);
+    result_og = printf("flag '-' + precision 0 + width 5, n = 15: *%-5.0x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    // Very large field widths
+    n = 15u;
+    result_ft = ft_printf("width 20, n = 15: *%20x*\n", n);
+    result_og = printf("width 20, n = 15: *%20x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flag '0' + width 20, n = 15: *%020x*\n", n);
+    result_og = printf("flag '0' + width 20, n = 15: *%020x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flag '-' + width 20, n = 15: *%-20x*\n", n);
+    result_og = printf("flag '-' + width 20, n = 15: *%-20x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flag '#' + width 20, n = 15: *%#20x*\n", n);
+    result_og = printf("flag '#' + width 20, n = 15: *%#20x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flags '#0' + width 20, n = 15: *%#020x*\n", n);
+    result_og = printf("flags '#0' + width 20, n = 15: *%#020x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    // '#' + precision 0 with nonzero
+    n = 1u;
+    result_ft = ft_printf("flag '#' + precision 0, n = 1: *%#.0x*\n", n);
+    result_og = printf("flag '#' + precision 0, n = 1: *%#.0x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("flag '#' + precision 0, n = 15: *%#.0x*\n", n);
+    result_og = printf("flag '#' + precision 0, n = 15: *%#.0x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    // '#' + precision 0 + width with zero (no 0x prefix)
+    result_ft = ft_printf("flag '#' + width 5 + precision 0, n = 0: *%#5.0x*\n", 0u);
+    result_og = printf("flag '#' + width 5 + precision 0, n = 0: *%#5.0x*\n", 0u);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flag '#' + width 1 + precision 0, n = 0: *%#1.0x*\n", 0u);
+    result_og = printf("flag '#' + width 1 + precision 0, n = 0: *%#1.0x*\n", 0u);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    // Flag order variations (optional but nice)
+    n = 15u;
+    result_ft = ft_printf("flags '-#' + width 8 + precision 4, n = 15: *%-#8.4x*\n", n);
+    result_og = printf("flags '-#' + width 8 + precision 4, n = 15: *%-#8.4x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("flags '0-' + width 8, n = 15: *%0-8x*\n", n);
+    // result_og = printf("flags '0-' + width 8, n = 15: *%0-8x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    // printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("flags '-0' + width 8, n = 15: *%-08x*\n", n);
+    // result_og = printf("flags '-0' + width 8, n = 15: *%-08x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    // printf("result_og = %d\n", result_og);
+
+    // '#' + '0' + precision (confirm '0' ignored)
+    n = 15u;
+    result_ft = ft_printf("flags '#0' + precision 3, n = 15: *%#0.3x*\n", n);
+    // result_og = printf("flags '#0' + precision 3, n = 15: *%#0.3x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    // printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("flags '#0' + width 8 + precision 3, n = 15: *%#08.3x*\n", n);
+    // result_og = printf("flags '#0' + width 8 + precision 3, n = 15: *%#08.3x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    // printf("result_og = %d\n", result_og);
+
+    // Maximum-width hex with various flags
+    n = 4294967295u;
+    result_ft = ft_printf("width 8, n = UINT_MAX: *%8x*\n", n);
+    result_og = printf("width 8, n = UINT_MAX: *%8x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flag '0' + width 10, n = UINT_MAX: *%010x*\n", n);
+    result_og = printf("flag '0' + width 10, n = UINT_MAX: *%010x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flag '-' + width 10, n = UINT_MAX: *%-10x*\n", n);
+    result_og = printf("flag '-' + width 10, n = UINT_MAX: *%-10x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flag '#' + width 10, n = UINT_MAX: *%#10x*\n", n);
+    result_og = printf("flag '#' + width 10, n = UINT_MAX: *%#10x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    result_ft = ft_printf("flags '#0' + width 12, n = UINT_MAX: *%#012x*\n", n);
+    result_og = printf("flags '#0' + width 12, n = UINT_MAX: *%#012x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    // Small values with high precision
+    result_ft = ft_printf("precision 10, n = 0: *%.10x*\n", 0u);
+    result_og = printf("precision 10, n = 0: *%.10x*\n", 0u);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 1u;
+    result_ft = ft_printf("precision 10, n = 1: *%.10x*\n", n);
+    result_og = printf("precision 10, n = 1: *%.10x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("precision 10, n = 15: *%.10x*\n", n);
+    result_og = printf("precision 10, n = 15: *%.10x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
+
+    n = 15u;
+    result_ft = ft_printf("width 15 + precision 10, n = 15: *%15.10x*\n", n);
+    result_og = printf("width 15 + precision 10, n = 15: *%15.10x*\n", n);
+    ft_printf("result_ft = %d\n", result_ft);
+    printf("result_og = %d\n", result_og);
 }
 
 void	test_X(void)

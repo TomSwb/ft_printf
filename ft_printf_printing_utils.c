@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 18:15:57 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 18:51:56 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	print_padding(t_flags *flags, int len_value)
 			&& flags->converter != 'p')
 			print_char('0');
 		else
-			print_char(' ');
+			print_char('-');
 		i++;
 	}
 	return (count);
