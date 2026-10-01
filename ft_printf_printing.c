@@ -49,12 +49,16 @@ int	print_s(const char *value, t_flags *flags)
 int print_deci(long long value, int len, t_flags *flags)
 {
 	int count;
-	int	div;
+	long long	div;
 
 	count = 0;
 	div = 1;
 	while (value / div >= 10)
+	{
+		if (div > value / 10)
+			break ;
 		div *= 10;
+	}
 	if (flags->zero_padding && !flags->precision && !flags->left_align
 		&& (flags->converter == 'd' || flags->converter == 'i'))
 		count += print_prefix(flags);
@@ -80,13 +84,17 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 {
 	int	hex_len;
 	int count;
-	int	div;
+	long long	div;
 
 	count = 0;
 	hex_len = hexa_len(value, flags);
 	div = 1;
 	while (value / div >= 16)
+	{
+		if (div > value / 16)
+			break ;
 		div *= 16;
+	}
 	if (flags->zero_padding && !flags->precision && !flags->left_align)
 		count += print_prefix(flags);
 	if (!flags->left_align && flags->min_width > 0)
@@ -109,7 +117,7 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 int print_address(uintptr_t value)
 {
 	int count;
-	int	div;
+	uintptr_t	div;
 	char *base;
 
 	base = "0123456789abcdef";
@@ -118,7 +126,11 @@ int print_address(uintptr_t value)
 	count += print_char('0');
 	count += print_char('x');
 	while (value / div >= 16)
+	{
+		if (div > value / 16)
+			break ;
 		div *= 16;
+	}
 	while (div > 0)
 	{
 		count += print_char(base[(value / div) % 16]);
