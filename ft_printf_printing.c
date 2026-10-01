@@ -78,10 +78,11 @@ int print_deci(long long value, int len, t_flags *flags)
 
 int		print_hexa(long long value, char *base, t_flags *flags)
 {
-    int	hex_len;
-    int count;
+	int	hex_len;
+	int count;
 	int	div;
-    
+
+	count = 0;
 	hex_len = hexa_len(value, flags);
 	div = 1;
 	while (value / div >= 16)
@@ -94,14 +95,14 @@ int		print_hexa(long long value, char *base, t_flags *flags)
 		count += print_prefix(flags);
 	if (flags->precision)
 		count += print_precision(pr_len(hex_len, flags));
-    while (div > 0)
+	while (div > 0)
 	{
 		count += print_char(base[(value / div) % 16]);
 		div /= 16;
 	}
-    if (flags->left_align && flags->min_width > 0)
+	if (flags->left_align && flags->min_width > 0)
 		count += print_padding(flags, hex_len + pr_len(hex_len, flags));
-    return (count);
+	return (count);
 }
 
 /*
