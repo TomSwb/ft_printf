@@ -64,7 +64,7 @@ int	pr_len(int len, t_flags *flags)
 	return (pr_len);
 }
 
-int	hexa_len(long long value)
+int	hexa_len(long long value, t_flags *flags)
 {
 	int len;
 	
