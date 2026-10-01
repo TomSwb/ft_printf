@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:07 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 10:07:17 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 13:18:03 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_flags	init_flags(void)
 	flags.positive_sign = 0;
 	flags.alt_hexa = 0;
 	flags.space = 0;
+	flags.neg_sign = 0;
 	flags.min_width = 0;
 	flags.precision = 0;
 	flags.precision_len = 0;

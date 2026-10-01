@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 10:02:25 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 13:19:37 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,42 +84,48 @@ void	printer_manager_decimal(t_flags *flags, va_list *args, int *count)
 {
 	long	long value;
 	int		len;
-	int		sign;
 	
 	if (flags->converter == 'u')
 		value = (long long)va_arg(*args, unsigned int);
 	else
 		value = (long long)va_arg(*args, int);
 	len = deci_len(value, flags);
-	sign = 0;
+	flags->neg_sign = 0;
 	if (value == 0 && flags->precision && flags->precision_len == 0)
 	{
-		*count += print_nothing(len, sign, flags);
+		*count += print_nothing(len, flags);
 		return ;
 	}
 	if (value < 0)
 	{
-		sign = 1;
+		flags->neg_sign = 1;
 		value = -value;
 	}
-	*count += print_deci(value, len, sign, flags);
+	*count += print_deci(value, len, flags);
 }
 
 void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 {
 	long	long value;
 	int		len;
-	int hexa_len;
+	char	*hexa_low;
+    char	*hexa_up;
+    char	*base;
 
 	value = (long long)va_arg(*args, unsigned int);
 	len = deci_len(value, flags);
-	hexa_len = he a_len(value);
 	if (value == 0 && flags->precision && flags->precision_len == 0)
 	{
-		*count += print_nothing(len, 0, flags);
+		*count += print_nothing(len, flags);
 		return ;
 	}
-	*count += print_hexa(value, len, flags);
+	hexa_low = "0123456789abcdef";
+    hexa_up = "0123456789ABCDEF";
+    if (flags->converter == 'X')
+        base = hexa_up;
+    else if (flags->converter == 'x')
+        base = hexa_low;
+	*count += print_hexa(value, base, flags);
 }
 
 /*

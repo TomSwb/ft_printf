@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/30 03:20:43 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 13:21:16 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	print_s(const char *value, t_flags *flags)
 	return (count);
 }
 
-int print_deci(long long value, int len, int sign, t_flags *flags)
+int print_deci(long long value, int len, t_flags *flags)
 {
 	int count;
 	int	div;
@@ -57,45 +57,47 @@ int print_deci(long long value, int len, int sign, t_flags *flags)
 		div *= 10;
 	if (flags->zero_padding && !flags->precision && !flags->left_align
 		&& (flags->converter == 'd' || flags->converter == 'i'))
-		count += print_sign(sign, flags);
+		count += print_sign(flags);
 	if (!flags->left_align && flags->min_width > 0)
-		count += print_padding(flags, len + pr_len(len, sign, flags));
+		count += print_padding(flags, len + pr_len(len, flags));
 	if ((!flags->zero_padding || flags->precision || flags->left_align)
 		&& (flags->converter == 'd' || flags->converter == 'i'))
-		count += print_sign(sign, flags);
+		count += print_sign(flags);
 	if (flags->precision)
-		count += print_precision(pr_len(len, sign, flags));
+		count += print_precision(pr_len(len, flags));
 	while (div > 0)
 	{
 		count += print_char((value / div) % 10 + 48);
 		div /= 10;
 	}
 	if (flags->left_align && flags->min_width > 0)
-		count += print_padding(flags, len + pr_len(len, sign, flags));
+		count += print_padding(flags, len + pr_len(len, flags));
+    return (count);
+}
+
+
+int		print_hexa(long long value, char *base, t_flags *flags)
+{
+    int	hex_len;
+    int count;
+	int	div;
+    
+	hex_len = hexa_len(value);
+	div = 1;
+	while (value / div >= 16)
+		div *= 16;
+    while (div > 0)
+	{
+		count += print_char(base[(value / div) % 16]);
+		div /= 16;
+	}
+    
+    
     return (count);
 }
 
 /*
-int print_hexa(t_flags *flags, int value)
-{
-    char *hexa_low;
-    char *heca_up;
-    char *base;
-    int count;
-    
-    hexa_low = "0123456789abcdef";
-    hexa_up = "0123456789ABCDEF";
-    if (flags->convert == 'X')
-        base = hexa_up;
-    else if (flags->convert == 'x')
-        base = hexa_low;
-    
-    
-    
-    return (count);
-}
-
-int ft_putaddress(void *value)
+int print_address(void *value)
 {
     
 }
