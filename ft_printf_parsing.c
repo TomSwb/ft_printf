@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:07 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/30 00:56:09 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 10:07:17 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,21 @@ int parsing_check(t_flags *flags)
 			return (0);
 	if ((flags->converter == 'c' || flags->converter == 'p')
 		&& (flags->zero_padding != 0 || flags->positive_sign != 0
-		|| flags->alt_hexa != 0 || flags->space != 0
-		|| flags->precision != 0))
+		|| flags->alt_hexa != 0 || flags->space != 0 || flags->precision != 0))
 		return (0);
 	else if (flags->converter == 's' && (flags->zero_padding != 0
 		|| flags->positive_sign != 0 || flags->alt_hexa != 0
 		|| flags->space != 0))
 		return (0);
 	else if ((flags->converter == 'd' || flags->converter == 'i')
-		&& flags->alt_hexa != 0)
+		&& (flags->alt_hexa != 0 || ((flags->left_align == 1
+		|| flags->precision == 1) && flags->zero_padding != 0)
+		|| (flags->positive_sign == 1 && flags->space != 0)))
 		return (0);
-	else if (flags->converter == 'u' && (flags->alt_hexa != 0 
-		|| flags->positive_sign != 0 || flags->space != 0))
+	else if (flags->converter == 'u' && ((flags->alt_hexa != 0 
+		|| flags->positive_sign != 0 || flags->space != 0)
+		|| ((flags->left_align == 1 || flags->precision == 1)
+		&& flags->zero_padding != 0)))
 		return (0);
 	else if ((flags->converter == 'x' || flags->converter == 'X')
 		&& (flags->space != 0 || flags->positive_sign != 0))

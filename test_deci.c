@@ -765,9 +765,9 @@ void	test_u(void)
 
 	n = 0;
 	result_ft = ft_printf("flag '0', width 8, precision 4, n = 0: *%08.4u*\n", 0u);
-	// result_og = printf("flag '0', width 8, precision 4, n = 0: *%08.4u*\n", 0u);
+	result_og = printf("flag '0', width 8, precision 4, n = 0: *%08.4u*\n", 0u);
 	ft_printf("result_ft = %d\n", result_ft);
-	// printf("result_og = %d\n", result_og);
+	printf("result_og = %d\n", result_og);
 
 	n = 42;
 	result_ft = ft_printf("flag '-', width 8, precision 4, n = 42: *%-8.4u*\n", n);
