@@ -47,8 +47,8 @@ void	printer_manager(t_flags *flags, va_list *args, int *count)
 		printer_manager_char(flags, args, count);
 	else if (flags->converter == 'd' || flags->converter == 'i' || flags->converter == 'u')
 		printer_manager_decimal(flags, args, count);
-	// else if (flags->converter == 'x' || flags->converter == 'X')
-	// 	printer_manager_hexa(flags, args, count);
+	else if (flags->converter == 'x' || flags->converter == 'X')
+		printer_manager_hexa(flags, args, count);
 	// else if (flags->converter == 'p')
 	// 	 printer_manager_memory(flags, args, count);
 }
