@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_printing_utils.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 13:21:32 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 13:26:41 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ int	print_sign(t_flags *flags)
 		count += print_char('+');
 	else if (flags->space)
 		count += print_char(' ');
+	else if (flags->alt_hexa)
+	{
+		count += print_char('0');
+		if (flags->converter == 'x')
+			count += print_char('x');
+		else if (flags->converter == 'X')
+			count += print_char('X');
+	}
 	return (count);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 02:55:43 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 13:20:54 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 13:30:24 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	pr_len(int len, t_flags *flags)
 	if (flags->neg_sign || ((flags->positive_sign || flags->space) 
 		&& flags->converter != 'u'))
 		pr_len--;
+	if (flags->alt_hexa)
+		pr_len -= 2;
 	pr_len = flags->precision_len - pr_len;
 	if (pr_len <= 0)
 		pr_len = 0;
