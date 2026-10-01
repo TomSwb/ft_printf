@@ -4,95 +4,124 @@
 
 void	test_p(void)
 {
-	void	*ptr;
 	int		result_ft;
 	int		result_og;
-	int		x;
-	int		y;
+	int		n;
+	int		*ptr;
+	int		*null_ptr;
+	char	*str;
+	void	*generic_ptr;
 
-	ft_printf("Testing '%%p' (pointer address):\n");
+	ft_printf("Testing '%%p' (pointer):\n");
 
-	x = 1;
-	y = 2;
+	/* ---------- Basic pointer ---------- */
 
-	// ---------- Basic cases (real addresses + NULL) ----------
-	ft_printf("\n--- Basic cases ---\n");
+	n = 42;
+	ptr = &n;
 
-	ptr = NULL;
-	result_ft = ft_printf("no flags, ptr = NULL: *%p*\n", ptr);
-	result_og = printf("no flags, ptr = NULL: *%p*\n", ptr);
+	ft_printf("\n--- Basic pointer ---\n");
+
+	result_ft = ft_printf("ft_printf, &n:      *%p*\n", (void *)ptr);
+	result_og = printf("printf,    &n:      *%p*\n", (void *)ptr);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	ptr = (void *)&x;
-	result_ft = ft_printf("no flags, ptr = &x: *%p*\n", ptr);
-	result_og = printf("no flags, ptr = &x: *%p*\n", ptr);
+	/* ---------- Different variable types ---------- */
+
+	str = "hello";
+	generic_ptr = (void *)str;
+
+	ft_printf("\n--- Different pointer types ---\n");
+
+	result_ft = ft_printf("pointer to int:      *%p*\n", (void *)&n);
+	result_og = printf("pointer to int:      *%p*\n", (void *)&n);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	ptr = (void *)&y;
-	result_ft = ft_printf("no flags, ptr = &y: *%p*\n", ptr);
-	result_og = printf("no flags, ptr = &y: *%p*\n", ptr);
+	result_ft = ft_printf("pointer to string:   *%p*\n", (void *)str);
+	result_og = printf("pointer to string:   *%p*\n", (void *)str);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	// ---------- Min width only (right justified) ----------
-	ft_printf("\n--- Min width only (right justified) ---\n");
-
-	ptr = NULL;
-	result_ft = ft_printf("min width 18, ptr = NULL: *%18p*\n", ptr);
-	result_og = printf("min width 18, ptr = NULL: *%18p*\n", ptr);
+	result_ft = ft_printf("void pointer:        *%p*\n", generic_ptr);
+	result_og = printf("void pointer:        *%p*\n", generic_ptr);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	ptr = (void *)&x;
-	result_ft = ft_printf("min width 18, ptr = &x: *%18p*\n", ptr);
-	result_og = printf("min width 18, ptr = &x: *%18p*\n", ptr);
+	/* ---------- Same address multiple times ---------- */
+
+	ft_printf("\n--- Same address multiple times ---\n");
+
+	result_ft = ft_printf("same pointer: *%p* *%p* *%p*\n",
+			(void *)ptr, (void *)ptr, (void *)ptr);
+	result_og = printf("same pointer: *%p* *%p* *%p*\n",
+			(void *)ptr, (void *)ptr, (void *)ptr);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	ptr = (void *)&y;
-	result_ft = ft_printf("min width 18, ptr = &y: *%18p*\n", ptr);
-	result_og = printf("min width 18, ptr = &y: *%18p*\n", ptr);
+	/* ---------- Different real addresses ---------- */
+
+	{
+		int		a;
+		int		b;
+		char	c;
+
+		a = 1;
+		b = 2;
+		c = 'x';
+
+		ft_printf("\n--- Different real addresses ---\n");
+
+		result_ft = ft_printf("&a: *%p*, &b: *%p*, &c: *%p*\n",
+				(void *)&a, (void *)&b, (void *)&c);
+		result_og = printf("&a: *%p*, &b: *%p*, &c: *%p*\n",
+				(void *)&a, (void *)&b, (void *)&c);
+		ft_printf("result_ft = %d\n", result_ft);
+		printf("result_og = %d\n", result_og);
+	}
+
+	/* ---------- NULL pointer ---------- */
+
+	null_ptr = NULL;
+
+	ft_printf("\n--- NULL pointer ---\n");
+
+	result_ft = ft_printf("NULL pointer: *%p*\n", (void *)null_ptr);
+	result_og = printf("NULL pointer: *%p*\n", (void *)null_ptr);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	// ---------- Flag '-' (left justified) ----------
-	ft_printf("\n--- Flag '-' (left justified) ---\n");
-
-	ptr = NULL;
-	result_ft = ft_printf("flag '-', min width 18, ptr = NULL: *%-18p*\n", ptr);
-	result_og = printf("flag '-', min width 18, ptr = NULL: *%-18p*\n", ptr);
+	result_ft = ft_printf("NULL directly: *%p*\n", (void *)NULL);
+	result_og = printf("NULL directly: *%p*\n", (void *)NULL);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	ptr = (void *)&x;
-	result_ft = ft_printf("flag '-', min width 18, ptr = &x: *%-18p*\n", ptr);
-	result_og = printf("flag '-', min width 18, ptr = &x: *%-18p*\n", ptr);
+	/* ---------- Pointer beside normal text ---------- */
+
+	ft_printf("\n--- Pointer beside normal text ---\n");
+
+	result_ft = ft_printf("before [%p] after\n", (void *)&n);
+	result_og = printf("before [%p] after\n", (void *)&n);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	ptr = (void *)&y;
-	result_ft = ft_printf("flag '-', min width 18, ptr = &y: *%-18p*\n", ptr);
-	result_og = printf("flag '-', min width 18, ptr = &y: *%-18p*\n", ptr);
+	/* ---------- Several conversions together ---------- */
+
+	ft_printf("\n--- Several conversions ---\n");
+
+	result_ft = ft_printf("int = %d, string = %s, pointer = %p, char = %c\n",
+			n, str, (void *)&n, 'A');
+	result_og = printf("int = %d, string = %s, pointer = %p, char = %c\n",
+			n, str, (void *)&n, 'A');
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 
-	// ---------- Multiple pointers in one call ----------
-	ft_printf("\n--- Multiple pointers in one call ---\n");
+	/* ---------- Pointer with %% ---------- */
 
-	result_ft = ft_printf("three pointers: %p %p %p\n", (void *)&x, (void *)&y, NULL);
-	result_og = printf("three pointers: %p %p %p\n", (void *)&x, (void *)&y, NULL);
-	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	ft_printf("\n--- Pointer with %% ---\n");
 
-	result_ft = ft_printf("widthed: *%18p* *%18p* *%18p*\n", (void *)&x, (void *)&y, NULL);
-	result_og = printf("widthed: *%18p* *%18p* *%18p*\n", (void *)&x, (void *)&y, NULL);
-	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
-
-	result_ft = ft_printf("left-justified: *%-18p* *%-18p* *%-18p*\n", (void *)&x, (void *)&y, NULL);
-	result_og = printf("left-justified: *%-18p* *%-18p* *%-18p*\n", (void *)&x, (void *)&y, NULL);
+	result_ft = ft_printf("pointer = %p, percent = %%\n", (void *)&n);
+	result_og = printf("pointer = %p, percent = %%\n", (void *)&n);
 	ft_printf("result_ft = %d\n", result_ft);
 	printf("result_og = %d\n", result_og);
 }
