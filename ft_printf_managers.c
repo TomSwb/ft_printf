@@ -9,8 +9,8 @@ void	printer_manager(t_flags *flags, va_list *args, int *count)
 		printer_manager_decimal(flags, args, count);
 	else if (flags->converter == 'x' || flags->converter == 'X')
 		printer_manager_hexa(flags, args, count);
-	// else if (flags->converter == 'p')
-	// 	 printer_manager_memory(flags, args, count);
+	else if (flags->converter == 'p')
+		printer_manager_memory(flags, args, count);
 }
 
 void	printer_manager_char(t_flags *flags, va_list *args, int *count)
@@ -68,8 +68,8 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 {
 	long	long value;
 	char	*hexa_low;
-    char	*hexa_up;
-    char	*base;
+	char	*hexa_up;
+	char	*base;
 
 	value = (long long)va_arg(*args, unsigned int);
 	if (value == 0 && flags->alt_hexa)
@@ -78,11 +78,11 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 		return ;
 	}
 	hexa_low = "0123456789abcdef";
-    hexa_up = "0123456789ABCDEF";
-    if (flags->converter == 'X')
-        base = hexa_up;
-    else if (flags->converter == 'x')
-        base = hexa_low;
+	hexa_up = "0123456789ABCDEF";
+	if (flags->converter == 'X')
+		base = hexa_up;
+	else if (flags->converter == 'x')
+		base = hexa_low;
 	*count += print_hexa(value, base, flags);
 }
 
@@ -90,7 +90,7 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 void	printer_manager_address(t_flags *flags, va_list *args, int *count)
 {
 	void *address;
-	unintptr_t value;
+	uintptr_t value;
 
 	address = va_arg(*args, void *);
 	value = (unintptr_t)address;
