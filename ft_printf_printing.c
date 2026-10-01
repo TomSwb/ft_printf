@@ -112,7 +112,13 @@ int print_address(uintptr_t value)
 	count = 0;
 	count += print_char('0');
 	count += print_char('x');
-	div = def_div(value, flags);
+	div = 1
+	while (value / div >= 16)
+	{
+		if (div > value / 16)
+			break ;
+		div *= base;
+	}
 	while (div > 0)
 	{
 		count += print_char(base[(value / div) % 16]);
