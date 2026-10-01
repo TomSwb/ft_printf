@@ -6,12 +6,11 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:22 by tomswb            #+#    #+#             */
-/*   Updated: 2026/09/30 03:29:16 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/01 09:44:28 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	test_percent(void);
 void	test_c(void);
@@ -30,6 +29,7 @@ int	main(int ac, char **av)
 	{
 		ft_printf("\n");
 		ft_printf("control, string ending with arg symbol: %");
+		ft_printf("\n");
 		ft_printf("\n");
 	}
 	if (av[1][0] == '%')

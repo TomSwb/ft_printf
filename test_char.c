@@ -1,5 +1,6 @@
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	test_percent(void)
 {
@@ -7,6 +8,7 @@ void	test_percent(void)
 	int		result_og;
 
 	ft_printf("Testing '%%' (percent sign) conversion:\n");
+	ft_printf("\n");
 
 	// no flags, basic usage
 	result_ft = ft_printf("no flags = *%%*\n");
@@ -34,6 +36,7 @@ void	test_percent(void)
 
 	// percent between other conversions (sanity check)
 	ft_printf("\nTesting '%%' mixed with other conversions:\n");
+	ft_printf("\n");
 
 	result_ft = ft_printf("char + percent + int = %c %% %d\n", 'X', 42);
 	result_og = printf("char + percent + int = %c %% %d\n", 'X', 42);
@@ -55,6 +58,7 @@ void	test_c(void)
 
 	c = 'W';
 	ft_printf("Testing 'char c = 'W'':\n");
+	ft_printf("\n");
 
 	// no flags
 	result_ft = ft_printf("no flags = *%c*\n", c);
@@ -88,6 +92,7 @@ void	test_c(void)
 
 	// special characters
 	ft_printf("\nTesting special characters:\n");
+	ft_printf("\n");
 
 	c = '\n';
 	result_ft = ft_printf("char '\\n' = *%c*\n", c);
@@ -109,6 +114,7 @@ void	test_c(void)
 
 	// numeric value as char
 	ft_printf("\nTesting numeric value as char:\n");
+	ft_printf("\n");
 
 	result_ft = ft_printf("char 65 ('A') = *%c*\n", 65);
 	result_og = printf("char 65 ('A') = *%c*\n", 65);
@@ -129,6 +135,7 @@ void	test_s(void)
 
 	str = "Hello";
 	ft_printf("Testing 'char *str = \"Hello\"':\n");
+	ft_printf("\n");
 
 	// no flags
 	result_ft = ft_printf("no flags = *%s*\n", str);
@@ -181,6 +188,7 @@ void	test_s(void)
 	// empty string with precision and width
 	str = "";
 	ft_printf("\nTesting 'char *str = \"\"':\n");
+	ft_printf("\n");
 
 	result_ft = ft_printf("no flags = *%s*\n", str);
 	result_og = printf("no flags = *%s*\n", str);

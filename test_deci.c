@@ -1,5 +1,6 @@
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	test_d(void)
 {
@@ -92,15 +93,15 @@ void	test_d(void)
 
 	n = 42;
 	result_ft = ft_printf("flags '-0', min width 5, n = 42: *%-05d*\n", n);
-	result_og = printf("flags '-0', min width 5, n = 42: *%-05d*\n", n);
+	// result_og = printf("flags '-0', min width 5, n = 42: *%-05d*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = -42;
 	result_ft = ft_printf("flags '-0', min width 5, n = -42: *%-05d*\n", n);
-	result_og = printf("flags '-0', min width 5, n = -42: *%-05d*\n", n);
+	// result_og = printf("flags '-0', min width 5, n = -42: *%-05d*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	// ---------- Flag '+' (always show sign) ----------
 	ft_printf("\n--- Flag '+' (always show sign) ---\n");
@@ -164,15 +165,15 @@ void	test_d(void)
 
 	n = 42;
 	result_ft = ft_printf("flags '+ ', n = 42: *%+ d*\n", n);
-	result_og = printf("flags '+ ', n = 42: *%+ d*\n", n);
+	// result_og = printf("flags '+ ', n = 42: *%+ d*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = -42;
 	result_ft = ft_printf("flags '+ ', n = -42: *%+ d*\n", n);
-	result_og = printf("flags '+ ', n = -42: *%+ d*\n", n);
+	// result_og = printf("flags '+ ', n = -42: *%+ d*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	// ---------- Precision '.' (minimum number of digits) ----------
 	ft_printf("\n--- Precision '.' (minimum digits) ---\n");
@@ -232,15 +233,15 @@ void	test_d(void)
 
 	n = 42;
 	result_ft = ft_printf("flag '0' + precision 3, n = 42: *%0.3d*\n", n);
-	result_og = printf("flag '0' + precision 3, n = 42: *%0.3d*\n", n);
+	// result_og = printf("flag '0' + precision 3, n = 42: *%0.3d*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = -42;
 	result_ft = ft_printf("flag '0' + precision 3, n = -42: *%0.3d*\n", n);
-	result_og = printf("flag '0' + precision 3, n = -42: *%0.3d*\n", n);
+	// result_og = printf("flag '0' + precision 3, n = -42: *%0.3d*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	// ---------- Combined flags, width, precision ----------
 	ft_printf("\n--- Combined flags, width, precision ---\n");
@@ -273,9 +274,9 @@ void	test_d(void)
 	ft_printf("\n--- Edge values ---\n");
 
 	result_ft = ft_printf("INT_MIN-ish: *%d*\n", -2147483648);
-	result_og = printf("INT_MIN-ish: *%d*\n", -2147483648);
+	// result_og = printf("INT_MIN-ish: *%d*\n", -2147483648);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	result_ft = ft_printf("INT_MAX-ish: *%d*\n", 2147483647);
 	result_og = printf("INT_MAX-ish: *%d*\n", 2147483647);
@@ -374,15 +375,15 @@ void	test_i(void)
 
 	n = 42;
 	result_ft = ft_printf("flags '-0', min width 5, n = 42: *%-05i*\n", n);
-	result_og = printf("flags '-0', min width 5, n = 42: *%-05i*\n", n);
+	// result_og = printf("flags '-0', min width 5, n = 42: *%-05i*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = -42;
 	result_ft = ft_printf("flags '-0', min width 5, n = -42: *%-05i*\n", n);
-	result_og = printf("flags '-0', min width 5, n = -42: *%-05i*\n", n);
+	// result_og = printf("flags '-0', min width 5, n = -42: *%-05i*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	// ---------- Flag '+' (always show sign) ----------
 	ft_printf("\n--- Flag '+' (always show sign) ---\n");
@@ -446,15 +447,15 @@ void	test_i(void)
 
 	n = 42;
 	result_ft = ft_printf("flags '+ ', n = 42: *%+ i*\n", n);
-	result_og = printf("flags '+ ', n = 42: *%+ i*\n", n);
+	// result_og = printf("flags '+ ', n = 42: *%+ i*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = -42;
 	result_ft = ft_printf("flags '+ ', n = -42: *%+ i*\n", n);
-	result_og = printf("flags '+ ', n = -42: *%+ i*\n", n);
+	// result_og = printf("flags '+ ', n = -42: *%+ i*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	// ---------- Precision '.' (minimum number of digits) ----------
 	ft_printf("\n--- Precision '.' (minimum digits) ---\n");
@@ -514,15 +515,15 @@ void	test_i(void)
 
 	n = 42;
 	result_ft = ft_printf("flag '0' + precision 3, n = 42: *%0.3i*\n", n);
-	result_og = printf("flag '0' + precision 3, n = 42: *%0.3i*\n", n);
+	// result_og = printf("flag '0' + precision 3, n = 42: *%0.3i*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = -42;
 	result_ft = ft_printf("flag '0' + precision 3, n = -42: *%0.3i*\n", n);
-	result_og = printf("flag '0' + precision 3, n = -42: *%0.3i*\n", n);
+	// result_og = printf("flag '0' + precision 3, n = -42: *%0.3i*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	// ---------- Combined flags, width, precision ----------
 	ft_printf("\n--- Combined flags, width, precision ---\n");
@@ -555,9 +556,9 @@ void	test_i(void)
 	ft_printf("\n--- Edge values ---\n");
 
 	result_ft = ft_printf("INT_MIN-ish: *%i*\n", -2147483648);
-	result_og = printf("INT_MIN-ish: *%i*\n", -2147483648);
+	// result_og = printf("INT_MIN-ish: *%i*\n", -2147483648);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	result_ft = ft_printf("INT_MAX-ish: *%i*\n", 2147483647);
 	result_og = printf("INT_MAX-ish: *%i*\n", 2147483647);
@@ -662,21 +663,21 @@ void	test_u(void)
 
 	n = 42;
 	result_ft = ft_printf("flags '-0', min width 5, n = 42: *%-05u*\n", n);
-	result_og = printf("flags '-0', min width 5, n = 42: *%-05u*\n", n);
+	// result_og = printf("flags '-0', min width 5, n = 42: *%-05u*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = 0;
 	result_ft = ft_printf("flags '-0', min width 5, n = 0: *%-05u*\n", n);
-	result_og = printf("flags '-0', min width 5, n = 0: *%-05u*\n", n);
+	// result_og = printf("flags '-0', min width 5, n = 0: *%-05u*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = 12345678u;
 	result_ft = ft_printf("flags '-0', min width 10, n = 12345678: *%-010u*\n", n);
-	result_og = printf("flags '-0', min width 10, n = 12345678: *%-010u*\n", n);
+	// result_og = printf("flags '-0', min width 10, n = 12345678: *%-010u*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	// ---------- Precision '.' (minimum number of digits) ----------
 	ft_printf("\n--- Precision '.' (minimum digits) ---\n");
@@ -737,36 +738,36 @@ void	test_u(void)
 
 	n = 42;
 	result_ft = ft_printf("flag '0' + precision 3, n = 42: *%0.3u*\n", n);
-	result_og = printf("flag '0' + precision 3, n = 42: *%0.3u*\n", n);
+	// result_og = printf("flag '0' + precision 3, n = 42: *%0.3u*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = 0;
 	result_ft = ft_printf("flag '0' + precision 5, n = 0: *%0.5u*\n", 0u);
-	result_og = printf("flag '0' + precision 5, n = 0: *%0.5u*\n", 0u);
+	// result_og = printf("flag '0' + precision 5, n = 0: *%0.5u*\n", 0u);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = 12345678u;
 	result_ft = ft_printf("flag '0' + precision 10, n = 12345678: *%0.10u*\n", n);
-	result_og = printf("flag '0' + precision 10, n = 12345678: *%0.10u*\n", n);
+	// result_og = printf("flag '0' + precision 10, n = 12345678: *%0.10u*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	// ---------- Combined flags, width, precision ----------
 	ft_printf("\n--- Combined flags, width, precision ---\n");
 
 	n = 42;
 	result_ft = ft_printf("flag '0', width 8, precision 4, n = 42: *%08.4u*\n", n);
-	result_og = printf("flag '0', width 8, precision 4, n = 42: *%08.4u*\n", n);
+	// result_og = printf("flag '0', width 8, precision 4, n = 42: *%08.4u*\n", n);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = 0;
 	result_ft = ft_printf("flag '0', width 8, precision 4, n = 0: *%08.4u*\n", 0u);
-	result_og = printf("flag '0', width 8, precision 4, n = 0: *%08.4u*\n", 0u);
+	// result_og = printf("flag '0', width 8, precision 4, n = 0: *%08.4u*\n", 0u);
 	ft_printf("result_ft = %d\n", result_ft);
-	printf("result_og = %d\n", result_og);
+	// printf("result_og = %d\n", result_og);
 
 	n = 42;
 	result_ft = ft_printf("flag '-', width 8, precision 4, n = 42: *%-8.4u*\n", n);
