@@ -80,3 +80,16 @@ int	hexa_len(long long value, t_flags *flags)
 	}
 	return (len);
 }
+
+int address_len(uintptr_t value)
+{
+	int len;
+	
+	len = 2;
+	while (value > 0)
+	{
+		len++;
+		value /= 16;
+	}
+	return (len);
+}
