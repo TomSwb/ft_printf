@@ -62,7 +62,7 @@ int	pr_len(int len, int sign, t_flags *flags)
 	return (pr_len);
 }
 
-int	hexa_len(long long value, t_flags *flags)
+int	hexa_len(long long value)
 {
 	int len;
 	
