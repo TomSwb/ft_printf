@@ -82,3 +82,23 @@ int	print_nothing(int len, t_flags *flags)
 		count += print_padding(flags, len - 1);
 	return (count);
 }
+
+long long def_div(long long value, t_flags *flags)
+{
+	long long div;
+	int base;
+	
+	if (flags->convert == 'd' || flags->convert == 'i'
+		|| flags->convert == 'u')
+		base = 10;
+	else if (flags->convert == 'x' || flags->convert == 'X')
+		base = 16;
+	div = 1
+	while (value / div >= base)
+	{
+		if (div > value / base)
+			break ;
+		div *= base;
+	}
+	return (div);
+}
