@@ -131,7 +131,7 @@ void	printer_manager_address(t_flags *flags, va_list *args, int *count)
 {
 	void *p;
 
-	p = va_arg(*args, int);
+	p = va_arg(*args, void *);
 	if (!flags->left_align && flags->min_width > 0)
 		*count += print_padding(flags, 1);
 	*count += print_address(p);
