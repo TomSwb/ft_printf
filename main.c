@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:22 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/12 16:51:09 by tschwab          ###   ########.fr       */
+/*   Updated: 2026/10/12 19:15:47 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	test_p(void);
 
 int main(void)
 {
-	ft_printf("test u %x\n", -42);
-	printf("test u %x", -42);
+	ft_printf("abc%");
+	// printf("abc%");
 }
 
 /*

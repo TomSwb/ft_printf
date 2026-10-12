@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+         #
+#    By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/12 16:35:33 by tschwab           #+#    #+#              #
-#    Updated: 2026/10/12 16:37:35 by tschwab          ###   ########.fr        #
+#    Updated: 2026/10/12 19:13:39 by tomswb           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ AR = ar -rcs
 
 RM = rm -f
 
-%.o: %.c
+%.o: %.c ft_printf.h
 	${CC} ${CFLAGS} -c $< -o $@
 
 all: ${NAME}
