@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/12 19:18:53 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/12 19:49:05 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	ft_printf(const char *s, ...)
 		{
 			flags = init_flags();
 			if (!parser(&s, &flags))
-				return (-1);
+				return (va_end(args), -1);
 			printer_manager(&flags, &args, &count);
 		}
 		else
 		{
 			if (*s == '%')
-				return (-1);
+				return (va_end(args), -1);
 			count += print_char(*s);
 			s++;
 		}
