@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:07 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/12 19:40:55 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/12 19:41:50 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,10 @@ void	parsing_check(t_flags *flags)
 	}
 	if (flags->converter != 'x' && flags->converter != 'X')
 		flags->alt_hexa = 0;
-	if (flags->converter == 'c' && flags->converter == 's'
-		&& flags->converter == 'p')
+	if (flags->converter == 'c' || flags->converter == 's'
+		|| flags->converter == 'p')
 		flags->zero_padding = 0;
-	if (flags->converter == 'c' && flags->converter == 'p')
+	if (flags->converter == 'c' || flags->converter == 'p')
 	{
 		flags->precision = 0;
 		flags->precision_len = 0;
