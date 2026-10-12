@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 23:08:11 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/12 20:00:03 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,6 @@ long long	def_div(long long value, t_flags *flags)
 	else if (flags->converter == 'x' || flags->converter == 'X')
 		base = 16;
 	div = 1;
-	if ((flags->converter == 'x' || flags->converter == 'X')
-		&& value == 0)
-		return (0);
 	while (value / div >= base)
 	{
 		if (div > value / base)
