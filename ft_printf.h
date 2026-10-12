@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:53:57 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/12 16:57:55 by tschwab          ###   ########.fr       */
+/*   Updated: 2026/10/12 19:28:56 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		printer_manager_address(t_flags *flags, va_list *args, int *count);
 t_flags		init_flags(void);
 int			parser(const char **s, t_flags *flags);
 void		parse_min_width_precison(t_flags *flags, const char **s);
-int			parsing_check(t_flags *flags);
+void		parsing_check(t_flags *flags);
 
 // ft_printf_parsing_utils.c
 int			is_converter(char c);
