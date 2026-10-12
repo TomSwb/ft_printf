@@ -1,3 +1,14 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/10/12 16:35:33 by tschwab           #+#    #+#              #
+#    Updated: 2026/10/12 16:37:35 by tschwab          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = libftprintf.a
 
@@ -9,7 +20,7 @@ SOURCES = ft_printf.c \
 		ft_printf_printing_utils.c \
 		ft_printf_len_utils.c
 		
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
@@ -19,7 +30,7 @@ AR = ar -rcs
 
 RM = rm -f
 
-%.o: %.c ft_printf.h
+%.o: %.c
 	${CC} ${CFLAGS} -c $< -o $@
 
 all: ${NAME}
