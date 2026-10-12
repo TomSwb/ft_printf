@@ -96,6 +96,128 @@ I use VSCodium on purpose to not have AI integration. This means that, except fo
 
 ## Detailed descriptions:
 
+## Algorithm & Data Structure
+
+### Data structure: `t_flags`
+
+#### Fields
+
+`t_flags` is the structure regrouping all the information needed to format one conversion. A fresh one is created with `init_flags()` for every `%`, so nothing leaks from one conversion to the next.
+
+Its fields are split into 3 categories:
+
+1. **Flags** — `left_align` (`-`), `zero_padding` (`0`), `positive_sign` (`+`), `alt_hexa` (`#`), `space` (` `)
+	- They act as booleans, one per flag required by the subject (the list is not complete compared to the original printf).
+	- `neg_sign` is the exception: the user never types it. It is internal state set while printing a negative number, so the prefix logic knows a `-` has to be printed before any zero padding.
+2. **Width and precision** — `min_width`, `precision`, `precision_len`
+	- `min_width == 0` simply means "no width".
+	- Precision needs **two** fields: `precision` records *whether* a `.` was given, `precision_len` records the number after it. One field is not enough, because "no precision" and "precision 0" behave differently: `%d` with `0` prints `0`, but `%.0d` with `0` prints nothing.
+3. **Converter** — `converter`
+	- A single `char` defining what type of data we are reading from the arguments and in which format it will be printed.
+
+#### Why a struct
+
+It is indispensable for the bonus and shapes the whole implementation. The struct allows passing all the information needed for conversion and printing as one pointer, instead of many separate variables (which would also break the Norm's limit of 4 parameters per function).
+
+### Algorithm
+
+#### Overview
+
+```
+format string → parser → conflict resolution → manager → sub-manager → printers
+                                                                ↓
+                                                     count updated at each step
+```
+
+1. Parsing fills the struct, then resolves flag conflicts.
+2. A manager dispatches to a sub-manager depending on the converter.
+3. The sub-manager and the printing functions (helped by the length functions) produce the output.
+4. Every printed character is added to the count, which becomes the return value.
+
+#### 1. Parsing
+
+The parser expects the elements of a conversion in a fixed order:
+
+```
+%  [flags]  [width]  [.precision]  converter
+```
+
+1. Initialise the struct.
+2. Read flags while the character belongs to the flag charset `-0+# `. A flag given twice simply stays on.
+3. Read digits as the width.
+4. If a `.` follows, set `precision` and read digits as `precision_len` (no digits means precision 0).
+5. Read the converter. If it is not one of `cspdiuxX%`, the parser fails and `ft_printf` returns `-1`.
+
+#### 2. Resolving flag conflicts
+
+Once parsing is done, `parsing_check()` cleans the struct so the printers never see a contradiction. It never rejects a format: it switches off the losing flag, following the priority rules described in the *Detailed descriptions* section below:
+
+- `-` turns off `0`
+- a precision (except on `s`) turns off `0`
+- `+` turns off space
+- `+` and space only apply to `d`/`i`, `#` only applies to `x`/`X`
+- `0` does not apply to `c`/`s`/`p`, precision does not apply to `c`/`p`
+
+#### 3. Dispatching to managers
+
+The main manager passes the struct and the argument list to the right sub-manager depending on the converter: characters/strings, decimals, hexadecimals or addresses.
+
+#### 4. Length calculation & printing
+
+Each sub-manager reads the argument with the right type through `va_arg`, and prepares the value: handling the sign of negative numbers, switching off `#` when a hexadecimal value is `0`, etc. Then the printing functions print, in order: left padding, prefix (`-`, `+`, space or `0x`), precision zeros, the value itself, and right padding.
+
+To know how much padding to print, the length functions (`s_len`, `deci_len`, `hexa_len`, `address_len`, `pr_len`) compute in advance how many characters the value will take. This creates an important constraint: **a length function and its printer must apply exactly the same conditions**. If they disagree on a special case — for example whether a `0` digit is printed — the padding can be off.
+
+#### Return value
+
+Throughout the whole process, the printing functions return the number of characters they printed. The managers add those returns to a single `count`, which they receive as a pointer, so `ft_printf` returns the exact number of printed characters.
+
+### Design choices
+
+Wanting to do the bonus, I decided right away that a struct and booleans would be the easiest to manage; they are mostly "flags" after all.
+
+I therefore needed a parsing system that makes sure all parsed values are correct. At first I thought I needed to return errors instead of resolving flag conflicts, and that repeated flags should also be errors. After research I understood that flags are on/off switches, and that the C standard itself defines the conflicts: the `0` flag is ignored when `-` is present, and the space flag is ignored when `+` is present. What confused me is that with our `-Wall -Wextra -Werror` flags, such a format does not compile with the real printf. This is the compiler checking the format string and warning about it; `-Werror` turns the warning into an error. Compiled without `-Werror`, printf runs and applies the override rules — and the compiler warning itself says so ("'0' flag ignored with '-' flag"). Since `ft_printf` gets no compile-time checking at all, these formats can reach it at runtime, so I chose lenience and implemented the same override rules.
+
+My next goal was re-usability: if a converter has similar needs to another one, it should reuse as much as possible of the already implemented functions. I grouped them into 4 categories: `c` & `s`, `d` & `i` & `u`, `x` & `X`, and `p`. I could have put `p` together with `x`/`X`, but it had enough differences (`0x` always printed, `(nil)` for NULL, a pointer-sized value) to justify splitting the logic.
+
+Once the split is done, each manager makes sure the value is treated according to the flags, always keeping count. I decided to centralise the count in the managers, which receive it as a pointer and modify it directly. This avoids extra return values and helped me follow the Norm everywhere. The printing functions had a bit more room, and it made more sense for them to return what they printed so it can be added to the count.
+
+#### File organisation
+
+| File | Role |
+|---|---|
+| `ft_printf.h` | Struct definition, includes and all prototypes |
+| `ft_printf.c` | Main loop: prints plain characters, sends every `%` to the parser and the manager |
+| `ft_printf_parsing.c` | `init_flags`, the parser, width/precision reading and conflict resolution |
+| `ft_printf_parsing_utils.c` | Character checks: `is_flag`, `is_num`, `is_converter` |
+| `ft_printf_managers.c` | Main manager and the 4 sub-managers |
+| `ft_printf_printing.c` | Printers for each type: char, string, decimal, hexadecimal, address |
+| `ft_printf_printing_utils.c` | Shared printing pieces: padding, prefix, precision zeros, divisor calculation |
+| `ft_printf_len_utils.c` | Length functions used to compute padding |
+
+#### Extensibility
+
+The pipeline makes additions local:
+
+- **New conversion:** add its character to `is_converter`, add a branch in the main manager, and write a sub-manager (or reuse an existing one, as `d`/`i`/`u` share theirs). Padding, prefix and precision helpers are already shared.
+- **New flag:** add a field to `t_flags`, its character to `is_flag`, a branch in the parser, and if needed a rule in `parsing_check`. The printers only read the struct, so they don't need to know how the flag was parsed. However then each printer needs to be adapted according to how the flag interact with them in the original printf.
+
+#### Edge cases & platform behaviour
+
+My reference is the original printf on Linux (glibc). Some outputs differ on macOS.
+
+| Case | Behaviour |
+|---|---|
+| `%s` with `NULL` | Prints `(null)` |
+| `%.3s` with `NULL` | Prints nothing: glibc prints `(null)` entirely or not at all (macOS would print `(nu`) |
+| `%p` with `NULL` | Prints `(nil)` (macOS prints `0x0`) |
+| `%d`, `%u`, `%x` with `0` and precision 0 (`%.0d`, `%.d`) | Prints no digit, only padding if a width is given |
+| `%#x` with `0` | Prints `0`, without the `0x` prefix |
+| `%d` with `INT_MIN` | The value is stored in a `long long`, so making it positive does not overflow |
+| Flag on a conversion it doesn't apply to (`%+u`, `%#d`) | Undefined behaviour in the standard; the flag is ignored, like glibc does |
+| Unknown converter, or `%` at the end of the string | Returns `-1` |
+| `"abc%"` | No buffer (as required by the subject): `abc` is already written when the error is found, while the original printf prints nothing |
+
 ### Conversions & Bonus Flags Reference
 
 ### Conversions
@@ -203,71 +325,3 @@ Precision depends on the conversion:
 
 - Strings: maximum number of characters printed.
 - Integers: minimum number of digits printed.
-
-## Algorithm & Data Structure
-
-### Data structure: `t_flags`
-
-#### Fields
-
-t_flags is the structure regroupiong all the necessary information for a proper formating.
-
-The field it contains are splited in 3 categories:
-1. Flags
-	- Flags act as boolean for each of the required flags in the subject, the list is not complete compared to the original printf.
-2.	Width and precision
-	- Width and precision_len act as boolean if == 0, and otherwise give the length of the width or precision requested by the user.
-3.	Converters
-	- Converters define what type of data we are working with and in which return format it will be printed.
-
-#### Why a struct
-
-it is indispensable when doing the bonus and changes the whole implementation. The struct allow to pass around all the necessary information for the convertion and printing without having to pass many variables (which in itself could be against the norm if more than 4 vars are needed to be passed as parameter)
-
-### Algorithm
-
-#### Overview
-
-My ft_printf pass through various steps: 
-1. Parsing of the different values needed in the struct, including a check and conflict resolution.
-2. A Manager dispatch to sub-manager depending on converters.
-3. The printing logic, partially with length helper and also the help of the manager creates the output.
-4. The whole cumulates the count for the return value.
-
-#### 1. Parsing
-
-The parsing logic in itself is straightforward:
-1. Initialise the struct.
-2. Parse the different value according to the charset of flags, number for width and precision_len, and converters.
-
-#### 2. Resolving flag conflicts
-
-Once the parsing is done, before returning the checker ensure that all the original printf flags conflicts are resolved, according to the above table.
-
-#### 3. Dispatching to managers
-
-The main manager simply pass on the data to the right sub-manager depending on the converter.
-
-#### 4. Length calculation & printing
-
-The sub-manager are doing the beginning of the counting and padding job if needed, as well as validating the value. Then they send it all to the printing functions to conclude the paddings/other flags necessities then print the value, then complete the after padding etc if needed.
-
-#### Return value
-
-Throught the whole process, the function return generally an int to add to the count or by pointer arythmetic, to ensure the final count of printed character as return value is correct.
-
-### Design choices
-
-Wanting to do the bonus, I decided right away that a struct and booleans would be the easiest to manage, they are mostly 'flags' after all. 
-
-I therefore needed a parsing system and ensure all parsed values are correct. At first i thought I needed to return errors and not simply to resolves the flags issues, I also thought multiple flags should not parsed and return an error. After research I understood that the flags are more on/off systems. Now printf itself doesn't even compile in these cases. I chose lenience as part of my design as we are not told in much precision how to deal with these error cases. While not compiling (mostly due to the -Werror flag), printf does give us a reason why it does not compile and therefore I attempted to implement a way to satisfy that.
-
-My goal then was re-usability. If a converter is similar to another in their needs, it shall reuse as much as possible of the already implemented functions. I could group 4 category: c & s, d & i & u, x & X, and p. I believe i could have put together p with the xX but i felt it had enough difference in needs to split the logic.
-
-Once the split is done, each manager then ensure the value is treated according to the flag. Always ensuring to keep count. I decided for the manager themselve to centralise the count variable and use pointer arythmetics and avoid return values to ensure I can follow the norm everywhere. I had a bit more space in the printing logics and it made also more sense to actually use returns with them to add-on to the original count. I think at first I wanted to use these returns as boolean but I can't remember the reason why and in anyway I believe it was not useful.
-
-#### File organisation
-
-#### Extensibility
-
-#### Edge cases & platform behaviour
