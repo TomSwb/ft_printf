@@ -86,6 +86,13 @@ I use VSCodium on purpose to not have AI integration. This means that, except fo
 
 4. Help on making this Readme, generation of the Conversions & Bonus Flags Reference section for reference purposes.
 
+`ChatGPT:`
+
+1. Peer-to-peer help as I would get on campus.
+
+2. Parsing check correction help, made me realise printf check act as turn on/off not as a error return.
+
+
 ## Detailed descriptions:
 
 ### Conversions & Bonus Flags Reference
