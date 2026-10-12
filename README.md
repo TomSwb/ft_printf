@@ -90,11 +90,13 @@ I use VSCodium on purpose to not have AI integration. This means that, except fo
 
 1. Peer-to-peer help as I would get on campus.
 
-2. Parsing check correction help, made me realise printf check act as turn on/off not as a error return.
+2. Additional testing on top of my own test programs: compared my ft_printf against the original printf with extra edge cases and 3000 randomly generated formats, then reported the failing cases without giving code.
 
-3. Guide to structure the final section of this readme: Algorythm
+3. Guided debugging: hints and step-by-step traces to locate the bugs (flag conflicts, `#` and `0` with a value of `0`, NULL string with precision). I wrote every fix myself.
 
-## Detailed descriptions:
+4. Parsing check correction help, made me realise printf flags act as on/off switches, not as error returns.
+
+5. README: helped structure the Algorithm & Data Structure section, then completed and corrected it from my own draft, which I reviewed and adjusted.
 
 ## Algorithm & Data Structure
 
@@ -150,7 +152,7 @@ The parser expects the elements of a conversion in a fixed order:
 
 #### 2. Resolving flag conflicts
 
-Once parsing is done, `parsing_check()` cleans the struct so the printers never see a contradiction. It never rejects a format: it switches off the losing flag, following the priority rules described in the *Detailed descriptions* section below:
+Once parsing is done, `parsing_check()` cleans the struct so the printers never see a contradiction. It never rejects a format: it switches off the losing flag, following the priority rules described in the *Priority, Conflicts and Exceptions* section further below:
 
 - `-` turns off `0`
 - a precision (except on `s`) turns off `0`
@@ -217,6 +219,8 @@ My reference is the original printf on Linux (glibc). Some outputs differ on mac
 | Flag on a conversion it doesn't apply to (`%+u`, `%#d`) | Undefined behaviour in the standard; the flag is ignored, like glibc does |
 | Unknown converter, or `%` at the end of the string | Returns `-1` |
 | `"abc%"` | No buffer (as required by the subject): `abc` is already written when the error is found, while the original printf prints nothing |
+
+## Detailed descriptions:
 
 ### Conversions & Bonus Flags Reference
 
@@ -306,7 +310,7 @@ The three main conflicts to remember:
 2. Integer precision overrides the `0` flag
 3. `+` overrides the space flag
 
-## Width vs Precision
+### Width vs Precision
 
 Width and precision do not mean the same thing and do not override each other.
 
