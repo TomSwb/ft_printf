@@ -15,9 +15,12 @@ Create my own `printf` function.
 `Files:`
 
 * ft_printf.c
+* ft_printf_managers.c
 * ft_printf_parsing.c
-* ft_printf_utils.c
+* ft_printf_parsing_utils.c
+* ft_printf_len_utils.c
 * ft_printf_printing.c
+* ft_printf_printing_utils.c
 
 `Additionally contains:`
 
@@ -28,11 +31,6 @@ Create my own `printf` function.
 
 * main.c
 * a.out
-
-##### Bonus:
-
-* ft_printf_flags.c
-* flags uses (possible flags are describe in the detailed section).
 
 ## Instructions
 

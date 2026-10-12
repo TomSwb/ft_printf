@@ -6,7 +6,7 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 23:11:23 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/12 19:18:53 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_printf(const char *s, ...)
 		{
 			flags = init_flags();
 			if (!parser(&s, &flags))
-				return (ft_printf("Error\n"), -1);
+				return (-1);
 			printer_manager(&flags, &args, &count);
 		}
 		else
