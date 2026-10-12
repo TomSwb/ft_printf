@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_managers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 22:58:34 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 23:00:59 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/12 16:57:51 by tschwab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 	char		*base;
 	int			hex_len;
 
+	base = NULL;
 	value = (long long)va_arg(*args, unsigned int);
 	hexa_low = "0123456789abcdef";
 	hexa_up = "0123456789ABCDEF";

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:22 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/01 09:44:28 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/12 16:51:09 by tschwab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	test_percent(void);
 void	test_c(void);
@@ -22,6 +23,13 @@ void	test_x(void);
 void	test_X(void);
 void	test_p(void);
 
+int main(void)
+{
+	ft_printf("test u %x\n", -42);
+	printf("test u %x", -42);
+}
+
+/*
 int	main(int ac, char **av)
 {
 	if (ac != 2)
@@ -90,3 +98,4 @@ int	main(int ac, char **av)
 		ft_printf("\n");
 	}
 }
+	*/
