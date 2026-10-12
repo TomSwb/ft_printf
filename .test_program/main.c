@@ -6,13 +6,14 @@
 /*   By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:22 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/12 19:15:47 by tomswb           ###   ########.fr       */
+/*   Updated: 2026/10/12 21:12:01 by tomswb           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
+void	test_review(void);
 void	test_percent(void);
 void	test_c(void);
 void	test_s(void);
@@ -25,8 +26,7 @@ void	test_p(void);
 
 int main(void)
 {
-	ft_printf("abc%");
-	// printf("abc%");
+	test_review();
 }
 
 /*
