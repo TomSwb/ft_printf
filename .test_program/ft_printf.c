@@ -6,7 +6,7 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:26:24 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 16:31:14 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ int	printf_loop(const char **s, int *count, va_list *args)
 * @brief
 Remembers whether a write() failed during the current ft_printf call.
 The state is kept in a static variable, so it survives between calls without
-being a global variable. n == -2: reset the state to 0 (no error). write()
-never returns -2. n == -1: a write() failed, set the state to 1. any other
+being a global variable. 
+
+n == -2: reset the state to 0 (no error). write() never returns -2. 
+n == -1: a write() failed, set the state to 1. any other
 value: only read the state, nothing changes.
 
 * @param int n
