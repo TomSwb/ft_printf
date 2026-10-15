@@ -6,11 +6,20 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 15:59:19 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 16:02:44 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/**
+* @brief 
+
+
+* @param const char *s 
+* @param ... 
+* @return int 
+*/
 
 int	ft_printf(const char *s, ...)
 {
@@ -31,6 +40,16 @@ int	ft_printf(const char *s, ...)
 		return (va_end(args), -1);
 	return (va_end(args), count);
 }
+
+/**
+* @brief 
+
+
+* @param s 
+* @param count 
+* @param args 
+* @return int 
+*/
 
 int	printf_loop(const char **s, int *count, va_list *args)
 {
@@ -53,9 +72,11 @@ int	printf_loop(const char **s, int *count, va_list *args)
 	return (1);
 }
 
-// if n == -2, it is the reset value and nothing happens,
-// if n == -1, a rare write failure happens and the behviour of printf 
-// is copied, returning a -1
+// Remembers whether a write() failed during the current ft_printf call.
+// n == -2 : reset the state to 0 (no error). write() never returns -2.
+// n == -1 : a write() failed, set the state to 1.
+// any other value : only read the state, nothing changes.
+// Returns the current state: 1 if a write failed, 0 otherwise.
 int	error_state(int n)
 {
 	static int	error_check;

@@ -24,7 +24,7 @@ As required by the subject, it does not reproduce the buffer management of the o
 |---|---|
 | `Makefile` | Builds `libftprintf.a` |
 | `ft_printf.h` | Header: struct, includes and prototypes |
-| `ft_printf.c` | Main function |
+| `ft_printf.c` | Main function, main loop and write-error tracking |
 | `ft_printf_managers.c` | Dispatch per conversion |
 | `ft_printf_parsing.c` | Format parsing and flag conflict resolution |
 | `ft_printf_parsing_utils.c` | Character checks used by the parser |
@@ -70,7 +70,7 @@ cc -Wall -Wextra -Werror main.c -I. -L. -lftprintf -o my_program
 ./my_program
 ```
 
-Like the original, `ft_printf()` returns the number of characters printed, or `-1` on an invalid format.
+Like the original, `ft_printf()` returns the number of characters printed, or `-1` on an invalid format or if writing to the output fails.
 
 ### Test program
 
@@ -214,6 +214,24 @@ To know how much padding to print, the length functions (`s_len`, `deci_len`, `h
 
 Throughout the whole process, the printing functions return the number of characters they printed. The managers add those returns to a single `count`, which they receive as a pointer, so `ft_printf` returns the exact number of printed characters.
 
+#### Write errors
+
+Like the original, `ft_printf` returns `-1` if writing to the output fails (closed standard output, full device, etc.).
+
+Every character is printed through a single function, `print_char`, which is the only place calling `write()`. When `write()` returns `-1`, `print_char` reports it to `error_state`, a small function holding a `static` variable that remembers whether a write failed. A `static` local variable keeps its value between calls without being a global variable, so it is allowed by the Norm.
+
+`error_state` has three uses, chosen by its argument:
+
+| Argument | Effect |
+|---|---|
+| `-2` | Resets the state to "no error" (`-2` is a value `write()` never returns) |
+| `-1` | Records a failed write (the value `write()` returns on failure) |
+| anything else | Only reads the state |
+
+`ft_printf` resets the state at the start of every call, so an error from a previous call cannot affect the next one. The main loop stops at the next step after a failure (a step is one plain character or one whole conversion), and `ft_printf` then returns `-1` instead of the count.
+
+This design keeps the change local: the printers and managers did not need to change, since a single error flag is enough once any write has failed.
+
 ### Design choices
 
 Since I wanted to do the bonus, I decided right away that a struct with booleans would be the easiest to manage: they are mostly "flags" after all.
@@ -229,7 +247,7 @@ Once the split is done, each manager makes sure the value is treated according t
 | File | Role |
 |---|---|
 | `ft_printf.h` | Struct definition, includes and all prototypes |
-| `ft_printf.c` | Main loop: prints plain characters, sends every `%` to the parser and the manager |
+| `ft_printf.c` | `ft_printf` itself, `printf_loop` (prints plain characters, sends every `%` to the parser and the manager) and `error_state` (write-error tracking) |
 | `ft_printf_parsing.c` | `init_flags`, the parser, width/precision reading and conflict resolution |
 | `ft_printf_parsing_utils.c` | Character checks: `is_flag`, `is_num`, `is_converter` |
 | `ft_printf_managers.c` | Main manager and the 4 sub-managers |
@@ -259,6 +277,7 @@ My reference is the original printf on Linux (glibc). Some outputs differ on mac
 | Flag on a conversion it doesn't apply to (`%+u`, `%#d`) | Undefined behaviour in the standard; the flag is ignored, as glibc does |
 | Unknown converter, or `%` at the end of the string | Returns `-1` |
 | `"abc%"` | No buffer (as required by the subject): `abc` is already written when the error is found, while the original printf prints nothing |
+| Write failure (closed output, full device) | Stops at the next step and returns `-1`, like the original printf without a buffer. The original buffered printf only notices the failure when its buffer is flushed, so its return value can differ when the output is a file |
 
 ## Detailed descriptions
 

@@ -6,7 +6,7 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 15:45:50 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 15:59:19 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_printf(const char *s, ...)
 	count = 0;
 	error_state(-2);
 	va_start(args, s);
-	while (*s)
+	while (*s && !error_state(0))
 	{
 		result = printf_loop(&s, &count, &args);
 		if (!result)
@@ -53,6 +53,9 @@ int	printf_loop(const char **s, int *count, va_list *args)
 	return (1);
 }
 
+// if n == -2, it is the reset value and nothing happens,
+// if n == -1, a rare write failure happens and the behviour of printf 
+// is copied, returning a -1
 int	error_state(int n)
 {
 	static int	error_check;
