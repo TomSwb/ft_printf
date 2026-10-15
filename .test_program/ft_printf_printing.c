@@ -6,11 +6,27 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 15:51:00 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 16:17:11 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/**
+* @brief
+Prints one character. Every output of ft_printf goes through here.
+This is the only place calling write(): if it fails, the failure is reported to
+error_state.
+
+Depends on:
+	error_state();
+
+External:
+	write();
+
+* @param char value
+* @return int
+*/
 
 int	print_char(char value)
 {
@@ -20,6 +36,22 @@ int	print_char(char value)
 	error_state(error);
 	return (1);
 }
+
+/**
+* @brief
+Prints a string, cut to the precision if there is one.
+A NULL string is printed as "(null)", or not at all when the precision is under
+6, like glibc.
+
+Depends on:
+	print_char();
+		error_state();
+		write();
+
+* @param const char *value
+* @param t_flags *flags
+* @return int
+*/
 
 int	print_s(const char *value, t_flags *flags)
 {
@@ -42,6 +74,42 @@ int	print_s(const char *value, t_flags *flags)
 	}
 	return (count);
 }
+
+/**
+* @brief
+Prints a decimal number with its padding, sign and precision.
+Order: sign first if zero padding, left padding, sign otherwise, precision
+zeros, digits (from the highest power of 10 down), right padding.
+
+Depends on:
+	def_div();
+
+	print_prefix();
+		print_char();
+			error_state();
+			write();
+
+	print_padding();
+		print_char();
+			error_state();
+			write();
+
+	pr_len();
+
+	print_precision();
+		print_char();
+			error_state();
+			write();
+
+	print_char();
+		error_state();
+		write();
+
+* @param long long value
+* @param int len
+* @param t_flags *flags
+* @return int
+*/
 
 int	print_deci(long long value, int len, t_flags *flags)
 {
@@ -69,6 +137,45 @@ int	print_deci(long long value, int len, t_flags *flags)
 		count += print_padding(flags, len + pr_len(len, flags));
 	return (count);
 }
+
+/**
+* @brief
+Prints a hexadecimal number with its left padding, prefix and precision.
+Order: left padding, 0x prefix (unless already printed for zero padding),
+precision zeros, digits. Prints no digit for the value 0 with a precision of 0.
+The right padding is printed by the manager.
+
+Depends on:
+	hexa_len();
+
+	def_div();
+
+	print_padding();
+		print_char();
+			error_state();
+			write();
+
+	pr_len();
+
+	print_prefix();
+		print_char();
+			error_state();
+			write();
+
+	print_precision();
+		print_char();
+			error_state();
+			write();
+
+	print_char();
+		error_state();
+		write();
+
+* @param long long value
+* @param char *base
+* @param t_flags *flags
+* @return int
+*/
 
 int	print_hexa(long long value, char *base, t_flags *flags)
 {
@@ -98,6 +205,19 @@ int	print_hexa(long long value, char *base, t_flags *flags)
 	}
 	return (count);
 }
+
+/**
+* @brief
+Prints a non-NULL pointer address as 0x followed by lowercase hexadecimal.
+
+Depends on:
+	print_char();
+		error_state();
+		write();
+
+* @param uintptr_t value
+* @return int
+*/
 
 int	print_address(uintptr_t value)
 {

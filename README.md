@@ -137,6 +137,7 @@ I use VSCodium on purpose, so there is no AI integration in my editor. Apart fro
 4. Help correcting the parsing check: made me realise that printf flags act as on/off switches, not as error returns.
 5. README: helped structure the *Algorithm & Data Structure* section, then completed and corrected it from my own draft, which I reviewed and adjusted.
 6. Pre-evaluation review of the repository (file names, Makefiles, Norm, headers), and proofreading and restructuring of this README.
+7. Writting of the brief for each functions
 
 ## Algorithm & Data Structure
 

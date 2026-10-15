@@ -6,11 +6,19 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:07 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/12 19:41:50 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 16:15:09 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/**
+* @brief
+Creates a t_flags with every field set to its "off" value.
+Called for every % so nothing carries over from one conversion to the next.
+
+* @return t_flags
+*/
 
 t_flags	init_flags(void)
 {
@@ -28,6 +36,28 @@ t_flags	init_flags(void)
 	flags.converter = '\0';
 	return (flags);
 }
+
+/**
+* @brief
+Reads one conversion of the format string into the struct.
+Skips the %, reads the flags (-0+# and space), then the width and the
+precision, then the converter. If the converter is valid, flag conflicts are
+resolved by parsing_check.
+
+Depends on:
+	is_flag();
+
+	parse_min_width_precison();
+		is_num();
+
+	is_converter();
+
+	parsing_check();
+
+* @param const char **s
+* @param t_flags *flags
+* @return int
+*/
 
 int	parser(const char **s, t_flags *flags)
 {
@@ -55,6 +85,20 @@ int	parser(const char **s, t_flags *flags)
 	return (1);
 }
 
+/**
+* @brief
+Reads the minimum width and the precision of a conversion.
+Digits right after the flags are the width. A '.' turns precision on, and the
+digits after it are the precision length (none means 0).
+
+Depends on:
+	is_num();
+
+* @param t_flags *flags
+* @param const char **s
+* @return void
+*/
+
 void	parse_min_width_precison(t_flags *flags, const char **s)
 {
 	if (is_num(**s))
@@ -76,6 +120,18 @@ void	parse_min_width_precison(t_flags *flags, const char **s)
 		}
 	}
 }
+
+/**
+* @brief
+Resolves flag conflicts so the printers never see a contradiction.
+Never rejects a format: the losing flag is switched off, following printf's
+rules. '-' beats '0', a precision beats '0' (except on s), '+' beats space. '+'
+and space only apply to d/i, '#' only to x/X, '0' does not apply to c/s/p and
+precision does not apply to c/p.
+
+* @param t_flags *flags
+* @return void
+*/
 
 void	parsing_check(t_flags *flags)
 {

@@ -6,19 +6,131 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:02:44 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 16:11:44 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /**
-* @brief 
+* @brief
+Prints a formatted string to the standard output, like printf.
+Resets the write error state, then walks through the format string one step at
+a time with printf_loop, until the end of the string or until a write fails.
 
+Depends on:
+	error_state();
 
-* @param const char *s 
-* @param ... 
-* @return int 
+	printf_loop();
+		init_flags();
+		parser();
+			is_flag();
+			parse_min_width_precison();
+				is_num();
+			is_converter();
+			parsing_check();
+		printer_manager();
+			printer_manager_char();
+				print_char();
+					error_state();
+					write();
+				print_padding();
+					print_char();
+						error_state();
+						write();
+				s_len();
+				print_s();
+					print_char();
+						error_state();
+						write();
+				va_arg();
+			printer_manager_decimal();
+				deci_len();
+				print_nothing();
+					print_padding();
+						print_char();
+							error_state();
+							write();
+					print_prefix();
+						print_char();
+							error_state();
+							write();
+				print_deci();
+					def_div();
+					print_prefix();
+						print_char();
+							error_state();
+							write();
+					print_padding();
+						print_char();
+							error_state();
+							write();
+					pr_len();
+					print_precision();
+						print_char();
+							error_state();
+							write();
+					print_char();
+						error_state();
+						write();
+				va_arg();
+			printer_manager_hexa();
+				print_prefix();
+					print_char();
+						error_state();
+						write();
+				print_hexa();
+					hexa_len();
+					def_div();
+					print_padding();
+						print_char();
+							error_state();
+							write();
+					pr_len();
+					print_prefix();
+						print_char();
+							error_state();
+							write();
+					print_precision();
+						print_char();
+							error_state();
+							write();
+					print_char();
+						error_state();
+						write();
+				hexa_len();
+				print_padding();
+					print_char();
+						error_state();
+						write();
+				pr_len();
+				va_arg();
+			printer_manager_address();
+				address_len();
+				print_padding();
+					print_char();
+						error_state();
+						write();
+				print_s();
+					print_char();
+						error_state();
+						write();
+				print_address();
+					print_char();
+						error_state();
+						write();
+				va_arg();
+		print_char();
+			error_state();
+			write();
+
+External:
+	va_start();
+	va_end();
+
+* @param const char *s
+* @param ...
+* @return int
 */
 
 int	ft_printf(const char *s, ...)
@@ -42,13 +154,123 @@ int	ft_printf(const char *s, ...)
 }
 
 /**
-* @brief 
+* @brief
+Handles one step of the format string: a plain character or a full %
+conversion.
+A plain character is printed directly. A % followed by a character is parsed
+into a fresh t_flags and sent to printer_manager. A % at the very end of the
+string is an invalid format.
 
+Depends on:
+	init_flags();
 
-* @param s 
-* @param count 
-* @param args 
-* @return int 
+	parser();
+		is_flag();
+		parse_min_width_precison();
+			is_num();
+		is_converter();
+		parsing_check();
+
+	printer_manager();
+		printer_manager_char();
+			print_char();
+				error_state();
+				write();
+			print_padding();
+				print_char();
+					error_state();
+					write();
+			s_len();
+			print_s();
+				print_char();
+					error_state();
+					write();
+			va_arg();
+		printer_manager_decimal();
+			deci_len();
+			print_nothing();
+				print_padding();
+					print_char();
+						error_state();
+						write();
+				print_prefix();
+					print_char();
+						error_state();
+						write();
+			print_deci();
+				def_div();
+				print_prefix();
+					print_char();
+						error_state();
+						write();
+				print_padding();
+					print_char();
+						error_state();
+						write();
+				pr_len();
+				print_precision();
+					print_char();
+						error_state();
+						write();
+				print_char();
+					error_state();
+					write();
+			va_arg();
+		printer_manager_hexa();
+			print_prefix();
+				print_char();
+					error_state();
+					write();
+			print_hexa();
+				hexa_len();
+				def_div();
+				print_padding();
+					print_char();
+						error_state();
+						write();
+				pr_len();
+				print_prefix();
+					print_char();
+						error_state();
+						write();
+				print_precision();
+					print_char();
+						error_state();
+						write();
+				print_char();
+					error_state();
+					write();
+			hexa_len();
+			print_padding();
+				print_char();
+					error_state();
+					write();
+			pr_len();
+			va_arg();
+		printer_manager_address();
+			address_len();
+			print_padding();
+				print_char();
+					error_state();
+					write();
+			print_s();
+				print_char();
+					error_state();
+					write();
+			print_address();
+				print_char();
+					error_state();
+					write();
+			va_arg();
+
+	print_char();
+		error_state();
+		write();
+
+* @param const char **s
+* @param int *count
+* @param va_list *args
+* @return int
 */
 
 int	printf_loop(const char **s, int *count, va_list *args)
@@ -72,11 +294,18 @@ int	printf_loop(const char **s, int *count, va_list *args)
 	return (1);
 }
 
-// Remembers whether a write() failed during the current ft_printf call.
-// n == -2 : reset the state to 0 (no error). write() never returns -2.
-// n == -1 : a write() failed, set the state to 1.
-// any other value : only read the state, nothing changes.
-// Returns the current state: 1 if a write failed, 0 otherwise.
+/**
+* @brief
+Remembers whether a write() failed during the current ft_printf call.
+The state is kept in a static variable, so it survives between calls without
+being a global variable. n == -2: reset the state to 0 (no error). write()
+never returns -2. n == -1: a write() failed, set the state to 1. any other
+value: only read the state, nothing changes.
+
+* @param int n
+* @return int
+*/
+
 int	error_state(int n)
 {
 	static int	error_check;
