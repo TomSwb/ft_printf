@@ -6,7 +6,7 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:53:57 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 14:48:19 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 14:53:04 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int			print_deci(long long value, int len, t_flags *flags);
 int			print_hexa(long long value, char *base, t_flags *flags);
 int			print_address(uintptr_t value);
 
-// fr_printf_printing_utils.c
+// ft_printf_printing_utils.c
 int			print_padding(t_flags *flags, int len_value);
 int			print_prefix(t_flags *flags);
 int			print_precision(int len);

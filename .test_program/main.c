@@ -6,12 +6,11 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:22 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/15 14:44:27 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 14:51:10 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	test_percent(void);
 void	test_c(void);
@@ -91,4 +90,3 @@ int	main(int ac, char **av)
 		ft_printf("\n");
 	}
 }
-	*/
