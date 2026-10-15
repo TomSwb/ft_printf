@@ -6,7 +6,7 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 22:58:34 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/12 19:44:40 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 15:53:21 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,7 @@ void	printer_manager_address(t_flags *flags, va_list *args, int *count)
 	if (!flags->left_align && flags->min_width > 0)
 		*count += print_padding(flags, adrs_len);
 	if (value == 0)
-	{
-		write(1, "(nil)", 5);
-		*count += 5;
-	}
+		*count += print_s("(nil)", flags);
 	else
 		*count += print_address(value);
 	if (flags->left_align && flags->min_width > 0)

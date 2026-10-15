@@ -6,7 +6,7 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:13 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/12 20:03:34 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 15:51:00 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	print_char(char value)
 {
-	write(1, &value, 1);
+	int	error;
+
+	error = write(1, &value, 1);
+	error_state(error);
 	return (1);
 }
 
@@ -28,20 +31,14 @@ int	print_s(const char *value, t_flags *flags)
 	if (value == NULL)
 	{
 		if (!flags->precision || flags->precision_len >= 6)
-		{
-			write(1, "(null)", 6);
-			count += 6;
-		}
+			value = "(null)";
 		else
 			return (count);
 	}
-	else
+	while (value[i] && (!flags->precision || i < flags->precision_len))
 	{
-		while (value[i] && (!flags->precision || i < flags->precision_len))
-		{
-			count += print_char(value[i]);
-			i++;
-		}
+		count += print_char(value[i]);
+		i++;
 	}
 	return (count);
 }
