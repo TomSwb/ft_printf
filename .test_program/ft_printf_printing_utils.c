@@ -6,7 +6,7 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:19:02 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 16:27:11 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 Prints the spaces or zeros needed to reach the minimum width.
 Zeros only for numbers with the '0' flag, without '-' and without a precision;
 spaces otherwise.
-
-Depends on:
-	print_char();
-		error_state();
-		write();
 
 * @param t_flags *flags
 * @param int len_value
@@ -56,11 +51,6 @@ Prints what comes before the digits of a number.
 Only one of: '-' for a negative number, '+', a space, or 0x/0X for '#' on a
 hexadecimal number.
 
-Depends on:
-	print_char();
-		error_state();
-		write();
-
 * @param t_flags *flags
 * @return int
 */
@@ -91,11 +81,6 @@ int	print_prefix(t_flags *flags)
 * @brief
 Prints the zeros added by the precision.
 
-Depends on:
-	print_char();
-		error_state();
-		write();
-
 * @param int pr_len
 * @return int
 */
@@ -117,17 +102,6 @@ int	print_precision(int pr_len)
 * @brief
 Prints a number of value 0 with a precision of 0: no digit.
 Only the padding and, for d/i, a '+' or space prefix are printed.
-
-Depends on:
-	print_padding();
-		print_char();
-			error_state();
-			write();
-
-	print_prefix();
-		print_char();
-			error_state();
-			write();
 
 * @param int len
 * @param t_flags *flags

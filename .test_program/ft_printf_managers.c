@@ -6,7 +6,7 @@
 /*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 22:58:34 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:20:56 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/15 16:27:57 by tschwab          ###   ########.ch       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,101 +16,6 @@
 * @brief
 Sends a parsed conversion to the right sub-manager.
 Conversions are grouped by need: c/s/%, d/i/u, x/X and p.
-
-Depends on:
-	printer_manager_char();
-		print_char();
-			error_state();
-			write();
-		print_padding();
-			print_char();
-				error_state();
-				write();
-		s_len();
-		print_s();
-			print_char();
-				error_state();
-				write();
-		va_arg();
-
-	printer_manager_decimal();
-		deci_len();
-		print_nothing();
-			print_padding();
-				print_char();
-					error_state();
-					write();
-			print_prefix();
-				print_char();
-					error_state();
-					write();
-		print_deci();
-			def_div();
-			print_prefix();
-				print_char();
-					error_state();
-					write();
-			print_padding();
-				print_char();
-					error_state();
-					write();
-			pr_len();
-			print_precision();
-				print_char();
-					error_state();
-					write();
-			print_char();
-				error_state();
-				write();
-		va_arg();
-
-	printer_manager_hexa();
-		print_prefix();
-			print_char();
-				error_state();
-				write();
-		print_hexa();
-			hexa_len();
-			def_div();
-			print_padding();
-				print_char();
-					error_state();
-					write();
-			pr_len();
-			print_prefix();
-				print_char();
-					error_state();
-					write();
-			print_precision();
-				print_char();
-					error_state();
-					write();
-			print_char();
-				error_state();
-				write();
-		hexa_len();
-		print_padding();
-			print_char();
-				error_state();
-				write();
-		pr_len();
-		va_arg();
-
-	printer_manager_address();
-		address_len();
-		print_padding();
-			print_char();
-				error_state();
-				write();
-		print_s();
-			print_char();
-				error_state();
-				write();
-		print_address();
-			print_char();
-				error_state();
-				write();
-		va_arg();
 
 * @param t_flags *flags
 * @param va_list *args
@@ -137,26 +42,6 @@ void	printer_manager(t_flags *flags, va_list *args, int *count)
 Prints a %, c or s conversion with its padding.
 Reads the argument for c (as an int, the promoted type) or s, then prints the
 padding on the left or the right of it depending on '-'.
-
-Depends on:
-	print_char();
-		error_state();
-		write();
-
-	print_padding();
-		print_char();
-			error_state();
-			write();
-
-	s_len();
-
-	print_s();
-		print_char();
-			error_state();
-			write();
-
-External:
-	va_arg();
 
 * @param t_flags *flags
 * @param va_list *args
@@ -199,41 +84,6 @@ so INT_MIN can be made positive without overflow. Handles the value 0 with a
 precision of 0 (no digit), and records a negative sign in neg_sign before
 printing the absolute value.
 
-Depends on:
-	deci_len();
-
-	print_nothing();
-		print_padding();
-			print_char();
-				error_state();
-				write();
-		print_prefix();
-			print_char();
-				error_state();
-				write();
-
-	print_deci();
-		def_div();
-		print_prefix();
-			print_char();
-				error_state();
-				write();
-		print_padding();
-			print_char();
-				error_state();
-				write();
-		pr_len();
-		print_precision();
-			print_char();
-				error_state();
-				write();
-		print_char();
-			error_state();
-			write();
-
-External:
-	va_arg();
-
 * @param t_flags *flags
 * @param va_list *args
 * @param int *count
@@ -270,44 +120,6 @@ Prints an x or X conversion.
 Picks the lowercase or uppercase base, turns '#' off for the value 0, prints
 the 0x prefix first when zero padding is used, then the number and the right
 padding.
-
-Depends on:
-	print_prefix();
-		print_char();
-			error_state();
-			write();
-
-	print_hexa();
-		hexa_len();
-		def_div();
-		print_padding();
-			print_char();
-				error_state();
-				write();
-		pr_len();
-		print_prefix();
-			print_char();
-				error_state();
-				write();
-		print_precision();
-			print_char();
-				error_state();
-				write();
-		print_char();
-			error_state();
-			write();
-
-	hexa_len();
-
-	print_padding();
-		print_char();
-			error_state();
-			write();
-
-	pr_len();
-
-External:
-	va_arg();
 
 * @param t_flags *flags
 * @param va_list *args
@@ -346,27 +158,6 @@ void	printer_manager_hexa(t_flags *flags, va_list *args, int *count)
 * @brief
 Prints a p conversion with its padding.
 A NULL pointer is printed as "(nil)", like glibc.
-
-Depends on:
-	address_len();
-
-	print_padding();
-		print_char();
-			error_state();
-			write();
-
-	print_s();
-		print_char();
-			error_state();
-			write();
-
-	print_address();
-		print_char();
-			error_state();
-			write();
-
-External:
-	va_arg();
 
 * @param t_flags *flags
 * @param va_list *args
