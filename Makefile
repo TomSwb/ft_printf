@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tomswb <tomswb@student.42.fr>              +#+  +:+       +#+         #
+#    By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/12 16:35:33 by tschwab           #+#    #+#              #
-#    Updated: 2026/10/12 19:13:39 by tomswb           ###   ########.fr        #
+#    Updated: 2026/10/15 14:48:56 by tschwab          ###   ########.ch        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SOURCES = ft_printf.c \
 		ft_printf_printing.c \
 		ft_printf_printing_utils.c \
 		ft_printf_len_utils.c
-		
+
 CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
@@ -38,7 +38,7 @@ all: ${NAME}
 ${NAME}: ${OBJECTS}
 		${AR} ${NAME} ${OBJECTS}
 
-clean: 
+clean:
 		${RM} ${OBJECTS}
 
 fclean: clean
