@@ -137,7 +137,8 @@ I use VSCodium on purpose, so there is no AI integration in my editor. Apart fro
 4. Help correcting the parsing check: made me realise that printf flags act as on/off switches, not as error returns.
 5. README: helped structure the *Algorithm & Data Structure* section, then completed and corrected it from my own draft, which I reviewed and adjusted.
 6. Pre-evaluation review of the repository (file names, Makefiles, Norm, headers), and proofreading and restructuring of this README.
-7. Writting of the brief for each functions
+7. Write-error handling: explained how printf reacts to a failed write, proposed the design (a single print_char calling write, a static error state reset on each call) as pseudocode, and reviewed my implementation step by step. I wrote the code.
+8. Wrote the description comment of each function, which I reviewed.
 
 ## Algorithm & Data Structure
 
@@ -276,7 +277,8 @@ My reference is the original printf on Linux (glibc). Some outputs differ on mac
 | `%#x` with `0` | Prints `0`, without the `0x` prefix |
 | `%d` with `INT_MIN` | The value is stored in a `long long`, so making it positive does not overflow |
 | Flag on a conversion it doesn't apply to (`%+u`, `%#d`) | Undefined behaviour in the standard; the flag is ignored, as glibc does |
-| Unknown converter, or `%` at the end of the string | Returns `-1` |
+| Conversion outside `cspdiuxX%` (`%k`, `%o`, `%f`, `%ld`, …) | Returns `-1`. Conversions and length modifiers not required by the subject are treated as an invalid format. For truly invalid conversions like `%k`, the standard leaves the behaviour undefined (glibc prints them as-is) |
+| `%` at the end of the string | Returns `-1`, like glibc |
 | `"abc%"` | No buffer (as required by the subject): `abc` is already written when the error is found, while the original printf prints nothing |
 | Write failure (closed output, full device) | Stops at the next step and returns `-1`, like the original printf without a buffer. The original buffered printf only notices the failure when its buffer is flushed, so its return value can differ when the output is a file |
 
