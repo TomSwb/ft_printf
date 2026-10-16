@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_printing_utils.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:30 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:27:11 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/16 13:59:10 by tschwab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ long long	def_div(long long value, t_flags *flags)
 	long long	div;
 	int			base;
 
+	base = 0;
 	if (flags->converter == 'd' || flags->converter == 'i'
 		|| flags->converter == 'u')
 		base = 10;

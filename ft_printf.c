@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:51:26 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:31:08 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/16 14:30:23 by tschwab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ a time with printf_loop, until the end of the string or until a write fails.
 * @return int
 */
 
-int	ft_printf(const char *s, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		count;
 	va_list	args;
@@ -31,10 +31,10 @@ int	ft_printf(const char *s, ...)
 
 	count = 0;
 	error_state(-2);
-	va_start(args, s);
-	while (*s && !error_state(0))
+	va_start(args, format);
+	while (*format && !error_state(0))
 	{
-		result = printf_loop(&s, &count, &args);
+		result = printf_loop(&format, &count, &args);
 		if (!result)
 			return (va_end(args), -1);
 	}

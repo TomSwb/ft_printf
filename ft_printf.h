@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:53:57 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:25:11 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/16 15:37:08 by tschwab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_flags
 // *** Functions *** //
 
 // ft_printf.c
-int			ft_printf(const char *s, ...);
+int			ft_printf(const char *format, ...);
 int			printf_loop(const char **s, int *count, va_list *args);
 int			error_state(int n);
 
