@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 17:54:22 by tomswb            #+#    #+#             */
-/*   Updated: 2026/10/15 14:51:10 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/30 19:35:59 by tschwab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,69 +24,72 @@ void	test_p(void);
 
 int	main(int ac, char **av)
 {
-	if (ac != 2)
-		return (-1);
-	if (av[1][0] == '\0')
-		return (-1);
-	if (av[1][0] == '1')
-	{
-		ft_printf("\n");
-		ft_printf("control, string ending with arg symbol: %");
-		ft_printf("\n");
-		ft_printf("\n");
-	}
-	if (av[1][0] == '%')
-	{
-		ft_printf("\n");
-		test_percent();
-		ft_printf("\n");
-	}
-	if (av[1][0] == 'c')
-	{
-		ft_printf("\n");
-		test_c();
-		ft_printf("\n");
-	}
-	if (av[1][0] == 's')
-	{
-		ft_printf("\n");
-		test_s();
-		ft_printf("\n");
-	}
-	if (av[1][0] == 'd')
-	{
-		ft_printf("\n");
-		test_d();
-		ft_printf("\n");
-	}
-	if (av[1][0] == 'i')
-	{
-		ft_printf("\n");
-		test_i();
-		ft_printf("\n");
-	}
-	if (av[1][0] == 'u')
-	{
-		ft_printf("\n");
-		test_u();
-		ft_printf("\n");
-	}
-	if (av[1][0] == 'x')
-	{
-		ft_printf("\n");
-		test_x();
-		ft_printf("\n");
-	}
-	if (av[1][0] == 'X')
-	{
-		ft_printf("\n");
-		test_X();
-		ft_printf("\n");
-	}
-	if (av[1][0] == 'p')
-	{
-		ft_printf("\n");
-		test_p();
-		ft_printf("\n");
-	}
+	(void)ac;
+	(void)av;
+	ft_printf("Hello %a World");
+	// if (ac != 2)
+	// 	return (-1);
+	// if (av[1][0] == '\0')
+	// 	return (-1);
+	// if (av[1][0] == '1')
+	// {
+	// 	ft_printf("\n");
+	// 	ft_printf("control, string ending with arg symbol: %");
+	// 	ft_printf("\n");
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == '%')
+	// {
+	// 	ft_printf("\n");
+	// 	test_percent();
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == 'c')
+	// {
+	// 	ft_printf("\n");
+	// 	test_c();
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == 's')
+	// {
+	// 	ft_printf("\n");
+	// 	test_s();
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == 'd')
+	// {
+	// 	ft_printf("\n");
+	// 	test_d();
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == 'i')
+	// {
+	// 	ft_printf("\n");
+	// 	test_i();
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == 'u')
+	// {
+	// 	ft_printf("\n");
+	// 	test_u();
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == 'x')
+	// {
+	// 	ft_printf("\n");
+	// 	test_x();
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == 'X')
+	// {
+	// 	ft_printf("\n");
+	// 	test_X();
+	// 	ft_printf("\n");
+	// }
+	// if (av[1][0] == 'p')
+	// {
+	// 	ft_printf("\n");
+	// 	test_p();
+	// 	ft_printf("\n");
+	// }
 }
