@@ -35,6 +35,10 @@ As required by the subject, it does not reproduce the buffer management of the o
 
 The hidden `.test_program/` folder contains my personal test program. It is not part of the evaluated project: it is self-contained, with its own copy of the sources and its own Makefile.
 
+Evaluation result:
+
+&nbsp;&nbsp;<img src="image.png" alt="succes" width="100">
+
 ## Instructions
 
 ### Compiling the library

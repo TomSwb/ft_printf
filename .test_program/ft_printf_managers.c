@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_managers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 22:58:34 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:27:57 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/30 20:34:53 by tschwab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	printer_manager(t_flags *flags, va_list *args, int *count)
 		printer_manager_hexa(flags, args, count);
 	else if (flags->converter == 'p')
 		printer_manager_address(flags, args, count);
+	else if (flags->converter == 'a')
+	{
+		write(1, "Awesome 42", 10);
+	}
 }
 
 /**

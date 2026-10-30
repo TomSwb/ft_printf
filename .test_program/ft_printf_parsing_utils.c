@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_parsing_utils.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tschwab <tschwab@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: tschwab <tschwab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 23:01:24 by tschwab           #+#    #+#             */
-/*   Updated: 2026/10/15 16:15:56 by tschwab          ###   ########.ch       */
+/*   Updated: 2026/10/30 20:34:28 by tschwab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_converter(char c)
 {
 	char	*s;
 
-	s = "cspdiuxX%";
+	s = "cspdiuxXa%";
 	while (*s)
 	{
 		if (*s == c)
